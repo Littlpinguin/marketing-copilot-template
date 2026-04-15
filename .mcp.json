@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "qdrant": {
+      "command": "python3",
+      "args": ["${CLAUDE_PROJECT_DIR}/_integrations/qdrant/mcp_server.py"],
+      "description": "Semantic memory backed by Qdrant + Gemini embeddings (3072 dim). Exposes qdrant_search, qdrant_find_similar, qdrant_stats."
+    }
+  }
+}

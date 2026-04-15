@@ -1,0 +1,73 @@
+# Secrets and local state — NEVER commit these
+.env
+.env.local
+.setup-completed
+.claude/settings.local.json
+.claude/projects/
+.DS_Store
+
+# Qdrant runtime state
+_integrations/qdrant/registry.json
+_integrations/qdrant/logs/
+_integrations/qdrant/**/__pycache__/
+_integrations/qdrant/**/*.pyc
+
+# Bootstrap user inputs (private brand documents dropped during interview)
+_bootstrap/inputs/*
+!_bootstrap/inputs/README.md
+!_bootstrap/inputs/.gitkeep
+
+# Content produced during operation (per-project, not part of the template)
+01-brand/*.md
+!01-brand/CLAUDE.md
+01-brand/assets/*
+!01-brand/assets/.gitkeep
+
+03-social-media/linkedin/examples/*.md
+03-social-media/linkedin/drafts/
+03-social-media/discord/examples/*.md
+03-social-media/whatsapp/examples/*.md
+
+04-email/newsletter/editions/*.md
+04-email/newsletter/drafts/
+04-email/promos/*.md
+!04-email/promos/.gitkeep
+04-email/sales-outreach/*.md
+!04-email/sales-outreach/.gitkeep
+
+05-web-content/*/index.html
+05-web-content/*/assets/
+
+07-events/*/
+!07-events/templates/
+!07-events/CLAUDE.md
+
+09-blog-seo/articles/*.md
+09-blog-seo/content-briefs/*.md
+09-blog-seo/keyword-research/*.md
+09-blog-seo/seo-audit/*.md
+
+_sources/transcriptions/**/*.md
+_sources/reports/**/*
+_sources/research/**/*
+!_sources/**/.gitkeep
+!_sources/README.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.python-version
+
+# Node
+node_modules/
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
