@@ -13,15 +13,20 @@ Qdrant is optional. Each skill in the repo has a file-based fallback — the sys
 
 ## When Qdrant is actually useful
 
-Recommend Qdrant when the user's projected volume exceeds **~10 published pieces per month** across all channels combined. Below that, a file-based scan of `examples/`, `editions/`, and `articles/` is fast enough and more transparent.
+Recommend Qdrant when the user's projected volume exceeds **~50 published pieces per month** across all channels combined (LinkedIn + newsletter + blog + emails + event comms). Below that threshold, a file-based scan of `examples/`, `editions/`, and `articles/` is fast enough, more transparent, and avoids any external dependency.
 
-Above that threshold, Qdrant delivers:
+Rough guide by profile:
+- **Small team, < 50/month** (weekly newsletter + a few LinkedIn posts, maybe 1-2 articles): file-based is fine. Skip Qdrant.
+- **Active team, 50-150/month** (multi-channel, regular cadence, building archives): Qdrant starts to help.
+- **High-volume team, > 150/month** (agency, consultancy, content shop with daily output): Qdrant is essential to stay coherent.
+
+Above the threshold, Qdrant delivers:
 - Anti-repetition check across months of archives (< 500 ms)
 - Cross-channel consistency (a claim in this week's post vs last month's blog)
 - Fast retrieval from the brand doctrine without rereading `01-brand/` every session
 - Surfaced meeting transcripts and research notes
 
-Below that threshold, the file-based fallback stays faster to reason about, with zero API dependency.
+Below the threshold, the file-based fallback stays faster to reason about, with zero API dependency and no monthly cost for the Qdrant cluster or Gemini embeddings.
 
 ## Flow
 

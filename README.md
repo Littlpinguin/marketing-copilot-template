@@ -101,7 +101,7 @@ Each numbered folder represents one marketing function. Claude Code loads the ma
 
 ### Semantic memory (optional — volume-dependent)
 
-Qdrant is **optional**. Below ~10 published pieces per month, the file-based fallback (reading `01-brand/` and recent archives directly) is fast enough and zero-dependency. Above that, Qdrant pays off: anti-repetition across months of content, semantic retrieval from the brand doctrine in 500 ms, cross-channel consistency checks.
+Qdrant is **optional**. Below ~50 published pieces per month, the file-based fallback (reading `01-brand/` and recent archives directly) is fast enough and zero-dependency. Above that threshold, Qdrant starts to pay off: anti-repetition across months of accumulated content, semantic retrieval from the brand doctrine in 500 ms, cross-channel consistency checks. A small team publishing a weekly newsletter and a handful of LinkedIn posts doesn't need it. A consultancy producing 2 posts/day across channels plus a monthly newsletter and weekly articles will feel the difference.
 
 Enable any time with `/connect-qdrant`. Disable by editing `.setup-completed.features.qdrant.enabled`.
 

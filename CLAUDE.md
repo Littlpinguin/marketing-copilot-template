@@ -84,7 +84,7 @@ Runtime configuration lives in `.setup-completed` (JSON). The wizard writes it a
     "crm":                { "name": "none", "enabled": false }
   },
   "features": {
-    "qdrant":           { "enabled": false, "rationale": "< 10 pieces/month, file-based memory is sufficient" },
+    "qdrant":           { "enabled": false, "rationale": "< 50 pieces/month, file-based memory is sufficient" },
     "image_generation": { "enabled": true,  "model": "gemini-3-pro-image-preview" },
     "weekly_cron":      { "enabled": false }
   }

@@ -164,7 +164,7 @@ User reviews. On approval: post archived to examples/, calendar updated.
 | Cross-channel consistency | Single query across all collections | Not available |
 | Meeting transcript surfacing | Automatic via ingestion | Manual reads of `_sources/transcriptions/` |
 | Setup dependency | Qdrant Cloud + Google AI key | None |
-| Recommended when | Volume > 10 pieces / month | Volume ≤ 10 pieces / month |
+| Recommended when | Volume > 50 pieces / month | Volume ≤ 50 pieces / month |
 
 Flip the flag in `.setup-completed.features.qdrant.enabled`. Skills handle both paths.
 
