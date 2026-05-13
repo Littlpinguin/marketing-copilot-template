@@ -31,7 +31,7 @@
       "Bash(cat CLAUDE.md)",
       "Bash(cat SECURITY.md)",
       "Bash(cat README.md)",
-      "Bash(curl -s -H *:* -o * -w *)",
+      "Bash(curl -s -H * -o * -w *:*)",
       "Bash(launchctl list:*)",
       "WebFetch"
     ],
@@ -42,8 +42,7 @@
       "Bash(launchctl unload:*)",
       "Bash(cat .env)",
       "Bash(cat .env.local)",
-      "Bash(cat .setup-completed)",
-      "Bash(echo:*.env*)"
+      "Bash(cat .setup-completed)"
     ]
   }
 }
