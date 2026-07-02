@@ -6,12 +6,12 @@ Reusable slide patterns, ready to copy into a new presentation. Each component i
 
 ## How to use
 
-1. Copy `templates/base.html` to `decks/<your-deck>.html`.
-2. Inline `tokens.css` into the `:root { ... }` block.
+1. Copy `templates/base.html` to `decks/<your-deck>.html`. The starter embeds the **full engine** (fullscreen `F` + nav-peek, grouped overview `O`, PDF export `P`, auto folios, brand-pattern hooks) — never strip or reimplement it (see `docs/engine-parity.md`).
+2. Inline the filled `tokens.css` into the `:root { ... }` block.
 3. Embed your logo `<symbol id="brand-logo">` (replace the placeholder in base.html).
 4. For each slide you want, copy the matching component block from `templates/components/` (or from this catalogue) into the `<main class="stage">` body, between the existing `<section class="slide">` blocks.
-5. Update `data-eyebrow` and `data-heading` on every slide — they drive the overview panel.
-6. Run `python scripts/qa.py decks/<your-deck>.html` after every meaningful change.
+5. Update `data-eyebrow`, `data-heading` and `data-family` (ouverture, editorial, dataviz, schema, tableau, preuve, conclusion) on every slide — they drive the grouped overview panel. Leave the `.nav-num` spans empty: folios are auto-numbered from `SLIDE_COUNT`.
+6. Run `python scripts/qa.py decks/<your-deck>.html` after every meaningful change (engine-parity markers + overflow + safe zone).
 
 ## Selection guide — which component for which beat
 

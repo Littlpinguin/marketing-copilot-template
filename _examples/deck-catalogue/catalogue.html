@@ -1753,7 +1753,8 @@ body.presenting.nav-peek .nav-rail { opacity:1; transform:translate(-50%, 0); po
   function fit(){ const presenting=document.body.classList.contains('presenting'); const reserve=presenting?0:(nav?nav.offsetHeight+24:64)+16; const scale=Math.min(window.innerWidth/1920,(window.innerHeight-reserve)/1080,presenting?100:1.5); frame.style.transform=`translate(-50%, calc(-50% + ${-reserve/2}px)) scale(${scale})`; }
   fit(); addEventListener('resize', fit);
 
-  const plates=[...document.querySelectorAll('.plate')], total=plates.length;
+  // SLIDE_COUNT : folios auto-numérotés — insérer/supprimer une slide ne demande aucune renumérotation
+  const plates=[...document.querySelectorAll('.plate')], SLIDE_COUNT=plates.length, total=SLIDE_COUNT;
   document.getElementById('tot').textContent=total;
   plates.forEach((p,i)=>{ const f=p.querySelector('.tag-folio'); if(f) f.innerHTML='<strong>'+String(i+1).padStart(2,'0')+'</strong> / '+total; });
   let cur=0;

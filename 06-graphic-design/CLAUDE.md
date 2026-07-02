@@ -32,7 +32,7 @@ All three share the same brand source of truth (`../01-brand/`) and the same ban
 │   ├── briefs/               ← per-deck briefs
 │   ├── templates/            ← base.html, components.md, components/
 │   ├── scripts/              ← qa.py, serve.sh, export-pdf.sh, export_pdf.py
-│   ├── docs/                 ← design-system.md, hosting.md, pdf-export.md
+│   ├── docs/                 ← design-system.md, engine-parity.md, hosting.md, pdf-export.md
 │   └── tokens.css            ← slide-specific CSS variables
 └── mail-signatures/
     ├── README.md             ← scope + workflow
@@ -104,7 +104,7 @@ The skill enforces:
 - 1920×1080 frame, 80×120 slide padding, 110px bottom safe zone
 - Brand strict: only `tokens.css` custom properties, only declared font families
 - One idea per slide, 3–4 breathing slides per 24
-- Triple navigation (drag-bar, overview `O`, quick-jump digits + Enter) wired in `templates/base.html`
+- The full presentation engine wired in `templates/base.html` (canonical feature list: `presentations/docs/engine-parity.md`): triple navigation (drag-bar, grouped overview `O`, quick-jump digits + Enter), fullscreen mode `F` with nav-peek, auto-numbered folios (`SLIDE_COUNT`), PDF export `P` with gradient-text rasterisation, brand-pattern hooks
 - Mandatory Playwright QA before delivery (`scripts/qa.py`)
 - Brand-check gate (5-pass) before delivery
 
@@ -114,6 +114,7 @@ The skill enforces:
 - `presentations/templates/components.md` — paste-ready slide layouts + selection guide
 - `presentations/tokens.css` — slide-specific CSS variables, derived from `../01-brand/style-guide.md`
 - `presentations/docs/design-system.md` — principles, anti-patterns, type scale
+- `presentations/docs/engine-parity.md` — canonical engine feature list + parity rule (enforced by `scripts/qa.py`)
 - `presentations/docs/pdf-export.md` — gradient-text rasterisation explained
 - `presentations/docs/hosting.md` — Netlify Drop, S3, GitHub Pages, etc.
 

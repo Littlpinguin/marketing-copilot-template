@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Playwright QA — verify no slide overflows the 1920×1080 frame
-and no content invades the bottom chrome safe zone.
+Playwright QA — verify no slide overflows the 1920×1080 frame,
+no content invades the bottom chrome safe zone, and the deck embeds
+the FULL presentation engine (engine-parity check).
 
 Usage (run from 06-graphic-design/presentations/):
     python scripts/qa.py decks/your-deck.html [--viewport 1920x1080]
@@ -31,6 +32,34 @@ except ImportError:
 SAFE_GAP_PX = 16  # min gap between bottom-most content and chrome bottom row
 TMP_DIR = Path("/tmp/slides-qa")
 
+# Slides may be tagged .slide (starter / production decks) or .plate (catalogue)
+SLIDE_SELECTOR = ".slide, .plate"
+
+# ---------------------------------------------------------------------------
+# ENGINE PARITY — canonical markers of the slides engine.
+# Mirrors docs/engine-parity.md: every deck, the starter (templates/base.html)
+# and the catalogue (_examples/deck-catalogue/catalogue.html) must embed the
+# full engine. If a marker is missing, the deck shipped without a feature
+# (fullscreen, nav-peek, auto folios, PDF export, brand-pattern hooks...).
+# Keep this list in sync with docs/engine-parity.md.
+# ---------------------------------------------------------------------------
+ENGINE_MARKERS = {
+    "body.presenting": "fullscreen presentation mode (F key, nav hidden)",
+    "nav-peek": "nav rail reappearance near the screen bottom while presenting",
+    "requestFullscreen": "Fullscreen API wiring (F key / button)",
+    "SLIDE_COUNT": "auto-numbered folios driven by the slide count",
+    "printing-pdf": "PDF export print mode (P key / button)",
+    "window.print": "PDF export trigger",
+    "--brand-pattern": "brand pattern hooks (.motif / .texture / .corner)",
+    "overview": "overview panel (O key)",
+}
+
+
+def check_engine_parity(deck_path: Path) -> list[str]:
+    """Return the list of missing engine markers (empty = full engine)."""
+    html = deck_path.read_text(encoding="utf-8", errors="replace")
+    return [m for m in ENGINE_MARKERS if m not in html]
+
 
 def url_for(path: Path) -> str:
     abs_path = path.resolve()
@@ -54,6 +83,8 @@ def main() -> int:
     parser.add_argument("deck", help="path to the presentation HTML file")
     parser.add_argument("--viewport", default="1920x1080", help="viewport size (default: 1920x1080)")
     parser.add_argument("--screenshots", action="store_true", help="save per-slide PNGs to /tmp/slides-qa/")
+    parser.add_argument("--no-engine-check", action="store_true",
+                        help="skip the engine-parity marker check (legacy decks only)")
     args = parser.parse_args()
 
     deck_path = Path(args.deck)
@@ -67,6 +98,18 @@ def main() -> int:
     print(f"qa  · viewport {viewport['width']}x{viewport['height']}")
     print(f"qa  · url      {url}")
 
+    # ---- Engine-parity check (docs/engine-parity.md) ----
+    if not args.no_engine_check:
+        missing = check_engine_parity(deck_path)
+        if missing:
+            print("\nFAIL · engine parity — the deck does not embed the full slides engine:")
+            for marker in missing:
+                print(f"  missing marker '{marker}' → {ENGINE_MARKERS[marker]}")
+            print("Port the missing feature(s) from templates/base.html or "
+                  "_examples/deck-catalogue/catalogue.html (see docs/engine-parity.md).")
+            return 1
+        print(f"qa  · engine parity ok ({len(ENGINE_MARKERS)} markers)")
+
     with sync_playwright() as p:
         browser = p.chromium.launch()
         ctx = browser.new_context(viewport=viewport, reduced_motion="reduce")
@@ -74,9 +117,9 @@ def main() -> int:
         page.goto(url, wait_until="networkidle")
         page.wait_for_timeout(800)
 
-        total = page.evaluate("document.querySelectorAll('.slide').length")
+        total = page.evaluate(f"document.querySelectorAll('{SLIDE_SELECTOR}').length")
         if not total:
-            print("error · no .slide elements found")
+            print(f"error · no slide elements found (selector: {SLIDE_SELECTOR})")
             browser.close()
             return 2
         print(f"qa  · {total} slides detected\n")
@@ -86,8 +129,9 @@ def main() -> int:
         for i in range(1, total + 1):
             page.evaluate(
                 """(idx) => {
-                    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-                    document.querySelectorAll('.slide')[idx].classList.add('active');
+                    const slides = document.querySelectorAll('""" + SLIDE_SELECTOR + """');
+                    slides.forEach(s => s.classList.remove('active'));
+                    slides[idx].classList.add('active');
                 }""",
                 i - 1,
             )
@@ -98,12 +142,12 @@ def main() -> int:
 
             issues = page.evaluate(
                 """(idx) => {
-                    const slide = document.querySelectorAll('.slide')[idx];
+                    const slide = document.querySelectorAll('""" + SLIDE_SELECTOR + """')[idx];
                     const fb = document.getElementById('stage-frame').getBoundingClientRect();
                     const scale = fb.width / 1920;
                     const out = { overflow: [], chrome_gap: null };
                     slide.querySelectorAll('*').forEach(el => {
-                        if (el.classList.contains('aurora') || el.classList.contains('dust-grid') || el.closest('.chrome')) return;
+                        if (el.closest('.aurora') || el.closest('.dust-grid') || el.closest('.chrome') || el.closest('.legend')) return;
                         const r = el.getBoundingClientRect();
                         const oR = r.right - fb.right, oB = r.bottom - fb.bottom;
                         const oL = fb.left - r.left, oT = fb.top - r.top;
@@ -121,7 +165,7 @@ def main() -> int:
                         const chromeTop = (cb.top - fb.top) / scale;
                         let lowest = 0;
                         slide.querySelectorAll('*').forEach(el => {
-                            if (el.classList.contains('aurora') || el.classList.contains('dust-grid') || el.closest('.chrome')) return;
+                            if (el.closest('.aurora') || el.closest('.dust-grid') || el.closest('.chrome') || el.closest('.legend')) return;
                             const r = el.getBoundingClientRect();
                             const y = (r.bottom - fb.top) / scale;
                             if (y > lowest && r.width > 8) lowest = y;
