@@ -1,6 +1,6 @@
 ---
 name: seo
-description: Production SEO pour {{COMPANY_NAME}} — briefs de contenu, articles longs, clusters thématiques, optimisation on-page et AEO (citations LLM), dans 09-seo/. L'analyse (audits techniques, SERP, mots-clés, backlinks) est déléguée aux agents du plugin claude-seo. Couplage Google Search Console / GA4 configuré via /tools-setup.
+description: Production SEO pour {{COMPANY_NAME}} — briefs de contenu, articles longs, clusters thématiques, optimisation on-page et AEO (citations LLM), dans 09-seo/. L'analyse (audits techniques, SERP, mots-clés, GEO) est déléguée aux skills internes seo-audit / seo-schema / seo-geo / seo-cluster et aux agents seo-technical / seo-content / seo-google. Couplage Google Search Console / GA4 configuré via /tools-setup.
 ---
 
 # seo — production blog & SEO {{COMPANY_NAME}}
@@ -18,19 +18,21 @@ Avant de rédiger un brief ou un article :
 
 ## Division du travail — analyse vs production
 
-**Cette skill produit. Elle n'audite pas.** L'analyse s'appuie sur le plugin **claude-seo** (AgriciDaniel) et ses agents spécialisés :
+**Cette skill produit. Elle n'audite pas.** L'analyse s'appuie sur les skills et agents **internes au template** (vendorés depuis claude-seo d'AgriciDaniel, MIT — voir `docs/vendored-seo.md`) :
 
 | Besoin d'analyse | Déléguer à |
 |---|---|
-| Audit complet du site, technique (crawl, indexation, CWV) | `claude-seo:seo-audit` / agent `seo-technical` |
-| Qualité de contenu, E-E-A-T, contenu mince | agent `seo-content` |
-| Clustering sémantique, architecture hub-and-spoke | agent `seo-cluster` |
-| Schema markup, données structurées | agent `seo-schema` |
-| GEO / AI Overviews / citabilité LLM | agent `seo-geo` |
-| Données CrUX, GSC, GA4 | agent `seo-google` |
-| Backlinks, pages concurrentes, dérive SEO | agents `seo-backlinks`, `seo-competitor-pages`, `seo-drift` |
+| Audit complet du site ou analyse d'une page unique | skill `seo-audit` |
+| Technique : crawl, indexation, CWV, rendu JS | agent `seo-technical` (dispatché par `seo-audit`) |
+| Qualité de contenu, E-E-A-T, contenu mince, citabilité IA | agent `seo-content` |
+| Clustering sémantique, architecture hub-and-spoke | skill `seo-cluster` |
+| Schema markup, données structurées | skill `seo-schema` |
+| GEO / AI Overviews / citations LLM / llms.txt | skill `seo-geo` |
+| Données terrain CrUX, GSC, GA4 | agent `seo-google` (si couplage `/tools-setup` actif) |
 
-Workflow type : lancer l'analyse via le plugin → récupérer les conclusions (mots-clés, intentions, gaps, structure recommandée) → **produire** ici (briefs, articles, clusters) dans `09-seo/`.
+Workflow type : lancer l'analyse via ces skills/agents → récupérer les conclusions (mots-clés, intentions, gaps, structure recommandée) → **produire** ici (briefs, articles, clusters) dans `09-seo/`.
+
+Besoins non couverts en interne (backlinks multi-sources, pages concurrentes, dérive/baselines, SEO local, e-commerce) : installer le plugin `claude-seo` complet en complément — les skills internes restent prioritaires (règle du CLAUDE.md racine).
 
 ## Données de performance — GSC / GA4
 
@@ -55,10 +57,10 @@ Si le couplage n'est pas configuré, le signaler à l'utilisateur et travailler 
 
 ## Workflow de production en 7 étapes
 
-### 1. Recherche de mots-clés (via plugin)
+### 1. Recherche de mots-clés (via skills internes)
 
-- Identifier le cluster cible.
-- Déléguer la collecte (volumes, difficulté, SERP top 5, questions des personas) aux agents claude-seo.
+- Identifier le cluster cible (le construire au besoin via la skill `seo-cluster`).
+- Déléguer la collecte (SERP top 10, recouvrements, questions des personas, intentions) à `seo-cluster` ; les données terrain (requêtes GSC réelles) à l'agent `seo-google` si le couplage est actif.
 - Consigner dans `09-seo/keyword-research/<cluster>/YYYY-MM-<sujet>.md`.
 
 ### 2. Brief de contenu
@@ -67,7 +69,7 @@ Fichier `09-seo/content-briefs/brief-<slug>.md` avec :
 - Mot-clé principal + secondaires (3-5)
 - Intention de recherche (informationnelle / commerciale / transactionnelle)
 - Structure proposée (H1, H2, H3)
-- Sources à intégrer (doctrine, données externes, conclusions d'agents claude-seo)
+- Sources à intégrer (doctrine, données externes, conclusions des skills/agents seo-*)
 - CTA principal
 - Persona cible
 - Longueur cible (1500-2500 mots typique)
@@ -86,7 +88,7 @@ Fichier `09-seo/content-briefs/brief-<slug>.md` avec :
 - H1 unique ; H2 avec variantes du mot-clé
 - Maillage interne : minimum 3 liens vers d'autres pages `{{COMPANY_WEBSITE}}`
 - Images : alt descriptif, noms de fichiers avec mot-clé
-- Schema markup : Article, FAQ (si pertinent), Organization — validation via l'agent `seo-schema`
+- Schema markup : Article, FAQ (si pertinent), Organization — génération et validation via la skill `seo-schema`
 
 ### 5. AEO (Answer Engine Optimization)
 
@@ -96,7 +98,7 @@ Pour être cité par ChatGPT, Perplexity, Claude, Gemini :
 - Sources citées avec liens
 - Chiffres précis et sourcés
 - Aucune formulation floue qu'un LLM ne peut pas reformater proprement
-- Audit de citabilité : agent `seo-geo` du plugin
+- Audit de citabilité : skill `seo-geo`
 
 ### 6. Brand-check (obligatoire)
 
@@ -152,7 +154,7 @@ cluster: "..."
 
 ## Skills associées
 
-- `claude-seo:*` (plugin) — audits et analyses (technique, contenu, clusters, schema, GEO, GSC/GA4)
+- `seo-audit` / `seo-schema` / `seo-geo` / `seo-cluster` (internes) — audits et analyses (technique, contenu, clusters, schema, GEO) ; agents `seo-technical`, `seo-content`, `seo-google`
 - `copywriting` — rédaction narrative
 - `copy-editing` — relecture 7 passes orientée SEO
 - `content-strategy` — planification globale

@@ -18,20 +18,8 @@ You create, schedule, and optimize content on LinkedIn, Discord, WhatsApp, and a
 
 - Check the editorial calendar ({{EDITORIAL_CALENDAR_TOOL}}) for the week's planned posts and the pillar balance.
 - Read 3-5 recent posts in `<channel>/examples/` to calibrate tone.
-- **If Qdrant is enabled**, query for anti-repetition and inspiration:
-
-  ```
-  qdrant_search(query="<topic in one sentence>", top=5, filter_source_key="linkedin")
-  ```
-
-  Score interpretation:
-  - **≥ 0.82** → change angle, do not paraphrase
-  - **0.72 - 0.82** → complement without paraphrasing, cite if useful
-  - **< 0.72** → new territory
-
-  Also verify any number you cite via `qdrant_search(query="<stat>", filter_source_key="brand")`. **Never invent statistics.**
-
-- **If Qdrant is disabled**, scan the last 20 files in `<channel>/examples/` for topic overlap and confirm any number against `01-brand/messaging-framework.md`.
+- Scan the last 20 files in `<channel>/examples/` and `_templates/inventory.md` for topic overlap (anti-repetition). If a similar piece exists, change the angle — do not paraphrase.
+- Confirm any number you cite against `01-brand/messaging-framework.md` or `_sources/reports/`. **Never invent statistics.**
 
 ### 2. Draft
 

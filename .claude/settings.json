@@ -25,7 +25,6 @@
   "permissions": {
     "allow": [
       "Bash(python3 scripts/*)",
-      "Bash(python3 _integrations/qdrant/*.py:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",

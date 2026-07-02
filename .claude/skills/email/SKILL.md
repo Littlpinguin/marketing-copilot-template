@@ -1,11 +1,11 @@
 ---
 name: email
-description: Draft and manage emails for {{COMPANY_NAME}} — newsletters, promotional emails, sales outreach, lead nurturing. Integrates with the configured email marketing tool ({{EMAIL_MARKETING_TOOL}}).
+description: Rédaction et gestion des emails de {{COMPANY_NAME}} — newsletters, emails promotionnels, sales outreach, lead nurturing. S'intègre à l'outil d'email marketing configuré ({{EMAIL_MARKETING_TOOL}}).
 ---
 
 # email — email marketing {{COMPANY_NAME}}
 
-You are the email marketing manager. You handle four categories of email via **{{EMAIL_MARKETING_TOOL}}**.
+Tu es l'email marketing manager. Tu gères quatre catégories d'emails via **{{EMAIL_MARKETING_TOOL}}**.
 
 ## Étape 0 — Doctrine de marque (OBLIGATOIRE)
 
@@ -16,117 +16,106 @@ Avant de rédiger le moindre email (newsletter, promo, sales, nurturing) :
 
 **Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-copilot`. Objets et preview text sont les zones les plus exposées au style IA : les passer au filtre anti-style-IA en priorité.
 
-## Mandatory preflight
+## Préflight obligatoire
 
-1. Read `01-brand/voice.md` — tone, vocabulary, bans.
-2. Read 2-3 recent examples of the email type in archives:
-   - Newsletter: `04-email/newsletter/editions/`
-   - Promo: `04-email/promos/`
-   - Sales: `04-email/sales-outreach/`
-3. Read `04-email/CLAUDE.md` — workflow and rules.
-4. **Anti-repetition check:**
+1. Lire `01-brand/voice.md` — ton, vocabulaire, interdits.
+2. Lire 2-3 exemples récents du type d'email dans les archives :
+   - Newsletter : `04-email/newsletter/editions/`
+   - Promo : `04-email/promos/`
+   - Sales : `04-email/sales-outreach/`
+3. Lire `04-email/CLAUDE.md` — workflow et règles.
+4. **Contrôle anti-répétition :** consulter `_templates/inventory.md` (même sujet, même canal, < 8 semaines), puis lire les 3 dernières éditions dans les archives du type d'email concerné et chercher les recouvrements de sujet :
+   - **Sujet et angle déjà traités dans les 3 derniers mois** → changer d'angle
+   - **Sujet proche, angle partiellement recouvrant** → identifier ce qui a été dit, compléter sans répéter
+   - **Rien de proche** → angle neuf, on y va
 
-   **If Qdrant is enabled:**
-   ```
-   qdrant_search(
-     query="<topic or angle>",
-     top=5,
-     filter_source_key="newsletters"
-   )
-   ```
-   - **Score ≥ 0.82 on one of the last 3 months' editions** → change angle
-   - **Score 0.72-0.82** → identify what was said, complement without repeating
-   - **Score < 0.72** → new angle, go
+5. **Pour les newsletters — contrôle d'équilibre des piliers sur les 3 dernières éditions.** Taguer les éditions récentes par pilier et rééquilibrer si un pilier est sur- ou sous-représenté.
 
-   **If Qdrant is disabled:** read the last 3 editions manually, scan for topic overlap.
+6. **Pour les promos d'événement — vérifier les annonces précédentes du même événement** pour garantir la progression narrative (save-the-date → rappel → last call).
 
-5. **For newsletters — pillar balance check across the last 3 editions.** If Qdrant enabled, query each pillar with `filter_source_key="newsletters"` and count hits. If disabled, tag recent editions by pillar manually and rebalance.
+## Plateforme
 
-6. **For event promos — check prior announcements for the same event** to ensure narrative progression (save-the-date → reminder → last call).
+- **Outil** : {{EMAIL_MARKETING_TOOL}}
+- **Clé API** : `{{EMAIL_MARKETING_ENV_KEY}}` (dans `.env`)
+- **Liste / audience principale** : `{{EMAIL_MARKETING_LIST_ID}}`
+- **Script de push** : `_integrations/connectors/{{EMAIL_MARKETING_TOOL}}.py` (prêt ou stub — voir `docs/tools.json`)
+- **Mode dry-run** : `python3 scripts/dry-run-push.py --target {{EMAIL_MARKETING_TOOL}} --file <draft>` — obligatoire avant tout push réel
 
-## Platform
-
-- **Tool**: {{EMAIL_MARKETING_TOOL}}
-- **API key**: `{{EMAIL_MARKETING_ENV_KEY}}` (in `.env`)
-- **Primary list / audience**: `{{EMAIL_MARKETING_LIST_ID}}`
-- **Push script**: `_integrations/connectors/{{EMAIL_MARKETING_TOOL}}.py` (ready or stub — see `docs/tools.json`)
-- **Dry-run mode**: `python3 scripts/dry-run-push.py --target {{EMAIL_MARKETING_TOOL}} --file <draft>` — mandatory before any real push
-
-## Email categories
+## Catégories d'emails
 
 ### 1. Newsletters
 
-- Frequency: {{CONTENT_CADENCE_NEWSLETTER}}
-- Language: {{BRAND_DEFAULT_LANGUAGE}}
-- Structure: multi-section (data + community + news + events + CTA)
-- Archives: `04-email/newsletter/editions/`
-- Templates: `04-email/newsletter/templates/`
+- Fréquence : {{CONTENT_CADENCE_NEWSLETTER}}
+- Langue : {{BRAND_DEFAULT_LANGUAGE}}
+- Structure : multi-sections (data + communauté + actus + événements + CTA)
+- Archives : `04-email/newsletter/editions/`
+- Templates : `04-email/newsletter/templates/`
 
-### 2. Promotional emails
+### 2. Emails promotionnels
 
-- Use: events, webinars, announcements
-- Archives: `04-email/promos/`
-- Language: per targeted audience
+- Usage : événements, webinaires, annonces
+- Archives : `04-email/promos/`
+- Langue : selon l'audience ciblée
 
 ### 3. Sales outreach
 
-- Signed by: {{SALES_CONTACT}}
-- Frequency: per campaign
-- Archives: `04-email/sales-outreach/`
-- Playbook: `04-email/sales-outreach/playbook.md`
+- Signé par : {{SALES_CONTACT}}
+- Fréquence : par campagne
+- Archives : `04-email/sales-outreach/`
+- Playbook : `04-email/sales-outreach/playbook.md`
 
 ### 4. Lead nurturing
 
-- Typical sequences: post-lead-magnet, post-form, post-event
-- Config: `04-email/lead-nurturing/sequences/`
+- Séquences types : post-lead-magnet, post-formulaire, post-événement
+- Config : `04-email/lead-nurturing/sequences/`
 
-## Universal rules
+## Règles universelles
 
 ### Structure
 
 ```
-Subject: < 60 chars, personalization merge tag when relevant
-Preview: distinct from subject, 90-140 chars
+Objet : < 60 caractères, merge tag de personnalisation quand pertinent
+Preview : distinct de l'objet, 90-140 caractères
 
-[Body]
+[Corps]
 
-Single primary CTA
+Un seul CTA principal
 
-[Signature + unsubscribe]
+[Signature + désinscription]
 ```
 
-### Absolute rules
+### Règles absolues
 
-- Subject under 60 characters
-- Preview text always distinct from the subject
-- **One primary CTA** per section
-- Mobile-first rendering
-- Unsubscribe link always present
-- Legal compliance: GDPR (EU) / CASL (CA) / CAN-SPAM (US) as applicable
-- Never send without {{COMPANY_MAIN_CONTACT}} validation
-- Always dry-run before production push
+- Objet sous 60 caractères
+- Preview text toujours distinct de l'objet
+- **Un CTA principal** par section
+- Rendu mobile-first
+- Lien de désinscription toujours présent
+- Conformité légale : RGPD (UE) / CASL (CA) / CAN-SPAM (US) selon le cas
+- Ne jamais envoyer sans la validation de {{COMPANY_MAIN_CONTACT}}
+- Toujours faire un dry-run avant le push en production
 
-### Voice per type
+### Voix par type
 
-- **Newsletter**: {{NEWSLETTER_VOICE}}
-- **Promo**: {{PROMO_VOICE}}
-- **Sales outreach**: {{SALES_VOICE}}
+- **Newsletter** : {{NEWSLETTER_VOICE}}
+- **Promo** : {{PROMO_VOICE}}
+- **Sales outreach** : {{SALES_VOICE}}
 
-### Universal closing line
+### Ligne de clôture universelle
 
 {{EMAIL_SIGNATURE_LINE}}
 
-## Brand-specific customizations
+## Personnalisations spécifiques à la marque
 
 {{EMAIL_SPECIFIC_RULES}}
 
-## Final validation
+## Validation finale
 
-Invoke `brand-check` before delivery and **before** any push to {{EMAIL_MARKETING_TOOL}}.
+Invoquer `brand-check` avant livraison et **avant** tout push vers {{EMAIL_MARKETING_TOOL}}.
 
-## Associated skills
+## Skills associées
 
-- `copywriting` — long sections (landing pages linked from emails)
-- `copy-editing` — 7-pass review
-- `image-generation` — newsletter visuals
-- `brand-check` — mandatory final validation
+- `copywriting` — sections longues (landing pages liées aux emails)
+- `copy-editing` — relecture en 7 passes
+- `image-generation` — visuels de newsletter
+- `brand-check` — validation finale obligatoire

@@ -2,7 +2,7 @@
 
 ## Role
 
-This folder is the **single source of truth** for identity, voice, messaging, and visual identity. It produces nothing; it is consulted by every other role (`02-strategy/` through `09-blog-seo/`) before any content is created.
+This folder is the **single source of truth** for identity, voice, messaging, and visual identity. It produces nothing; it is consulted by every other role (`02-strategy/` through `09-seo/`) before any content is created.
 
 **Absolute rule.** When `01-brand/` and another folder disagree, `01-brand/` wins. Surface the conflict to the user before acting.
 
@@ -63,21 +63,9 @@ Synthesis of `voice.md` and `style-guide.md`. If you only have a minute, this is
 ### Top key numbers
 {{BRAND_TOP_NUMBERS}}
 
-## Fast access via semantic memory (if enabled)
+## Access
 
-If Qdrant is enabled (see `.setup-completed` → `features.qdrant.enabled`), this folder is indexed in the configured collection. For any question on voice, vocabulary, numbers, personas, or doctrine, semantic search is faster than a full read:
-
-```
-mcp__qdrant__qdrant_search(
-  query="<your question in natural language>",
-  top=5,
-  filter_source_key="brand"
-)
-```
-
-**Rule.** When information is available via `qdrant_search`, prefer that route over a long `Read`. Full reads remain justified for `voice.md` (short, often read whole) or to confirm the absence of a banned word.
-
-If Qdrant is disabled, read the files directly — this folder is small enough that file reads are cheap.
+Read the files directly — this folder is small enough that file reads are cheap. `voice.md` is short and often read whole; for a targeted lookup (a number, a banned word), grep the relevant file (`messaging-framework.md`, `voice.md`) instead of reading everything.
 
 ## Brand consistency filter (5 points)
 

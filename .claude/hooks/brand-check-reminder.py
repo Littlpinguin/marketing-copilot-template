@@ -6,7 +6,7 @@ Write/Edit of content in a production folder.
 Triggers:
 - Write or Edit tool
 - Path containing /03-social-media/, /04-email/, /05-web-content/,
-  /07-events/, or /09-blog-seo/
+  /06-graphic-design/presentations/, /07-events/, /08-video/, or /09-seo/
 - Extension .md or .html
 
 Exclusions:
@@ -25,8 +25,10 @@ PRODUCTION_FOLDERS = (
     "/03-social-media/",
     "/04-email/",
     "/05-web-content/",
+    "/06-graphic-design/presentations/",
     "/07-events/",
-    "/09-blog-seo/",
+    "/08-video/",
+    "/09-seo/",
 )
 
 EXCLUDED_SUBPATHS = (

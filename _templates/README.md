@@ -14,7 +14,7 @@ _templates/
 │   ├── 05-web-content.md
 │   ├── 06-graphic-design.md
 │   ├── 07-events.md
-│   └── 09-blog-seo.md
+│   └── 09-seo.md
 ├── brand/                 ← brand doctrine scaffolds (source for /brand-discover)
 │   ├── voice.md
 │   ├── style-guide.md

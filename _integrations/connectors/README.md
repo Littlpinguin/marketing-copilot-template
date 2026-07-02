@@ -2,8 +2,6 @@
 
 Push-side connectors for outbound tools (email platforms, editorial calendars, events platforms, CRMs, blog CMS).
 
-Pull-side connectors (ingestion into Qdrant) live in `_integrations/qdrant/sources/` — that's a separate contract covered by `config.yaml`.
-
 ## Contract
 
 Every connector in this folder exposes these functions:
@@ -16,11 +14,11 @@ def push(content: dict, *, confirm: bool = True) -> dict:
     """Perform the real push. Honor DRY_RUN=true env var. Default to draft/scheduled, never auto-send."""
 ```
 
-Optional, for connectors that are also ingestion sources:
+Optional, for connectors that can also pull content:
 
 ```python
 def list_items() -> Iterable[dict]:
-    """Yield items to index in Qdrant."""
+    """Yield items pulled from the tool (e.g. calendar entries, published posts)."""
 ```
 
 `content` arrives shaped like:
@@ -37,10 +35,10 @@ def list_items() -> Iterable[dict]:
 
 | Tool | Push connector | Notes |
 |---|---|---|
-| Notion | 🟠 stub | Dry-run payload builder exists in `scripts/dry-run-push.py`. Ingestion ready (`qdrant/sources/notion.py`). |
+| Notion | 🟠 stub | Dry-run payload builder exists in `scripts/dry-run-push.py`. |
 | MailerLite | 🟠 stub | Dry-run payload builder exists. Real push not yet implemented. |
 | Mailchimp | 🟠 stub | Same. |
-| Outline | 🟠 stub | Dry-run payload builder exists. Ingestion ready (`qdrant/sources/outline.py`). |
+| Outline | 🟠 stub | Dry-run payload builder exists. |
 | Airtable, Resend, Brevo, Livestorm, HubSpot, ... | ❌ not implemented | Stubs generated on demand by `/tools-setup`. |
 
 The `dry-run-push.py` script has payload-building examples for Notion, MailerLite, Mailchimp, and Outline. Use them as starting points when implementing the corresponding `push()` function.

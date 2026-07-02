@@ -7,7 +7,7 @@ One-page mental model of the Marketing Copilot Template.
 Three principles drive every design decision.
 
 1. **Brand as truth.** `01-brand/` is the single source. Every role defers to it. Contradictions are flagged before publication, not after.
-2. **Retrieval-first (when it pays).** At scale, every creative act is preceded by a semantic search. Below scale, file-based reads are faster to reason about and zero-dependency. The copilot works both ways.
+2. **File-based memory.** Anti-repetition and number verification rely on scanning the calendar, per-channel archives and inventory files. Zero external dependency, fully auditable.
 3. **Hook-enforced.** The harness enforces the workflow, not Claude's willpower. A PostToolUse hook fires the brand check whenever content is written in a production folder. Deterministic, not hopeful.
 
 ## Component map
@@ -20,8 +20,7 @@ Three principles drive every design decision.
 │  ├── brand-discover.md    ← analyze public signals, propose      │
 │  │                          doctrine, validate section by section│
 │  ├── tools-setup.md       ← pick tools, regenerate role docs     │
-│  ├── seed-corpus.md       ← optional: ingest recent content      │
-│  ├── connect-qdrant.md    ← optional: enable semantic memory     │
+│  ├── modules.md           ← enable/disable optional modules      │
 │  ├── validate-setup.md    ← lint + sample + user approval        │
 │  └── health-check.md      ← ongoing: verify runtime health       │
 │                                                                  │
@@ -42,6 +41,7 @@ Three principles drive every design decision.
 
 ┌──────────────────────────────────────────────────────────────────┐
 │  Production roles (CLAUDE.md filled by /tools-setup)             │
+│  00-intel/        → confidential memory (gitignored, n8n-fed)    │
 │  02-strategy/     → content-strategy skill                       │
 │  03-social-media/ → social-content skill                         │
 │  04-email/        → email skill (uses {{EMAIL_MARKETING_TOOL}})  │
@@ -50,7 +50,14 @@ Three principles drive every design decision.
 │    └── presentations/ → 1920×1080 HTML decks, Playwright QA      │
 │    └── mail-signatures/ → HTML signature template generator      │
 │  07-events/       → event-marketing skill                        │
-│  09-blog-seo/     → seo skill (publishes to {{BLOG_CMS}})        │
+│  09-seo/          → seo skill (publishes to {{BLOG_CMS}})        │
+│                                                                  │
+│  Optional modules (enable via /modules, state in                 │
+│  .setup-completed.modules)                                       │
+│  08-video/           → video-editing + captions skills           │
+│  10-automatisations/ → n8n workflows                             │
+│  11-reporting/       → performance-report skill                  │
+│  12-acquisition/     → scraping + outreach (n8n, Apify, Lemlist) │
 └──────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────┐
@@ -70,14 +77,6 @@ Three principles drive every design decision.
 ┌──────────────────────────────────────────────────────────────────┐
 │  Integrations                                                    │
 │  _integrations/                                                  │
-│  ├── qdrant/                                                     │
-│  │   ├── sync.py            ← 6-phase pipeline                   │
-│  │   ├── mcp_server.py      ← MCP: qdrant_search, find_similar   │
-│  │   ├── sources/           ← notion, outline, transcripts, fs   │
-│  │   ├── enrichers/         ← summary, entities, claims, meeting │
-│  │   ├── embedders/         ← Gemini embedding-001 (3072 dim)    │
-│  │   ├── config.yaml        ← sources, enrichers, task_types     │
-│  │   └── cron/              ← macOS launchd weekly sync          │
 │  └── connectors/            ← one file per tool (ready or stub)  │
 │      ├── mailerlite.py                                           │
 │      ├── mailchimp.py                                            │
@@ -132,8 +131,8 @@ Skill auto-resolution: social-content
 Skill preflight:
    ├── Read 01-brand/voice.md
    ├── Read 3-5 files in 03-social-media/linkedin/examples/
-   ├── If Qdrant enabled: qdrant_search(topic="Q1 reliability") for anti-repetition
-   ├── If Qdrant enabled: qdrant_search(filter=brand) to verify numbers
+   ├── Scan _templates/inventory.md + calendar for anti-repetition
+   ├── Grep 01-brand/messaging-framework.md to verify numbers
    └── Check editorial calendar (if configured)
    │
    ▼
@@ -146,7 +145,7 @@ PostToolUse hook fires:
    ▼
 brand-check skill runs:
    ├── 5-point filter (vocabulary, tone, proof, audience, visual)
-   ├── If Qdrant enabled: qdrant_find_similar for anti-repetition score
+   ├── File-based anti-repetition scan (archives + inventory)
    └── Verdict: ✅ PASS / 🟠 FIX / 🔴 BLOCK
    │
    ▼
@@ -156,19 +155,15 @@ If ✅: deliver to user. If 🟠: auto-correct, re-check. If 🔴: surface to us
 User reviews. On approval: post archived to examples/, calendar updated.
 ```
 
-## Qdrant-on vs Qdrant-off
+## File-based memory
 
-| Concern | Qdrant ON | Qdrant OFF |
-|---|---|---|
-| Anti-repetition | `qdrant_find_similar` across all indexed content | Read last N files in `<channel>/examples/` |
-| Number verification | `qdrant_search(filter=brand)` | Grep `01-brand/messaging-framework.md` |
-| Brand doctrine access | `qdrant_search(filter=brand)` — 500 ms, targeted | Full read of `01-brand/*.md` — cheap if small |
-| Cross-channel consistency | Single query across all collections | Not available |
-| Meeting transcript surfacing | Automatic via ingestion | Manual reads of `_sources/transcriptions/` |
-| Setup dependency | Qdrant Cloud + Google AI key | None |
-| Recommended when | Volume > 50 pieces / month | Volume ≤ 50 pieces / month |
-
-Flip the flag in `.setup-completed.features.qdrant.enabled`. Skills handle both paths.
+| Concern | How it works |
+|---|---|
+| Anti-repetition | Scan the calendar, per-channel archives (`examples/`, `editions/`, `articles/`) and `_templates/inventory.md` |
+| Number verification | Grep `01-brand/messaging-framework.md` |
+| Brand doctrine access | Full read of `01-brand/*.md` |
+| Meeting transcript surfacing | Reads of `00-intel/` (n8n-fed) and `_sources/transcriptions/` |
+| Setup dependency | None |
 
 ## Why this shape
 

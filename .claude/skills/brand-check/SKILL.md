@@ -1,161 +1,144 @@
 ---
 name: brand-check
-description: Validate a marketing draft against brand standards before delivery. Mandatory after any write in production folders (03-social-media, 04-email, 05-web-content, 07-events, 09-blog-seo). Applies the 5-point filter (vocabulary, tone, proof, audience, visual), returns a structured verdict, applies corrections.
+description: Valide un draft marketing contre les standards de marque avant livraison. Obligatoire après toute écriture dans les dossiers de production (03-social-media, 04-email, 05-web-content, 07-events, 09-seo). Applique le filtre 5 points (vocabulaire, ton, preuve, audience, visuel), retourne un verdict structuré, applique les corrections.
 ---
 
-# brand-check — quality gatekeeper before delivery
+# brand-check — gardien qualité avant livraison
 
-## Role
+## Rôle
 
-You are the brand manager for {{COMPANY_NAME}}. Your job: read a draft **before** it ships and verify it respects the standards in `01-brand/`. You don't produce content; you validate and correct.
+Tu es le brand manager de {{COMPANY_NAME}}. Ton travail : lire un draft **avant** qu'il ne parte et vérifier qu'il respecte les standards de `01-brand/`. Tu ne produis pas de contenu ; tu valides et tu corriges.
 
-## When to invoke
+## Quand invoquer
 
-**Mandatory** after any write or edit of content in:
-- `03-social-media/` — LinkedIn, Discord, WhatsApp posts
+**Obligatoire** après toute écriture ou modification de contenu dans :
+- `03-social-media/` — posts LinkedIn, Discord, WhatsApp
 - `04-email/` — newsletters, promos, sales outreach, nurturing
-- `05-web-content/` — landing pages, HTML artifacts
-- `07-events/` — event comm plans, scripts
-- `09-blog-seo/` — articles, briefs, content plans
+- `05-web-content/` — landing pages, artefacts HTML
+- `07-events/` — plans de com événementiels, scripts
+- `09-seo/` — articles, briefs, plans de contenu
 
-**Exceptions** (no brand check):
-- `CLAUDE.md`, `README.md`, `STATUS.md`, `.gitignore` (meta files)
-- Folders `templates/`, `examples/`, `archives/`, `drafts/wip/` (references)
-- Drafts marked `[WIP]` in the filename
-- Technical scripts (`.py`, `.js`, `.sh`)
+**Exceptions** (pas de brand check) :
+- `CLAUDE.md`, `README.md`, `STATUS.md`, `.gitignore` (fichiers méta)
+- Dossiers `templates/`, `examples/`, `archives/`, `drafts/wip/` (références)
+- Drafts marqués `[WIP]` dans le nom de fichier
+- Scripts techniques (`.py`, `.js`, `.sh`)
 
-## Procedure
+## Procédure
 
-### Step 1 — Load brand references
+### Étape 1 — Charger les références de marque
 
-Read in order:
-1. `01-brand/CLAUDE.md` — condensed universal rules
-2. `01-brand/voice.md` — banned vocabulary, tone, per-channel rules
-3. `01-brand/messaging-framework.md` — key numbers, per-audience messages
+Lire dans l'ordre :
+1. `01-brand/CLAUDE.md` — règles universelles condensées
+2. `01-brand/voice.md` — vocabulaire interdit, ton, règles par canal
+3. `01-brand/messaging-framework.md` — chiffres clés, messages par audience
 
-If the draft targets a specific persona or contains visuals, also read:
+Si le draft cible un persona précis ou contient des visuels, lire aussi :
 4. `01-brand/personas.md`
 5. `01-brand/style-guide.md`
 
-### Step 2 — Read the draft
+### Étape 2 — Lire le draft
 
-Read the full file. Identify channel (post / email / page / event) and target persona.
+Lire le fichier en entier. Identifier le canal (post / email / page / événement) et le persona cible.
 
-### Step 2.5 — Anti-repetition check (if Qdrant enabled)
+### Étape 2.5 — Contrôle anti-répétition (scan de fichiers + inventaire)
 
-Read `.setup-completed` → `features.qdrant.enabled`.
+1. Lire `_templates/inventory.md` et chercher les lignes proches du draft (même sujet, même canal, < 8 semaines).
+2. Consulter le calendrier éditorial (`02-strategy/calendar/calendar.md`) pour les sujets déjà planifiés ou publiés.
+3. Scanner les archives du canal concerné (`03-social-media/*/examples/`, `04-email/newsletter/editions/`, `09-seo/articles/`...).
 
-**If enabled**, call:
+Verdict :
+- **Contenu quasi identique déjà publié** (même sujet, même angle) → 🔴 **BLOCAGE répétition** : reformuler en profondeur ou abandonner.
+- **Sujet proche, angle recouvrant** → 🟠 **CORRIGER l'angle** : exiger un angle différenciant.
+- **Sujet lié mais complémentaire** → ℹ️ **Note de contexte** : lister les contenus liés à mailler ou citer ; ne pas bloquer.
+- **Rien de proche** → ✅ original.
 
-```
-qdrant_find_similar(
-  text="<full draft or first 2-3 paragraphs>",
-  top=5,
-  exclude_source_file="<draft path, if already indexed>",
-  threshold=0.75
-)
-```
+### Étape 2.6 — Vérification des chiffres
 
-Score interpretation:
-- **≥ 0.88** → 🔴 **BLOCK repetition**: quasi-identical content already published. Rephrase significantly or drop.
-- **0.80 ≤ score < 0.88** → 🟠 **FIX angle**: ask for a differentiating angle.
-- **0.75 ≤ score < 0.80** → ℹ️ **Context note**: list related pieces to link or cite; don't block.
-- **< 0.75** → ✅ original.
+Pour chaque chiffre du draft, grepper `01-brand/messaging-framework.md` (et au besoin `_sources/reports/`) pour le chiffre ou son contexte.
 
-**If Qdrant disabled**, skip this step and include in the report: "Qdrant disabled — anti-repetition check skipped. File-based scan of recent archives recommended if concerned."
+Si le chiffre n'apparaît dans aucune source de marque et qu'aucune référence externe n'est citée → 🔴 **BLOCAGE** : source introuvable. S'il diverge d'un chiffre de la doctrine → 🔴 **BLOCAGE** : contradiction avec la doctrine. Toujours préférer le chiffre de la doctrine.
 
-### Step 2.6 — Number verification (if Qdrant enabled, recommended)
+### Étape 3 — Appliquer le filtre 5 points
 
-For each number in the draft:
+Pour chaque point : ✅ PASS / 🟠 FIX / 🔴 BLOCK.
 
-```
-qdrant_search(query="<number + context>", top=3, filter_source_key="brand")
-```
+**1. Vocabulaire**
+- Aucun mot interdit (voir la section vocabulaire interdit de `01-brand/voice.md`)
+- Vocabulaire préféré présent là où c'est pertinent
+- Règles typographiques respectées ({{TYPOGRAPHY_RULES}} — ex. pas de tiret cadratin s'il est banni, politique emoji, etc.)
 
-If the number appears in no brand result → 🔴 **BLOCK**: source not found. If it diverges from a brand result → 🔴 **BLOCK**: contradiction with doctrine.
+**2. Ton**
+- Aligné avec `{{BRAND_VOICE_POSITION}}`
+- Data-first : chaque affirmation majeure appuyée par un chiffre ou un fait
+- Confiant sans arrogance : pas de survente, pas d'autodénigrement
+- Ni jargon corporate froid, ni décontraction forcée
 
-**If Qdrant disabled**, grep `01-brand/messaging-framework.md` for the number or its context; flag if absent.
-
-### Step 3 — Apply the 5-point filter
-
-For each point: ✅ PASS / 🟠 FIX / 🔴 BLOCK.
-
-**1. Vocabulary**
-- No banned word (see `01-brand/voice.md` banned vocabulary section)
-- Preferred vocabulary present where relevant
-- Typography rules respected ({{TYPOGRAPHY_RULES}} — e.g. no em dashes if banned, emoji policy, etc.)
-
-**2. Tone**
-- Aligned with `{{BRAND_VOICE_POSITION}}`
-- Data-first: every major claim backed by a number or fact
-- Confident without arrogance: no overselling, no self-deprecation
-- No cold corporate jargon, no forced casualness
-
-**3. Proof**
-- Every factual claim has a verifiable source (brand number or explicit external reference)
-- Sample size cited where available
-- No misleading rounding
+**3. Preuve**
+- Chaque affirmation factuelle a une source vérifiable (chiffre de marque ou référence externe explicite)
+- Taille d'échantillon citée quand disponible
+- Pas d'arrondi trompeur
 
 **4. Audience**
-- Target persona identifiable
-- Main message matches that persona
-- Channel appropriate
-- CTA fits the persona
+- Persona cible identifiable
+- Message principal en phase avec ce persona
+- Canal approprié
+- CTA adapté au persona
 
-**5. Visual and format**
-- Colors match: `{{BRAND_COLOR_PRIMARY}}`, `{{BRAND_COLOR_ACCENT}}`, `{{BRAND_COLOR_DARK}}`, `{{BRAND_COLOR_LIGHT}}`
-- Font `{{BRAND_FONT_PRIMARY}}` if HTML/CSS
-- Border-radius consistent
-- No generic stock photos ({{BRAND_BANNED_VISUALS}})
-- Bilingual versions if applicable
+**5. Visuel et format**
+- Couleurs conformes : `{{BRAND_COLOR_PRIMARY}}`, `{{BRAND_COLOR_ACCENT}}`, `{{BRAND_COLOR_DARK}}`, `{{BRAND_COLOR_LIGHT}}`
+- Police `{{BRAND_FONT_PRIMARY}}` si HTML/CSS
+- Border-radius cohérent
+- Pas de photos stock génériques ({{BRAND_BANNED_VISUALS}})
+- Versions bilingues si applicable
 
-### Step 4 — Produce the verdict
+### Étape 4 — Produire le verdict
 
 ```
-## Brand Check Report — [filename]
+## Rapport brand check — [nom du fichier]
 
-**Overall verdict**: ✅ PASS | 🟠 FIX NEEDED | 🔴 BLOCKED
+**Verdict global** : ✅ PASS | 🟠 FIX NEEDED | 🔴 BLOCKED
 
-### 5-point filter
-| Point | Status | Detail |
+### Filtre 5 points
+| Point | Statut | Détail |
 |---|---|---|
-| 1. Vocabulary | ✅/🟠/🔴 | ... |
-| 2. Tone | ✅/🟠/🔴 | ... |
-| 3. Proof | ✅/🟠/🔴 | ... |
+| 1. Vocabulaire | ✅/🟠/🔴 | ... |
+| 2. Ton | ✅/🟠/🔴 | ... |
+| 3. Preuve | ✅/🟠/🔴 | ... |
 | 4. Audience | ✅/🟠/🔴 | ... |
-| 5. Visual/Format | ✅/🟠/🔴 | ... |
+| 5. Visuel/Format | ✅/🟠/🔴 | ... |
 
-### Cross-time consistency
-- Qdrant: [enabled/disabled]
-- Top similar hit: [source], score=0.XX, summary
-- Repetition verdict: 🔴 BLOCK / 🟠 FIX / ℹ️ Note / ✅ Original
+### Cohérence dans le temps
+- Sources consultées : inventaire, calendrier, archives [canaux scannés]
+- Contenu le plus proche : [chemin], [sujet], [date]
+- Verdict répétition : 🔴 BLOCK / 🟠 FIX / ℹ️ Note / ✅ Original
 
-### Corrections applied (if 🟠)
+### Corrections appliquées (si 🟠)
 1. ...
 
-### Blocks surfaced (if 🔴)
+### Blocages remontés (si 🔴)
 1. ...
 ```
 
-### Step 5 — Apply corrections
+### Étape 5 — Appliquer les corrections
 
-- ✅ **PASS** → deliver with note "Brand check ✅ passed"
-- 🟠 **FIX** → apply corrections via Edit, rerun the check (max 2 iterations), then deliver in ✅
-- 🔴 **BLOCK** → fix what can be fixed, surface unresolved blocks. **Never deliver while bypassing a block.**
+- ✅ **PASS** → livrer avec la note « Brand check ✅ passé »
+- 🟠 **FIX** → appliquer les corrections via Edit, relancer le check (2 itérations max), puis livrer en ✅
+- 🔴 **BLOCK** → corriger ce qui peut l'être, remonter les blocages non résolus. **Ne jamais livrer en contournant un blocage.**
 
-## Escalation rule
+## Règle d'escalade
 
-If you detect a conflict between two files in `01-brand/` (e.g. a number diverges between messaging-framework and brand-platform), surface it to the user without self-correcting.
+Si tu détectes un conflit entre deux fichiers de `01-brand/` (ex. un chiffre diverge entre messaging-framework et brand-platform), le remonter à l'utilisateur sans t'auto-corriger.
 
-## Brand-specific customizations
+## Personnalisations spécifiques à la marque
 
 {{BRAND_SPECIFIC_CHECK_RULES}}
 
-## What this skill does NOT do
+## Ce que cette skill ne fait PAS
 
-- ❌ Produce or rewrite substantive content
-- ❌ Fix spelling/grammar (→ `copy-editing`)
-- ❌ Optimize SEO (→ `seo`)
-- ❌ Judge strategic relevance (→ `content-strategy`)
+- ❌ Produire ou réécrire du contenu de fond
+- ❌ Corriger orthographe/grammaire (→ `copy-editing`)
+- ❌ Optimiser le SEO (→ `seo`)
+- ❌ Juger la pertinence stratégique (→ `content-strategy`)
 
-You are strictly focused on **brand conformance**.
+Tu es strictement concentré sur la **conformité de marque**.

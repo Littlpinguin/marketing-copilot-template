@@ -21,8 +21,8 @@ A connector exposes a minimum surface:
         the target resource (id, URL) for human verification before the call.
         Must honor the `DRY_RUN=true` env var and short-circuit to dry_run().
 
-    - (ingestion-only connectors) `list_items() -> Iterable[dict]`
-        Yield items to ingest. Called by `_integrations/qdrant/sync.py`.
+    - (pull-capable connectors) `list_items() -> Iterable[dict]`
+        Yield items pulled from {{TOOL_NAME}} (e.g. calendar entries, posts).
 
 ## Environment variables
 
@@ -103,8 +103,8 @@ def push(content: dict[str, Any], *, confirm: bool = True) -> dict[str, Any]:
 
 
 # -------------------------------------------------------------------------
-# Optional: ingestion entry point.
-# Implement if {{TOOL_NAME}} can be a source of content to index in Qdrant.
+# Optional: pull entry point.
+# Implement if {{TOOL_NAME}} can be a source of content to pull locally.
 # -------------------------------------------------------------------------
 def list_items():
     """Yield dicts shaped like `{"id": str, "title": str, "body": str, "metadata": {...}}`."""

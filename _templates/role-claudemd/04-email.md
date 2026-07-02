@@ -51,13 +51,7 @@ You run newsletters, promotional emails, sales outreach, and lead nurturing sequ
 ### 1. Before drafting
 
 - {{COMPANY_MAIN_CONTACT}} supplies topics for the month.
-- **If Qdrant is enabled**, query for repetition against the last 3 editions:
-
-  ```
-  qdrant_search(query="<topic>", top=5, filter_source_key="newsletters")
-  ```
-
-- **If Qdrant is disabled**, read the last 3 files in `newsletter/editions/` and scan for topic overlap manually.
+- Read the last 3 files in `newsletter/editions/` and check `_templates/inventory.md` for topic overlap (anti-repetition).
 - Audit pillar balance across recent editions.
 
 ### 2. Draft

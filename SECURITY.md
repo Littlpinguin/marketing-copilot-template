@@ -1,6 +1,6 @@
 # Security rules
 
-This template runs inside Claude Code and interacts with external services (email platforms, CRMs, CMSs, Qdrant, Google AI). The rules below apply to every session and every command. They are non-negotiable.
+This template runs inside Claude Code and interacts with external services (email platforms, CRMs, CMSs, analytics, Google AI). The rules below apply to every session and every command. They are non-negotiable.
 
 ## Secrets
 
@@ -58,7 +58,6 @@ Don't ask Claude to trigger destructive operations casually. Every one of these 
 - Git force-push, hard reset, branch deletion
 - `launchctl unload` on system-wide agents
 - Sending email to a list (even in test mode)
-- Dropping a Qdrant collection
 - Emptying `.env`
 
 If Claude proposes one of these without your asking for it, stop and question it.
@@ -73,6 +72,20 @@ Claude Code sessions can be saved, exported, shared. Before sharing:
 - Strip personal data (email addresses, phone numbers) unless the recipient is authorized
 
 If in doubt, don't share.
+
+## Confidentialité des données & plans Claude
+
+Certains connecteurs font transiter des **données clients ou personnelles** par Claude (CRM, listes d'abonnés emailing, GA4 / Search Console, transcriptions de meetings, scraping de personnes). Le traitement de ces données dépend de votre offre Anthropic :
+
+- **Offres commerciales (Claude Team, Claude Enterprise, API Anthropic)** : vos données ne sont **pas** utilisées pour entraîner les modèles, par défaut et contractuellement.
+- **Plans grand public (Free, Pro, Max)** : l'entraînement sur vos conversations est **activé par défaut (opt-in par défaut)** — désactivez-le explicitement dans vos réglages de confidentialité si vous ne le souhaitez pas, ou passez sur une offre commerciale avant de brancher des données clients.
+- **Résidence des données en Europe** : possible en passant par l'API via **AWS Bedrock** ou **Google Vertex AI** (régions EU).
+
+Références : https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training et https://trust.anthropic.com
+
+Le wizard applique un **gate de confidentialité** avant de configurer tout connecteur sensible (texte canonique dans `.claude/commands/tools-setup.md`) : il recueille votre plan Claude, le consigne dans `.setup-completed.wizard_log`, et exige une seconde confirmation sur les plans grand public. `/modules` ré-applique ce gate pour `veille`, `acquisition` et `reporting`.
+
+Rappel : `00-intel/` (transcriptions, intel interne/clients/prospects) est **gitignoré et ne doit jamais être versionné ni poussé sur un remote**.
 
 ## AI disclosure when publishing
 

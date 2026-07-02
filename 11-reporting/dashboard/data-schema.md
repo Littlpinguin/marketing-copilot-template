@@ -40,7 +40,7 @@ Le dashboard trie les mois et affiche le plus récent par défaut. Ajouter un mo
 
 ## `YYYY-MM.json` — le snapshot mensuel
 
-Sources par bloc : **GA4** (trafic, conversions, top pages), **Search Console** (SEO), **Postiz** (social, par canal), **{{EMAIL_MARKETING_TOOL}}** (emailing). Tout champ absent est simplement masqué par le dashboard — un client sans emailing a un snapshot sans bloc `emailing`.
+Sources par bloc : **GA4** (trafic, conversions, top pages), **Search Console** (SEO), **Postiz** (social, par canal), **{{EMAIL_MARKETING_TOOL}}** (emailing), **Google Ads via MCP** (SEA, si le sous-module `12-acquisition/google-ads/` est actif). Tout champ absent est simplement masqué par le dashboard — un client sans emailing a un snapshot sans bloc `emailing`.
 
 ```json
 {
@@ -51,7 +51,8 @@ Sources par bloc : **GA4** (trafic, conversions, top pages), **Search Console** 
     "ga4": "propriété {{GA4_PROPERTY_ID}}",
     "search_console": "https://{{COMPANY_DOMAIN}}",
     "social": "postiz",
-    "emailing": "{{EMAIL_MARKETING_TOOL}}"
+    "emailing": "{{EMAIL_MARKETING_TOOL}}",
+    "google_ads": "mcp-google-ads (compte {{GOOGLE_ADS_CUSTOMER_ID}})"
   },
 
   "kpis": {
@@ -83,6 +84,13 @@ Sources par bloc : **GA4** (trafic, conversions, top pages), **Search Console** 
       "interactions": 2140,
       "taux_engagement_pct": 3.1,
       "nouveaux_abonnes": 210
+    },
+    "google_ads": {
+      "cout": 1240.50,
+      "impressions": 152000,
+      "clics": 3100,
+      "conversions": 42,
+      "cpa": 29.5
     }
   },
 
@@ -132,6 +140,7 @@ Sources par bloc : **GA4** (trafic, conversions, top pages), **Search Console** 
 | `kpis.conversions` | object | GA4 (événements clés) | ✅ | `par_objectif` détaille chaque événement de conversion |
 | `kpis.emailing` | object | {{EMAIL_MARKETING_TOOL}} | si canal actif | Taux en pourcentage (42.5 = 42,5 %) |
 | `kpis.social` | object | Postiz (agrégé tous canaux) | si canal actif | `interactions` = réactions + commentaires + partages |
+| `kpis.google_ads` | object | MCP Google Ads (skill `sea-google-ads`) | si canal actif | `cout` (devise), `impressions`, `clics`, `conversions`, `cpa` |
 | `seo` | object | Search Console | recommandé | Période = le mois entier |
 | `top_pages` | array (≤ 10) | GA4 | recommandé | Triées par sessions décroissantes |
 | `top_posts` | array (≤ 10) | Postiz | recommandé | Tous canaux confondus, triés par interactions |

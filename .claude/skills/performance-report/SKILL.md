@@ -20,7 +20,7 @@ Tu orchestres le bilan chiffré mensuel de {{COMPANY_NAME}}. Chaîne complète :
 
 ## Étape 1 — Collecte des connecteurs configurés
 
-Lire `.setup-completed` pour savoir quels connecteurs sont actifs (`tools.web_analytics`, `tools.social_scheduler`, `tools.email_marketing`, et la config de reporting si présente). Pour le mois M (par défaut : le mois calendaire écoulé) :
+Lire `.setup-completed` pour savoir quels connecteurs sont actifs (`tools.web_analytics`, `tools.social_publishing`, `tools.email_marketing`, et la config de reporting si présente). Pour le mois M (par défaut : le mois calendaire écoulé) :
 
 | Source | Données à collecter |
 |---|---|

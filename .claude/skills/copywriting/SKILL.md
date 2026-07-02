@@ -1,11 +1,11 @@
 ---
 name: copywriting
-description: Write web pages, landing pages, and long-form content for {{COMPANY_NAME}}. Uses the design system and reusable section templates.
+description: Rédaction de pages web, landing pages et contenus longs pour {{COMPANY_NAME}}. S'appuie sur le design system et les templates de sections réutilisables.
 ---
 
-# copywriting — web content authoring {{COMPANY_NAME}}
+# copywriting — rédaction web {{COMPANY_NAME}}
 
-You draft landing pages, product pages, and long-form web content with the design system and brand voice in mind.
+Tu rédiges les landing pages, pages produit et contenus web longs en t'appuyant sur le design system et la voix de marque.
 
 ## Étape 0 — Doctrine de marque (OBLIGATOIRE)
 
@@ -16,116 +16,103 @@ Avant d'écrire la moindre ligne de copy :
 
 **Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-copilot`. Les interdits anti-style-IA (parallélismes négatifs, vocabulaire IA mort, tiret cadratin) s'appliquent à chaque headline, sous-titre et CTA.
 
-## Mandatory preflight
+## Préflight obligatoire
 
-1. Read `01-brand/voice.md` — tone, vocabulary, bans.
-2. Read `01-brand/style-guide.md` — visual system, tokens.
-3. Read `05-web-content/CLAUDE.md` — structure and technical conventions.
-4. Browse existing pages in `05-web-content/` to calibrate tone.
-5. **Retrieve source material:**
+1. Lire `01-brand/voice.md` — ton, vocabulaire, interdits.
+2. Lire `01-brand/style-guide.md` — système visuel, tokens.
+3. Lire `05-web-content/CLAUDE.md` — structure et conventions techniques.
+4. Parcourir les pages existantes dans `05-web-content/` pour calibrer le ton.
+5. **Récupérer la matière source :**
+   - Lire `01-brand/messaging-framework.md` — positionnement, formulations canoniques, chiffres clés.
+   - Consulter `_templates/inventory.md` et scanner `05-web-content/` pour les pages similaires : structures qui ont fonctionné, sections réutilisables.
+   - Piocher dans les archives des autres canaux (`04-email/newsletter/editions/`, `03-social-media/*/examples/`) les formulations validées et les accroches qui résonnent.
+   - Chaque chiffre utilisé doit venir de `01-brand/messaging-framework.md`, de `_sources/reports/` ou d'une référence externe citée.
 
-   **If Qdrant is enabled:**
-   ```
-   qdrant_search(query="<page theme or angle>", top=8)
-   ```
-   Use hits:
-   - **landing-page** → structures that worked, reusable sections
-   - **brand-doc** → canonical phrasing for strategic formulations
-   - **newsletter / linkedin-post** → validated phrasings, resonant hooks
-   - **transcript** → internal quotes usable ("as [name] said in the sync...")
+## Référence rapide du design system
 
-   For numbers:
-   ```
-   qdrant_search(query="<stat>", top=3, filter_source_key="brand")
-   ```
-
-   **If Qdrant is disabled:** read `01-brand/messaging-framework.md` for positioning and numbers; scan `05-web-content/` for similar pages.
-
-## Design system quick reference
-
-| Element | Value |
+| Élément | Valeur |
 |---|---|
-| Primary font | {{BRAND_FONT_PRIMARY}} |
-| Primary color | `{{BRAND_COLOR_PRIMARY}}` |
+| Police principale | {{BRAND_FONT_PRIMARY}} |
+| Couleur principale | `{{BRAND_COLOR_PRIMARY}}` |
 | Accent | `{{BRAND_COLOR_ACCENT}}` |
-| Dark | `{{BRAND_COLOR_DARK}}` |
-| Light | `{{BRAND_COLOR_LIGHT}}` |
-| Gradient | `{{BRAND_GRADIENT}}` |
+| Sombre | `{{BRAND_COLOR_DARK}}` |
+| Clair | `{{BRAND_COLOR_LIGHT}}` |
+| Dégradé | `{{BRAND_GRADIENT}}` |
 | Border-radius | {{BRAND_BORDER_RADIUS}} |
-| Illustration style | {{BRAND_ILLUSTRATION_STYLE}} |
+| Style d'illustration | {{BRAND_ILLUSTRATION_STYLE}} |
 
-## Section template catalog
+## Catalogue des templates de sections
 
-Each landing page is assembled from modular sections:
+Chaque landing page s'assemble à partir de sections modulaires :
 
-| Section | Use |
+| Section | Usage |
 |---|---|
-| Hero | Main headline + sub-head + primary CTA |
-| Problem statement | Persona pain points |
-| Solutions / Features | Value proposition in 3-4 blocks |
-| Social proof | Client logos, numbers, testimonials |
-| Timeline / Process | Process steps |
-| Comparison table | vs alternatives |
-| Stats showcase | Big numbers |
-| Testimonials | Quotes with portrait |
-| FAQ accordion | Common questions |
-| Case study | Concrete results |
-| For whom | Per-persona blocks |
-| Final CTA | Conversion block with gradient |
+| Hero | Headline principale + sous-titre + CTA principal |
+| Énoncé du problème | Points de douleur du persona |
+| Solutions / Fonctionnalités | Proposition de valeur en 3-4 blocs |
+| Preuve sociale | Logos clients, chiffres, témoignages |
+| Timeline / Processus | Étapes du processus |
+| Tableau comparatif | vs alternatives |
+| Vitrine de chiffres | Gros chiffres |
+| Témoignages | Citations avec portrait |
+| FAQ accordéon | Questions fréquentes |
+| Étude de cas | Résultats concrets |
+| Pour qui | Blocs par persona |
+| CTA final | Bloc de conversion avec dégradé |
 
-**Default sequence**: Hero → Problem → Solutions → Social Proof → Stats → Testimonials → FAQ → Final CTA.
+**Séquence par défaut** : Hero → Problème → Solutions → Preuve sociale → Chiffres → Témoignages → FAQ → CTA final.
 
-## Writing principles
+## Principes d'écriture
 
-### Clarity before creativity
+### La clarté avant la créativité
 
-If forced to choose between clear and clever, pick clear. Each page answers ONE question.
+S'il faut choisir entre clair et malin, choisir clair. Chaque page répond à UNE question.
 
-### Data as hero
+### La donnée en héros
 
-Numbers are the primary visual element. A big number beats a paragraph.
+Les chiffres sont l'élément visuel principal. Un gros chiffre vaut mieux qu'un paragraphe.
 
-### Benefit over feature
+### Le bénéfice avant la fonctionnalité
 
-"Find the right expert in 48 hours" > "Access to our network of 100+ experts"
+« Trouvez le bon expert en 48 heures » > « Accès à notre réseau de 100+ experts »
 
-### Specificity over vagueness
+### La précision avant le vague
 
-"8.8/10 satisfaction (n=136)" > "High satisfaction"
+« 8,8/10 de satisfaction (n=136) » > « Grande satisfaction »
 
 ### Scannable
 
-- H2 for each section
-- 2-3 sentences max per paragraph
-- Generous whitespace
-- One CTA per section max
-- Mobile-first (test at 375px width)
+- Un H2 par section
+- 2-3 phrases max par paragraphe
+- Blancs généreux
+- Un CTA max par section
+- Mobile-first (tester à 375px de large)
 
-## Bilingualism (if applicable)
+## Bilinguisme (le cas échéant)
 
 {{BILINGUAL_RULES}}
 
-## Brand-specific customizations
+## Personnalisations spécifiques à la marque
 
 {{COPYWRITING_SPECIFIC_RULES}}
 
-## Pre-delivery checklist
+## Checklist avant livraison
 
-- [ ] Reviewed existing pages for tone
-- [ ] One clear value proposition per page
-- [ ] Data as hero (numbers visible, not buried)
-- [ ] Every number verified against Qdrant brand or cited external source
-- [ ] Scannable (headlines, short paragraphs, whitespace)
-- [ ] Clear single CTA per section
-- [ ] Design system respected (colors, fonts, border-radius)
-- [ ] No stock photos ({{BRAND_BANNED_VISUALS}})
-- [ ] Brand vocabulary respected
-- [ ] Bilingual versions if applicable
-- [ ] Mobile-friendly tested
+- [ ] Pages existantes relues pour calibrer le ton
+- [ ] Une proposition de valeur claire par page
+- [ ] La donnée en héros (chiffres visibles, pas enterrés)
+- [ ] Chaque chiffre vérifié contre la doctrine de marque (`01-brand/messaging-framework.md`, `_sources/reports/`) ou source externe citée
+- [ ] Scannable (titres, paragraphes courts, blancs)
+- [ ] Un CTA clair et unique par section
+- [ ] Design system respecté (couleurs, polices, border-radius)
+- [ ] Pas de photos stock ({{BRAND_BANNED_VISUALS}})
+- [ ] Vocabulaire de marque respecté
+- [ ] Versions bilingues si applicable
+- [ ] Rendu mobile testé
 
-## Associated skills
+## Skills associées
 
-- `copy-editing` — 7-pass review
-- `image-generation` — page visuals
-- `seo` — on-page optimization
-- `brand-check` — mandatory final validation
+- `copy-editing` — relecture en 7 passes
+- `image-generation` — visuels de page
+- `seo` — optimisation on-page
+- `brand-check` — validation finale obligatoire

@@ -26,17 +26,27 @@ The heart of the system: **every production skill loads the brand doctrine befor
 
 ## Quickstart
 
+Prerequisites: [Node.js 18+](https://nodejs.org) and a Claude account (Pro/Max, Team, Enterprise, or an API key) for [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview).
+
 ```bash
-# 1. Clone under a name that makes sense for you (or "Use this template" on GitHub)
+# 1. Install Claude Code (once per machine)
+npm install -g @anthropic-ai/claude-code
+
+# 2. Clone under a name that makes sense for you (or "Use this template" on GitHub)
 git clone https://github.com/Littlpinguin/marketing-copilot-template.git my-company-copilot
 cd my-company-copilot
 
-# 2. Install Python deps
+# 3. Create your local env file (filled in later by the wizard)
+cp .env.example .env
+
+# 4. Install Python deps
 python3 -m pip install pyyaml python-dotenv requests
 
-# 3. Open Claude Code
+# 5. Open Claude Code
 claude
 ```
+
+> **macOS note (PEP 668).** Recent macOS/Homebrew Python installs refuse system-wide `pip install` ("externally managed environment"). Use `python3 -m pip install --user pyyaml python-dotenv requests`, or create a virtualenv first: `python3 -m venv .venv && source .venv/bin/activate`.
 
 Then run the wizard (paste on its own line):
 

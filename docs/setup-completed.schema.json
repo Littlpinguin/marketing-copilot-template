@@ -1,20 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://marketing-copilot-template/docs/setup-completed.schema.json",
-  "title": "Setup completion metadata",
-  "description": "Shape of .setup-completed, written by /validate-setup at the end of the wizard. Consumed by operational skills and /health-check.",
+  "title": "Métadonnées de fin de setup",
+  "description": "Forme de .setup-completed, écrit par /validate-setup à la fin du wizard (la clé 'modules' peut ensuite être mise à jour par /modules, la section 'veille' par /tools-setup). Consommé par les skills opérationnelles (brand-check, veille-strategy, performance-report...) et par /health-check.",
   "type": "object",
-  "required": ["version", "completed_at", "company", "language", "bilingual", "tools", "features"],
+  "required": ["version", "completed_at", "company", "language", "bilingual", "tools", "modules", "features"],
   "properties": {
     "version": {
       "type": "string",
-      "description": "Template version that ran the wizard.",
+      "description": "Version du template qui a exécuté le wizard.",
       "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
     },
     "completed_at": {
       "type": "string",
       "format": "date-time",
-      "description": "ISO 8601 timestamp when validate-setup succeeded."
+      "description": "Horodatage ISO 8601 du succès de /validate-setup."
     },
     "company": {
       "type": "string",
@@ -30,11 +30,11 @@
     },
     "bilingual": {
       "type": "boolean",
-      "description": "True if the copilot produces bilingual content by default."
+      "description": "Vrai si le copilot produit du contenu bilingue par défaut."
     },
     "bilingual_rules": {
       "type": "string",
-      "description": "Free-form description of how the second language is produced. Required only when bilingual=true."
+      "description": "Description libre de la façon dont la seconde langue est produite. Requis uniquement quand bilingual=true."
     },
     "tools": {
       "type": "object",
@@ -47,53 +47,114 @@
         "events_platform":    { "$ref": "#/$defs/toolEntry" },
         "crm":                { "$ref": "#/$defs/toolEntry" },
         "web_analytics":      { "$ref": "#/$defs/toolEntry" },
-        "social_scheduler":   { "$ref": "#/$defs/toolEntry" }
+        "social_publishing":  { "$ref": "#/$defs/toolEntry" },
+        "scraping":           { "$ref": "#/$defs/toolEntry" },
+        "client_space_ftp":   { "$ref": "#/$defs/toolEntry" }
+      }
+    },
+    "modules": {
+      "type": "object",
+      "description": "État des modules optionnels. Un module absent ou {enabled: false} est inactif : ne pas charger son CLAUDE.md ni proposer ses workflows (règle universelle 9 du CLAUDE.md racine). Écrit par /validate-setup, mis à jour par /modules.",
+      "additionalProperties": false,
+      "required": ["video", "automatisations", "reporting", "acquisition", "veille", "publication-sociale", "espace-client"],
+      "properties": {
+        "video":               { "$ref": "#/$defs/moduleEntry" },
+        "automatisations":     { "$ref": "#/$defs/moduleEntry" },
+        "reporting":           { "$ref": "#/$defs/moduleEntry" },
+        "acquisition":         { "$ref": "#/$defs/moduleEntry" },
+        "veille":              { "$ref": "#/$defs/moduleEntry" },
+        "publication-sociale": { "$ref": "#/$defs/moduleEntry" },
+        "espace-client":       { "$ref": "#/$defs/moduleEntry" }
+      }
+    },
+    "veille": {
+      "type": "object",
+      "description": "Configuration de la veille marketing, écrite par le wizard quand le module 'veille' est activé. Lue par la skill veille-strategy en préflight — si cette section est absente alors que le module est actif, la skill demande de compléter la config (jamais d'invention de concurrents).",
+      "required": ["cadence", "competitors"],
+      "properties": {
+        "cadence": {
+          "type": "string",
+          "enum": ["weekly", "monthly"],
+          "description": "Rythme des runs de veille : hebdo (début de semaine) ou mensuel (premier jour ouvré du mois)."
+        },
+        "competitors": {
+          "type": "array",
+          "description": "Liste des concurrents suivis au niveau 1. Peut être vide si l'utilisateur n'en suit aucun, mais jamais inventée.",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name":            { "type": "string", "description": "Nom du concurrent." },
+              "website":         { "type": "string", "format": "uri" },
+              "social_accounts": {
+                "type": "array",
+                "description": "Comptes sociaux à surveiller (URLs ou handles).",
+                "items": { "type": "string" }
+              },
+              "notes":           { "type": "string" }
+            }
+          }
+        },
+        "sector_keywords": {
+          "type": "array",
+          "description": "Mots-clés sectoriels et réglementaires pour le niveau 2.",
+          "items": { "type": "string" }
+        },
+        "levels": {
+          "type": "array",
+          "description": "Niveaux de veille actifs. Absent = les 4 niveaux sont actifs.",
+          "items": {
+            "type": "string",
+            "enum": ["concurrents", "secteur", "tendances", "e-reputation"]
+          },
+          "uniqueItems": true
+        }
       }
     },
     "features": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["qdrant", "image_generation", "weekly_cron"],
+      "required": ["image_generation"],
       "properties": {
-        "qdrant": {
-          "type": "object",
-          "required": ["enabled"],
-          "properties": {
-            "enabled":         { "type": "boolean" },
-            "collection":      { "type": "string" },
-            "embedding_model": { "type": "string" },
-            "rationale":       { "type": "string" }
-          }
-        },
         "image_generation": {
           "type": "object",
           "required": ["enabled"],
           "properties": {
             "enabled": { "type": "boolean" },
-            "model":   { "type": "string" }
+            "model":   { "type": "string", "description": "Ex. 'gemini-3-pro-image-preview'." }
           }
         },
         "weekly_cron": {
           "type": "object",
+          "description": "Cron hebdomadaire optionnel (peut déclencher la veille en cadence weekly).",
           "required": ["enabled"],
           "properties": {
             "enabled":   { "type": "boolean" },
             "installed": { "type": "boolean" },
-            "schedule":  { "type": "string", "description": "Human-readable schedule, e.g. 'Sunday 22:00 local'" }
+            "schedule":  { "type": "string", "description": "Planification lisible, ex. 'Dimanche 22:00 heure locale'." }
           }
         }
       }
     },
     "wizard_log": {
       "type": "array",
-      "description": "Append-only log of wizard commands executed during setup.",
+      "description": "Journal en ajout seul des commandes du wizard exécutées pendant le setup.",
       "items": {
         "type": "object",
         "required": ["command", "at"],
         "properties": {
           "command": { "type": "string" },
           "at":      { "type": "string", "format": "date-time" },
-          "note":    { "type": "string" }
+          "note":    { "type": "string" },
+          "privacy_gate": {
+            "type": "object",
+            "description": "Trace du gate de confidentialité (voir .claude/commands/tools-setup.md) : consentement + plan Claude déclaré.",
+            "required": ["acknowledged", "claude_plan"],
+            "properties": {
+              "acknowledged": { "type": "boolean" },
+              "claude_plan":  { "type": "string", "enum": ["team", "enterprise", "api", "free", "pro", "max"] }
+            }
+          }
         }
       }
     }
@@ -103,11 +164,20 @@
       "type": "object",
       "required": ["name", "enabled"],
       "properties": {
-        "name":             { "type": "string", "description": "Tool slug (e.g. 'notion', 'mailerlite', 'none')." },
+        "name":             { "type": "string", "description": "Slug de l'outil (ex. 'notion', 'mailerlite', 'postiz', 'apify', 'ftp', 'none')." },
         "enabled":          { "type": "boolean" },
         "connector_status": { "type": "string", "enum": ["ready", "stub", "disabled"] },
-        "resource_id":      { "type": "string", "description": "Optional: database ID, audience ID, board ID, etc." },
+        "resource_id":      { "type": "string", "description": "Optionnel : ID de base, d'audience, de board, etc." },
         "notes":            { "type": "string" }
+      }
+    },
+    "moduleEntry": {
+      "type": "object",
+      "required": ["enabled"],
+      "properties": {
+        "enabled":    { "type": "boolean" },
+        "checked_at": { "type": "string", "format": "date-time", "description": "Dernière vérification des prérequis par /modules." },
+        "notes":      { "type": "string" }
       }
     }
   }

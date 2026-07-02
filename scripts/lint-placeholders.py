@@ -35,7 +35,7 @@ DEFAULT_PATHS = [
     "05-web-content",
     "06-graphic-design",
     "07-events",
-    "09-blog-seo",
+    "09-seo",
     ".claude/skills",
     "CLAUDE.md",
     "README.md",

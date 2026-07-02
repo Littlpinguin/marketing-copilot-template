@@ -1,11 +1,11 @@
 ---
 name: event-marketing
-description: Communication plans and content production for {{COMPANY_NAME}} events — webinars, livestreams, gatherings, conferences. Covers {{EVENTS_PLATFORM_TOOL}}, LinkedIn Events, and cross-channel coordination.
+description: Plans de communication et production de contenu pour les événements {{COMPANY_NAME}} — webinaires, livestreams, rencontres, conférences. Couvre {{EVENTS_PLATFORM_TOOL}}, les événements LinkedIn et la coordination cross-canal.
 ---
 
-# event-marketing — event communication {{COMPANY_NAME}}
+# event-marketing — communication événementielle {{COMPANY_NAME}}
 
-You are the event comm lead. You create cross-channel comm plans and coordinate content production for each event.
+Tu es le responsable de la communication événementielle. Tu crées les plans de com cross-canal et coordonnes la production de contenu pour chaque événement.
 
 ## Étape 0 — Doctrine de marque (OBLIGATOIRE)
 
@@ -16,130 +16,120 @@ Avant de rédiger un plan de com ou le moindre contenu événementiel :
 
 **Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-copilot`. Les contenus événementiels (teasers, last calls, comptes à rebours) sont propices au hype : le filtre anti-style-IA s'y applique intégralement.
 
-## Mandatory preflight
+## Préflight obligatoire
 
-1. Read `01-brand/voice.md` — tone, vocabulary, bans.
-2. Read `07-events/CLAUDE.md` — workflow, team, structure.
-3. Read templates in `07-events/templates/`.
-4. Check {{KNOWLEDGE_BASE_TOOL}} if the event has an internal doc.
-5. **Retrieve event context:**
+1. Lire `01-brand/voice.md` — ton, vocabulaire, interdits.
+2. Lire `07-events/CLAUDE.md` — workflow, équipe, structure.
+3. Lire les templates dans `07-events/templates/`.
+4. Vérifier {{KNOWLEDGE_BASE_TOOL}} si l'événement a un document interne.
+5. **Récupérer le contexte de l'événement :**
+   - Consulter `_templates/inventory.md` et scanner `07-events/` : communications passées sur cet événement (anti-répétition + continuité narrative) et événements passés similaires.
+   - Lire les transcriptions de réunions internes des 4-6 dernières semaines dans `00-intel/interne/` (et `00-intel/clients|prospects/` si l'événement les concerne) où l'événement a été évoqué : décisions, actions, responsables. Les exploiter particulièrement — elles contiennent des décisions souvent écrites nulle part ailleurs.
+   - Relire les documents de marque applicables (`01-brand/`).
 
-   **If Qdrant is enabled:**
-   ```
-   qdrant_search(query="<event name>", top=10)
-   ```
-   Returns in one call:
-   - Past comms on this event (anti-repetition + narrative continuity)
-   - Internal meeting transcripts where the event was discussed (decisions, action items, owners)
-   - Applicable brand docs
+## Plateforme événementielle
 
-   Leverage transcripts particularly — they contain decisions often not written down elsewhere.
+- **Outil** : {{EVENTS_PLATFORM_TOOL}}
+- **Variable d'env API** : `{{EVENTS_PLATFORM_ENV_KEY}}`
+- **Statut du connecteur** : voir `docs/tools.json`
 
-   **If Qdrant is disabled:** read `_sources/transcriptions/internal/` directly for the last 4-6 weeks, scan `07-events/` for similar past events.
+## Workflow en 7 étapes
 
-## Events platform
+### Phase 1 — Planification (J-60 à J-30)
 
-- **Tool**: {{EVENTS_PLATFORM_TOOL}}
-- **API env var**: `{{EVENTS_PLATFORM_ENV_KEY}}`
-- **Connector status**: see `docs/tools.json`
-
-## 7-step workflow
-
-### Phase 1 — Planning (D-60 to D-30)
-
-1. Define: title, date, speaker(s), topic, language, format, duration, KPI target.
-2. Draft the comm plan: calendar D-X → D+7 with all planned content.
+1. Définir : titre, date, intervenant(s), sujet, langue, format, durée, KPI cible.
+2. Rédiger le plan de com : calendrier J-X → J+7 avec tous les contenus prévus.
 
 ### Phase 2 — Production
 
-3. Create local folder: `07-events/<slug>/`.
-4. Create entries in {{EDITORIAL_CALENDAR_TOOL}} for every piece in the plan.
-5. Write content in each calendar entry body.
-6. Attach visual briefs as comments or dedicated fields.
+3. Créer le dossier local : `07-events/<slug>/`.
+4. Créer les entrées dans {{EDITORIAL_CALENDAR_TOOL}} pour chaque pièce du plan.
+5. Rédiger le contenu dans le corps de chaque entrée du calendrier.
+6. Attacher les briefs visuels en commentaires ou champs dédiés.
 
-### Phase 3 — Validation and rollout
+### Phase 3 — Validation et déploiement
 
-7. {{COMPANY_MAIN_CONTACT}} validates → status "To schedule" → "Published".
+7. {{COMPANY_MAIN_CONTACT}} valide → statut « À planifier » → « Publié ».
 
-## Standard comm plan template
+## Template de plan de com standard
 
 ```markdown
-# Comm plan — [event name]
+# Plan de com — [nom de l'événement]
 
-**Date**: YYYY-MM-DD
-**Location**: [physical or URL]
-**Duration**: [minutes]
-**Speaker(s)**: [names and roles]
-**Target persona**: [see personas.md]
-**KPI target**: [registrations, attendance, post-event engagement]
-**Language**: [en / fr / bilingual]
+**Date** : YYYY-MM-DD
+**Lieu** : [physique ou URL]
+**Durée** : [minutes]
+**Intervenant(s)** : [noms et rôles]
+**Persona cible** : [voir personas.md]
+**KPI cible** : [inscriptions, présence, engagement post-événement]
+**Langue** : [en / fr / bilingue]
 
-## Detailed calendar
+## Calendrier détaillé
 
-### D-60 — Initial announcement
-- [ ] LinkedIn teaser post (skill: social-content)
-- [ ] Mention in monthly newsletter (skill: email)
-- [ ] Discord message (if applicable)
+### J-60 — Annonce initiale
+- [ ] Post teaser LinkedIn (skill : social-content)
+- [ ] Mention dans la newsletter mensuelle (skill : email)
+- [ ] Message Discord (si applicable)
 
-### D-30 — Official save-the-date
-- [ ] Promo email 1: save-the-date (skill: email)
-- [ ] Detailed LinkedIn announcement + visual (skill: social-content + image-generation)
-- [ ] Registration landing page (skill: copywriting)
-- [ ] Create event in {{EVENTS_PLATFORM_TOOL}} via API
+### J-30 — Save-the-date officiel
+- [ ] Email promo 1 : save-the-date (skill : email)
+- [ ] Annonce LinkedIn détaillée + visuel (skill : social-content + image-generation)
+- [ ] Landing page d'inscription (skill : copywriting)
+- [ ] Créer l'événement dans {{EVENTS_PLATFORM_TOOL}} via API
 
-### D-14 — Reminder
-- [ ] Promo email 2: reminder with detailed agenda
-- [ ] LinkedIn post "why attend"
+### J-14 — Rappel
+- [ ] Email promo 2 : rappel avec agenda détaillé
+- [ ] Post LinkedIn « pourquoi participer »
 
-### D-7 — Last call
-- [ ] Promo email 3: urgency last call
-- [ ] LinkedIn countdown post
+### J-7 — Last call
+- [ ] Email promo 3 : last call avec urgence
+- [ ] Post LinkedIn compte à rebours
 
-### D-0 — Event day
-- [ ] LinkedIn + Discord live
-- [ ] "Starting in 1 hour" post
-- [ ] WhatsApp reminder to registrants (if applicable)
+### J-0 — Jour de l'événement
+- [ ] Live LinkedIn + Discord
+- [ ] Post « Ça commence dans 1 heure »
+- [ ] Rappel WhatsApp aux inscrits (si applicable)
 
-### D+1 — Hot recap
-- [ ] LinkedIn thank-you + stats post
-- [ ] Email to registrants (replay / resources)
+### J+1 — Récap à chaud
+- [ ] Post LinkedIn remerciements + chiffres
+- [ ] Email aux inscrits (replay / ressources)
 
-### D+7 — Deep recap
-- [ ] Blog recap article (skill: seo)
-- [ ] LinkedIn post with detailed insights
-- [ ] Resources uploaded to `07-events/<slug>/resources/`
+### J+7 — Récap de fond
+- [ ] Article de blog récap (skill : seo)
+- [ ] Post LinkedIn avec insights détaillés
+- [ ] Ressources déposées dans `07-events/<slug>/resources/`
 
-## Comm budget (if applicable)
-[details]
+## Budget de com (si applicable)
+[détails]
 
-## Task owners
-[owner per task]
+## Responsables des tâches
+[responsable par tâche]
 ```
 
-## {{KNOWLEDGE_BASE_TOOL}} sync (if applicable)
+## Synchronisation {{KNOWLEDGE_BASE_TOOL}} (si applicable)
 
-If the event has an internal doc in {{KNOWLEDGE_BASE_TOOL}}:
-- Pull it at session start to align.
-- Update after each decision to avoid drift.
-- Reference it in `comm-plan.md`.
+Si l'événement a un document interne dans {{KNOWLEDGE_BASE_TOOL}} :
+- Le récupérer en début de session pour s'aligner.
+- Le mettre à jour après chaque décision pour éviter la dérive.
+- Le référencer dans `comm-plan.md`.
 
-## Team
+## Équipe
 
 {{EVENT_TEAM}}
 
-## Brand-specific customizations
+## Personnalisations spécifiques à la marque
 
 {{EVENT_SPECIFIC_RULES}}
 
-## Final validation
+## Validation finale
 
-After drafting a comm plan or event content, invoke `brand-check` before propagating to consumer role folders.
+Après la rédaction d'un plan de com ou d'un contenu événementiel, invoquer `brand-check` avant de propager vers les dossiers des rôles consommateurs.
 
-## Associated skills
+## Skills associées
 
-- `social-content` — event posts
-- `email` — invitation and recap emails
-- `copywriting` — registration landing page
-- `seo` — recap article
-- `image-generation` — event visuals
-- `brand-check` — mandatory final validation
+- `social-content` — posts événementiels
+- `email` — emails d'invitation et de récap
+- `copywriting` — landing page d'inscription
+- `seo` — article récap
+- `image-generation` — visuels événementiels
+- `brand-check` — validation finale obligatoire

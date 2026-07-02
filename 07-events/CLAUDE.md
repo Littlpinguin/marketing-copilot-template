@@ -45,9 +45,7 @@ Scale down for smaller events (internal, partner, community livestream). Adapt c
 ## Workflow — new event
 
 1. **Brief.** One-page brief: objective, audience, date, speakers, platform, success metric. File at `./<event-slug>/brief.md`.
-2. **Context retrieval.**
-   - **If Qdrant is enabled**: `qdrant_search(query="<event name>", top=10)` returns past comms, transcripts where this event was discussed, decisions, and brand docs applicable.
-   - **If Qdrant is disabled**: read `_sources/transcriptions/internal/` manually for recent event discussions; scan `./` for similar past events to adapt their plan.
+2. **Context retrieval.** Read `_sources/transcriptions/internal/` (and `00-intel/` if fed) for recent event discussions; scan `./` for similar past events to adapt their plan.
 3. **Comm plan.** Instantiate the standard plan for this event in `./<event-slug>/comm-plan.md`. Adapt days and channels.
 4. **Content distribution.** For each scheduled comm, draft in the relevant role folder:
    - LinkedIn post → `03-social-media/linkedin/drafts/`

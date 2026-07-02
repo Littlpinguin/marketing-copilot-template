@@ -73,11 +73,12 @@ Un module actif dont un prérequis a disparu = 🟠 avec suggestion (`/modules` 
 
 - `.claude/settings.json` : hook PostToolUse (brand-check) et hook SessionStart enregistrés.
 - `.claude/hooks/brand-check-reminder.py` et `.claude/hooks/session-start.py` existent.
-- Test synthétique :
+- Test synthétique (le chemin doit être **absolu** — le hook matche `/03-social-media/` avec slash initial) :
   ```
-  echo '{"tool_input":{"file_path":"03-social-media/linkedin/drafts/test.md"}}' | python3 .claude/hooks/brand-check-reminder.py
+  echo '{"tool_input":{"file_path":"'"$PWD"'/03-social-media/linkedin/drafts/test.md"}}' | python3 .claude/hooks/brand-check-reminder.py
   python3 .claude/hooks/session-start.py < /dev/null
   ```
+  Attendu : la première commande émet le rappel brand-check (JSON `additionalContext`), la seconde sort en code 0 (silencieuse sur un repo vide).
 
 ### 9. Fraîcheur du calendrier et du tableau d'état
 

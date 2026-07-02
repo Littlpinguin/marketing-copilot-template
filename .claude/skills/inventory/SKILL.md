@@ -41,7 +41,7 @@ Conventions de valeurs :
    - `05-web-content/` — landing pages, artefacts HTML
    - `06-graphic-design/` — visuels, carrousels, `presentations/decks/`
    - `07-events/` — plans de comm, scripts
-   - `09-blog-seo/` — articles, briefs
+   - `09-seo/` — articles, briefs
 2. **Exclure** : `CLAUDE.md`, `README.md`, `templates/`, `briefs/`, scripts (`.py`, `.js`, `.sh`), fichiers marqués `[WIP]`.
 3. Pour chaque fichier retenu, déduire date (frontmatter ou nom de fichier, sinon date de modification), canal, type, sujet (titre ou première ligne), statut (dossier `drafts/` → `brouillon` ; `editions/`, `examples/`, `decks/` → `publié` ; `archives/` → `archivé` ; sinon `validé`).
 4. Réécrire `_templates/inventory.md` en entier (créer le fichier s'il n'existe pas), trié par date décroissante.
@@ -63,7 +63,7 @@ Les skills de production (`social-content`, `email`, `copywriting`, `seo`, `even
 
 1. Lire `_templates/inventory.md` et chercher les lignes proches du sujet demandé (même sujet, même canal, < 8 semaines).
 2. Si un livrable similaire existe → le signaler à l'utilisateur avec son chemin, et proposer : réutiliser, décliner sous un autre angle, ou créer quand même.
-3. Ce contrôle **complète** l'anti-répétition Qdrant (sémantique) : l'inventaire est exhaustif et fonctionne sans Qdrant.
+3. Ce contrôle est le mécanisme d'anti-répétition de référence : l'inventaire est exhaustif, purement fichiers, et sans dépendance externe.
 
 ## Ce que cette skill ne fait PAS
 

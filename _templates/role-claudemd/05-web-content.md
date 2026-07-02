@@ -43,8 +43,7 @@ Every page starts from a written brief with: objective, target persona, pillar, 
 
 ### 2. Consult prior work
 
-- **If Qdrant is enabled**: `qdrant_search(query="<page theme>", top=5, filter_type="landing-page")` to surface similar pages and angles already used.
-- **If Qdrant is disabled**: scan `./` for similar slugs; scan `01-brand/messaging-framework.md` for positioning on this topic.
+- Scan `./` for similar slugs and `_templates/inventory.md` to surface similar pages and angles already used; scan `01-brand/messaging-framework.md` for positioning on this topic.
 
 ### 3. Copy draft
 

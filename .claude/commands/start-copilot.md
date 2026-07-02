@@ -13,19 +13,18 @@ Transform this empty template into a production-ready marketing copilot for one 
 - A validated brand doctrine (voice, design system, personas)
 - Connectors wired for the tools the company actually uses
 - Skills personalized with brand-specific rules
-- Optional semantic memory and image generation
+- Optional modules enabled per need, plus brand-compliant image generation
 - A clean `.setup-completed` that locks in the configuration
 
 ## Flow overview
 
-The wizard orchestrates six sub-commands. You may run them one by one if you prefer granular control; this entry point chains them with confirmation between each.
+The wizard orchestrates the sub-commands below. You may run them one by one if you prefer granular control; this entry point chains them with confirmation between each.
 
 1. **Preflight and welcome** (inline, no sub-command)
 2. **`/brand-discover`** — public signals → draft doctrine → human validation → write `01-brand/`
 3. **`/tools-setup`** — pick tools per category → generate role CLAUDE.md → update `.env.example`
-4. **`/seed-corpus`** — optional, ingest recent content into Qdrant if enabled
-5. **`/connect-qdrant`** — optional, enable semantic memory
-6. **`/validate-setup`** — placeholder lint + sample generation + voice check → write `.setup-completed`
+4. **`/modules`** — optional, enable optional modules (video, automatisations, reporting, acquisition, veille, publication-sociale, espace-client)
+5. **`/validate-setup`** — placeholder lint + sample generation + voice check → write `.setup-completed`
 
 ## Step 1 — Welcome and preflight
 
@@ -73,9 +72,8 @@ After the user has shared material (or confirmed they have none beyond the websi
 >
 > 1. `/brand-discover` — analyze your signals, propose a design system, voice, and draft personas. (10-20 min)
 > 2. `/tools-setup` — ask which tools you use (email platform, CRM, editorial calendar, etc.) and wire them. (5-10 min)
-> 3. `/seed-corpus` — if you want Qdrant, ingest the content you just shared as an initial memory. (2-5 min, optional)
-> 4. `/connect-qdrant` — if you want Qdrant but don't have it yet, walk through the 5-min activation. (optional)
-> 5. `/validate-setup` — a final lint, a sample post for you to sanity-check the voice, then I write `.setup-completed`.
+> 3. `/modules` — enable any optional modules you need (video, automatisations, reporting, acquisition, veille, publication-sociale, espace-client). (2-5 min, optional)
+> 4. `/validate-setup` — a final lint, a sample post for you to sanity-check the voice, then I write `.setup-completed`.
 >
 > Ready to start with `/brand-discover`? (yes / no / go slower)
 
@@ -97,19 +95,18 @@ If yes, return to the sub-command or loop back. If no, announce the next.
 Once `/validate-setup` succeeds:
 
 1. Move `_bootstrap/inputs/` contents (if any) into `.setup-archive/v0.2-inputs/` to declutter the live tree.
-2. Ask the user: "Want to install the weekly Qdrant cron? This keeps your memory up to date without you thinking about it. (yes / no / later)"
-3. Offer the first five recommended actions:
+2. Offer the first five recommended actions:
    - Read the generated `01-brand/voice.md` and correct anything I misread.
    - Try `/health-check` to confirm everything is wired.
    - Draft your first LinkedIn post by asking "write a LinkedIn post about X" — brand-check will run automatically.
-   - Drop a meeting transcript into `_sources/transcriptions/internal/` and try `sync.py --source transcripts` (if Qdrant is on).
+   - Drop a meeting transcript into `00-intel/inbox/` and ask for a classification session (see `00-intel/CLAUDE.md`).
    - Customize the brand-check rules in `.claude/skills/brand-check/SKILL.md` if you want stricter typography.
 
 ## Failure modes to avoid
 
 - **Don't ask for all information upfront.** Let sub-commands ask what they need, when they need it.
 - **Don't write to operational folders from this command.** Only sub-commands do.
-- **Don't enable Qdrant silently.** Users must understand the tradeoff (volume-based recommendation) before opting in.
+- **Don't enable optional modules silently.** Module state changes only through `/modules`, which checks prerequisites and records state in `.setup-completed.modules`.
 - **Don't skip the security echo at step 1.** Secrets discipline is non-negotiable.
 - **Don't produce any marketing content during setup.** Production skills activate only after `.setup-completed` exists.
 

@@ -121,15 +121,9 @@ If `_bootstrap/inputs/` has any user-dropped files, move them to `.setup-archive
 
 #### 4c.3 — Update tool-status board in README
 
-Call the subroutine in `copilot-setup` skill to regenerate the tool-status table between `<!-- tool-status:start -->` and `<!-- tool-status:end -->` markers.
+Call the subroutine in `copilot-setup` skill to regenerate the tool-status table between `<!-- tool-status:start -->` and `<!-- tool-status:end -->` markers. If the markers do not exist yet in `README.md`, append a "## Tool status" section at the end of the README with both markers, then fill it.
 
-#### 4c.4 — Offer weekly cron (if Qdrant enabled)
-
-> Qdrant is enabled. Want to install the weekly sync cron now? (yes / later)
-
-On yes, run `bash _integrations/qdrant/cron/install.sh`.
-
-#### 4c.5 — Final recap
+#### 4c.4 — Final recap
 
 Output:
 

@@ -5,7 +5,7 @@
   "categories": {
     "editorial_calendar": {
       "label": "Editorial calendar",
-      "role_folders": ["02-strategy", "03-social-media", "04-email", "09-blog-seo"],
+      "role_folders": ["02-strategy", "03-social-media", "04-email", "09-seo"],
       "env_keys": {
         "notion":        ["NOTION_API_KEY", "NOTION_EDITORIAL_DATABASE_ID"],
         "airtable":      ["AIRTABLE_API_KEY", "AIRTABLE_BASE_ID", "AIRTABLE_TABLE_NAME"],
@@ -14,7 +14,7 @@
         "google-sheets": ["GOOGLE_SHEETS_CREDENTIALS_PATH", "GOOGLE_SHEETS_SHEET_ID"]
       },
       "tools": {
-        "notion":        { "connector_status": "ready",        "connector_path": "_integrations/qdrant/sources/notion.py" },
+        "notion":        { "connector_status": "stub" },
         "airtable":      { "connector_status": "stub" },
         "trello":        { "connector_status": "stub" },
         "clickup":       { "connector_status": "stub" },
@@ -53,8 +53,8 @@
         "gitbook":    ["GITBOOK_API_TOKEN"]
       },
       "tools": {
-        "outline":    { "connector_status": "ready_ingestion_only", "connector_path": "_integrations/qdrant/sources/outline.py" },
-        "notion":     { "connector_status": "ready_ingestion_only", "connector_path": "_integrations/qdrant/sources/notion.py" },
+        "outline":    { "connector_status": "stub" },
+        "notion":     { "connector_status": "stub" },
         "confluence": { "connector_status": "stub" },
         "gitbook":    { "connector_status": "stub" },
         "custom":     { "connector_status": "stub" },
@@ -99,17 +99,6 @@
         "none":      { "connector_status": "disabled" }
       }
     },
-    "semantic_memory": {
-      "label": "Semantic memory",
-      "role_folders": ["01-brand", "02-strategy", "03-social-media", "04-email", "09-blog-seo"],
-      "env_keys": {
-        "qdrant": ["QDRANT_URL", "QDRANT_API_KEY", "QDRANT_COLLECTION", "GOOGLE_AI_API_KEY"]
-      },
-      "tools": {
-        "qdrant": { "connector_status": "ready", "connector_path": "_integrations/qdrant/", "note": "Full pipeline: sync, MCP server, embeddings" },
-        "none":   { "connector_status": "disabled" }
-      }
-    },
     "image_generation": {
       "label": "Image generation",
       "role_folders": ["06-graphic-design"],
@@ -123,7 +112,7 @@
     },
     "web_analytics": {
       "label": "Web analytics",
-      "role_folders": ["02-strategy", "05-web-content", "09-blog-seo"],
+      "role_folders": ["02-strategy", "05-web-content", "09-seo"],
       "env_keys": {
         "ga4":      ["GA4_PROPERTY_ID", "GA4_CREDENTIALS_PATH"],
         "plausible":["PLAUSIBLE_API_KEY", "PLAUSIBLE_SITE_ID"],
@@ -158,7 +147,6 @@
   },
   "connector_status_legend": {
     "ready":                 "Full connector exists (ingestion + push where applicable). Use as-is.",
-    "ready_ingestion_only":  "Ingestion into Qdrant works out of the box. No push-side code yet — implement if needed.",
     "stub":                  "No connector yet. The wizard will scaffold a TODO stub (or a dry-run payload builder exists in scripts/dry-run-push.py as a starting point). Implementation required before first push.",
     "unsupported":           "Category/tool combination not supported by design.",
     "disabled":              "Category is off for this project. No connector, no env vars."

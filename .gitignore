@@ -6,12 +6,6 @@
 .claude/projects/
 .DS_Store
 
-# Qdrant runtime state
-_integrations/qdrant/registry.json
-_integrations/qdrant/logs/
-_integrations/qdrant/**/__pycache__/
-_integrations/qdrant/**/*.pyc
-
 # 00-intel — business intelligence memory (confidential, NEVER versioned)
 # Only the CLAUDE.md and folder structure (.gitkeep) are part of the template.
 00-intel/**

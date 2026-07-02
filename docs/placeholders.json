@@ -88,7 +88,7 @@
       { "name": "IMAGE_GEN_SPECIFIC_RULES",   "used_in": "image-generation" },
       { "name": "IMAGE_GEN_EXAMPLES",         "used_in": "image-generation" },
       { "name": "SLIDES_SPECIFIC_RULES",      "used_in": "slides" },
-      { "name": "BLOG_CMS",                   "used_in": "seo, 09-blog-seo", "example": "WordPress / Ghost / Hashnode" }
+      { "name": "BLOG_CMS",                   "used_in": "seo, 09-seo", "example": "WordPress / Ghost / Hashnode" }
     ],
     "tools": [
       { "name": "EDITORIAL_CALENDAR_TOOL" },
@@ -107,8 +107,6 @@
       { "name": "EVENTS_PLATFORM_ENV_KEY" },
       { "name": "CRM_TOOL" },
       { "name": "CRM_ENABLED" },
-      { "name": "QDRANT_ENABLED" },
-      { "name": "QDRANT_COLLECTION" },
       { "name": "IMAGE_GENERATION_ENABLED" }
     ],
     "decks": [
