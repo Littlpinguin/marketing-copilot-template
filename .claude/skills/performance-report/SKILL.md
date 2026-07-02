@@ -80,6 +80,16 @@ Vérifier après génération : le mois courant s'affiche, les mois archivés so
 - Signaler le rapport dans `02-strategy/reports/YYYY-MM.md` (revue mensuelle de `content-strategy`) : lien vers `analyse.md` + les 3 recommandations principales.
 - Si l'analyse recommande des ajustements éditoriaux, proposer de créer les entrées correspondantes dans le calendrier (statut `idée`), en citant le chiffre déclencheur.
 
+## Règles état de l'art (2026)
+
+Voir `docs/etat-de-lart/mesure-attribution.md` (et `email.md`, `contenu-aeo.md`, `social-linkedin.md`) pour le détail sourcé :
+
+1. **Structure narrative fixe de l'analyse** : résumé exécutif en langage business (3-5 phrases) → 5-7 KPIs vs objectif (pas plus) → pourquoi ça a bougé → actions du mois prochain. Un rapport sans action item est raté ; un KPI en baisse porte toujours cause + plan, jamais le chiffre seul.
+2. **Attribution assumée et documentée** : last non-direct click GA4 + attribution auto-déclarée (champ « Comment nous avez-vous connus ? »), avec une note fixe dans le rapport ; ligne « part non attribuable / dark social » à part entière (20-40 % du pipeline en B2B), jamais fondue dans « direct ».
+3. **Lire GSC en 3 découpes** : requêtes marque vs non-marque, pages d'argent vs blog, delta impressions vs clics (un écart croissant = absorption par les AI Overviews, pas une perte de ranking).
+4. **Canal « AI referrals » au snapshot mensuel** : sessions référées par chatgpt.com / perplexity.ai / gemini.google.com / claude.ai, qualifiées par la conversion, pas le volume.
+5. **Hiérarchie des métriques par canal** : email = réponses > clics > ouvertures (open rate peu fiable post-Apple MPP) ; social = impressions, clics, saves, swipes — pas les likes ; recalibrer les attentes avec la déflation de portée LinkedIn documentée (−50 % de vues YoY).
+
 ## Ce que cette skill ne fait PAS
 
 - ❌ Interpréter les chiffres elle-même (→ sous-agent `performance-analyst`)

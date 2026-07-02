@@ -107,6 +107,17 @@ Une production qui ne met pas le calendrier à jour est une production inachevé
 
 Après rédaction, invoquer `brand-check` avant livraison. Le hook `.claude/hooks/brand-check-reminder.py` se déclenche automatiquement, mais l'invocation manuelle reste possible.
 
+## Règles état de l'art LinkedIn (2026)
+
+Synthèse actionnable — voir `docs/etat-de-lart/social-linkedin.md` pour le détail sourcé :
+
+1. **Hook contraint à ~140 caractères / 2 lignes mobile** : première ligne courte, deuxième qui crée la tension. Anti-patterns : « Ravi d'annoncer… », question rhétorique creuse, rafale d'emojis.
+2. **Écrire pour le dwell time** (signal n°1 de l'algorithme) : aération, tension narrative, listes — jamais de « one-liner + lien ».
+3. **Pas de lien externe dans le corps du post** sauf demande explicite de l'utilisateur, en mentionnant la perte de portée (−19 à −60 % ; le lien en commentaire est lui aussi dégradé).
+4. **Critère de validation avant livraison : le post contient un élément non générable par IA** (donnée client, anecdote datée, position tranchée, chiffre interne) — le contenu générique est structurellement sous-distribué.
+5. **Terminer par une question qui appelle une réponse argumentée** (> 15 mots — un commentaire long pèse ~15× un like), et rappeler à l'utilisateur de répondre à chaque commentaire dans les 60 minutes après publication.
+6. **Scripts vidéo courts** : hook verbal écrit et validé seul (règle des 3 secondes), payoff explicite exigé au brief (pas de payoff = pas de production), CTA unique en toute fin — voir `docs/etat-de-lart/video-courte.md`.
+
 ## Skills associées
 
 - `copy-editing` — relecture 7 passes

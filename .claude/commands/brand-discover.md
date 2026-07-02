@@ -1,6 +1,6 @@
 ---
 name: brand-discover
-description: Analyze a company's public signals (website, recent blog articles, recent social posts, optional dropped brand docs) and propose a draft brand doctrine — design system, voice, vocabulary, personas, messaging framework — for human validation section by section. Then runs the strategy interview (business & marketing objectives, channels & cadence, real personas, customer journey). Writes the validated version to 01-brand/ and pre-fills 02-strategy/ (objectifs.md, parcours-client.md, kpi-framework.md, channel-strategy.md).
+description: Analyze a company's public signals (website, recent blog articles, recent social posts, optional dropped brand docs) and propose a draft brand doctrine — design system, voice, vocabulary, personas, messaging framework — for human validation section by section. Then runs the strategy interview (business & marketing objectives, channels & cadence, content pillars, real personas, customer journey). Writes the validated version to 01-brand/ and pre-fills 02-strategy/ (objectifs.md, parcours-client.md, kpi-framework.md, channel-strategy.md, content-pillars.md).
 ---
 
 # /brand-discover — propose a draft brand doctrine
@@ -10,6 +10,8 @@ Load the `copilot-setup` skill first. Follow its preflight and security rules.
 ## Intent
 
 Before the copilot can produce content that sounds like the company, the copilot has to understand the company. This command extracts as much as possible from public signals, presents a structured draft, and walks the user through it section by section. Writes happen only on explicit approval.
+
+The same session then captures **what marketing must achieve and for whom**: the strategy interview (Step 5) turns the validated doctrine into a populated strategy layer — objectives cascade, activated channels and cadence, real personas with their objections, customer journey — so `02-strategy/` starts operational instead of placeholder-ridden.
 
 ## Inputs expected
 
@@ -194,7 +196,7 @@ If the user says "skip", leave the section as `{{TODO}}` markers in the eventual
 
 The brand doctrine says how the company speaks; this step captures **what marketing must achieve and for whom**, so `02-strategy/` starts populated instead of placeholder-ridden. Announce it:
 
-> The brand sections are locked. Before writing the files, I need 15-20 minutes of strategy input: your objectives, your channels, your real personas and their journey. These answers pre-fill `02-strategy/objectifs.md`, `kpi-framework.md`, `parcours-client.md`, `channel-strategy.md` and complete `01-brand/personas.md`. Short, concrete answers beat polished ones — I'll do the reformulation.
+> The brand sections are locked. Before writing the files, I need 15-20 minutes of strategy input: your objectives, your channels, your real personas and their journey. These answers pre-fill `02-strategy/objectifs.md`, `kpi-framework.md`, `parcours-client.md`, `channel-strategy.md`, `content-pillars.md` and complete `01-brand/personas.md`. Short, concrete answers beat polished ones — I'll do the reformulation.
 
 Run the sub-steps in order. Everything stays in memory; writes happen in Step 6. Each sub-step supports **skip** (leave `{{TODO}}` markers and log in `01-brand/_gaps.md`).
 
@@ -222,6 +224,8 @@ For each objective's indicator, capture the **starting value**:
 Ask which channels are **actually activated** (LinkedIn, newsletter, blog/SEO, site, events, other) and, per channel, the cadence the team can genuinely hold — an honest "1 post/week" beats an abandoned "3 posts/week".
 
 This list **filters the tables**: at write time (Step 6), remove the rows of non-activated channels in `objectifs.md` §3, `channel-strategy.md` and `kpi-framework.md`. Only what will really be measured stays. The cadences also feed the `{{CONTENT_CADENCE_*}}` placeholders reused by `/tools-setup`.
+
+Then **propose 3-5 content pillars** deduced from the voice and messaging sections validated in Step 4 and the objectives of 5.2 — for each: a name, what it covers, a target share of monthly output (shares total 100 %), the personas and main channels it serves, and 2-3 example topics. Present the table; the user validates or adjusts. → `content-pillars.md` and the `{{PILLAR_*}}` placeholders reused by the skills and the calendar backlog.
 
 #### 5.4 Definitions: conversion and qualified lead
 
@@ -273,14 +277,15 @@ Once all sections are validated (or explicitly skipped), write these files. Conf
 
 Read `_templates/brand/voice.md`, `_templates/brand/style-guide.md`, `_templates/brand/messaging-framework.md`. Substitute the validated values in place of `{{PLACEHOLDERS}}`. Write the result to `01-brand/<same-filename>.md`. Apply the same substitution pass to `06-graphic-design/presentations/tokens.css` so the slides skill is ready to inline a brand-aligned design system.
 
-**Exception — `personas.md`**: the reference structure is the v2 file already present at `01-brand/personas.md` (rôle et contexte, déclencheurs d'achat, objections, canaux, vocabulaire, message principal, signaux 00-intel, anti-personas). Edit it **in place**, replacing its `{{PLACEHOLDERS}}` and duplicating the persona block as needed — do not use `_templates/brand/personas.md` if its structure diverges (it may still carry the v1 layout).
+**Exception — `personas.md`**: the reference structure is the v2 file already present at `01-brand/personas.md` (rôle et contexte, déclencheurs d'achat, objections, canaux, vocabulaire, message principal, signaux 00-intel, anti-personas). Edit it **in place**, replacing its `{{PLACEHOLDERS}}` and duplicating the persona block as needed. `_templates/brand/personas.md` is kept in sync with the same v2 structure (use it to restore a pristine copy); if the two ever diverge, the in-place `01-brand/personas.md` wins.
 
-Then write the strategy files from Step 5. These four files already live in `02-strategy/` with their v2 structure — **edit them in place**, replacing the `{{PLACEHOLDERS}}` with the validated answers (do not restructure them):
+Then write the strategy files from Step 5. These five files already live in `02-strategy/` with their v2 structure — **edit them in place**, replacing the `{{PLACEHOLDERS}}` with the validated answers (do not restructure them):
 
 - `02-strategy/objectifs.md` — §1 business objectives (5.1), §2 SMART marketing objectives with starting values (5.2), §3 per-channel targets **filtered to the activated channels** (5.3) with the conversion definition (5.4); fill trimestre en cours, date de révision, validé par, and the first line of the revision history
 - `02-strategy/parcours-client.md` — one validated table per persona (5.6); duplicate the persona block for each persona beyond the second
 - `02-strategy/kpi-framework.md` — KPI rows filtered to activated channels (5.3), definitions of conversion and qualified lead (5.4), measurement sources named after the actual tools when known (otherwise leave the tool placeholder for `/tools-setup`)
 - `02-strategy/channel-strategy.md` — keep only the rows of activated channels, with cadence (5.3) and personas per channel
+- `02-strategy/content-pillars.md` — the 3-5 validated pillars (5.3) with descriptions, target shares, personas, channels and example topics; drop the unused pillar rows
 
 ### Step 7 — Fill root CLAUDE.md visual reference
 
@@ -299,6 +304,7 @@ Output:
 > - `02-strategy/parcours-client.md` (questions par étape × persona)
 > - `02-strategy/kpi-framework.md` (définitions, dont conversion et lead qualifié)
 > - `02-strategy/channel-strategy.md` (canaux activés + cadence)
+> - `02-strategy/content-pillars.md` (piliers et parts cibles)
 > - `06-graphic-design/presentations/tokens.css` (slide design system)
 > - (optional) `01-brand/_gaps.md`
 >

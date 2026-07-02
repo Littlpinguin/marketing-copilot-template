@@ -103,6 +103,21 @@ Rapport : tableau claim / URL / score / statut / note, + actions recommandées.
 - Émettre les annotations **hreflang réciproques** : chaque version liste toutes les autres + `x-default` ; toute paire non réciproque est ignorée par Google.
 - QA multilingue : complétude (toutes les sections traduites), parité des liens internes, fraîcheur alignée entre versions.
 
+## Règles état de l'art (2026)
+
+Voir `docs/etat-de-lart/contenu-aeo.md` pour le détail sourcé :
+
+1. **Answer-first** : la réponse directe dans les 40-75 premiers mots sous chaque H2, en bloc déclaratif autonome — les pages structurées ainsi (titres propres, paragraphes courts, tableaux) sont citées 2 à 4× plus par les moteurs IA.
+2. **Statistiques + sources nommées + citations d'experts** dans chaque section : jusqu'à ~+40 % de visibilité dans les réponses génératives (étude Princeton GEO).
+3. **Format Q&R quand la requête s'y prête** (+25 % de citations), avec schema FAQPage/Article ; tableaux et listes pour toute comparaison.
+4. **Bannir le ton promotionnel du contenu informatif** (−26 % de citations) — séparer strictement pages de vente et contenu citable.
+5. **Couche éditoriale humaine obligatoire après tout draft assisté par IA** (données propriétaires, exemples vécus, voix de marque) : le contenu IA non supervisé est la cible explicite des spam updates Google 2025.
+
+## Après livraison
+
+- Mettre à jour l'entrée du calendrier éditorial (`02-strategy/calendar/calendar.md`) dans le même tour : statut + lien du livrable (`09-seo/articles/...`).
+- Indexer l'article dans `_templates/inventory.md` (skill `inventory`, mode incrément) — mécanisme anti-répétition de référence du repo.
+
 ## Anti-patterns (jamais)
 
 - Fabriquer une statistique (pénalisé depuis le Core Update déc. 2025)

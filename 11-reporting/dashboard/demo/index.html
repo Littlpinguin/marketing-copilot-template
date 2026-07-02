@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Meridian Conseil — Reporting marketing (démo)</title>
+
+<!-- ============================================================
+     DASHBOARD DE PERFORMANCES — Meridian Conseil (DÉMO)
+     ------------------------------------------------------------
+     Copie de démonstration générée depuis ../template.html avec
+     les tokens de la marque fictive Meridian Conseil (la même que
+     le deck-catalogue et la galerie 05-web-content). Données 100 %
+     fictives (./data/). Ne jamais utiliser pour un client réel :
+     le vrai dashboard part de ../template.html via /brand-discover.
+     ------------------------------------------------------------
+     HTML statique autonome : aucun backend, aucune dépendance
+     hors Chart.js (CDN). Les données sont des snapshots mensuels
+     JSON chargés depuis ./data/ (liste des mois : ./data/index.json).
+
+     Schéma des données : voir data-schema.md (même dossier).
+     Déploiement : voir ../deploy/README.md.
+
+     DESIGN TOKENS — valeurs Meridian Conseil (démo).
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+<style>
+:root {
+  /* ---------- Couleurs de marque ---------- */
+  --brand-primary: #2f6f5e;
+  --brand-accent:  #c8a24b;
+  --brand-dark:    #1c2420;
+  --brand-light:   #fcfbf8;
+  --brand-gradient: linear-gradient(120deg, #4da585 0%, #c8a24b 100%);
+
+  /* Variantes dérivées — ne pas éditer, elles suivent les couleurs de base */
+  --brand-primary-soft: color-mix(in srgb, var(--brand-primary) 10%, transparent);
+  --brand-accent-soft:  color-mix(in srgb, var(--brand-accent) 12%, transparent);
+  --surface:      color-mix(in srgb, var(--brand-light), white 40%);
+  --card:         white;
+  --text:         var(--brand-dark);
+  --text-soft:    color-mix(in srgb, var(--brand-dark) 62%, transparent);
+  --rule:         color-mix(in srgb, var(--brand-dark) 12%, transparent);
+
+  /* Couleurs fonctionnelles (variations ↑/↓) — indépendantes de la marque */
+  --positive: #1a7f4e;
+  --negative: #b3362c;
+
+  /* ---------- Typographie & forme ---------- */
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --radius: 14px;
+  --shadow: 0 1px 3px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--surface);
+  color: var(--text);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px 64px; }
+
+/* ---------- En-tête ---------- */
+header.site {
+  background: var(--brand-dark);
+  color: var(--brand-light);
+  padding: 28px 0;
+  border-bottom: 4px solid transparent;
+  border-image: var(--brand-gradient) 1;
+}
+header.site .wrap {
+  padding-bottom: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
+.brand-block { display: flex; align-items: center; gap: 14px; }
+/* Décommentez et pointez vers le logo déployé avec le dashboard :
+<img src="assets/logo.svg" alt="Meridian Conseil" class="logo">        */
+.logo { height: 36px; width: auto; }
+.brand-name { font-size: 1.15rem; font-weight: 700; letter-spacing: .01em; }
+.report-label {
+  font-size: .78rem; text-transform: uppercase; letter-spacing: .14em;
+  opacity: .7; display: block;
+}
+
+/* ---------- Navigation mois ---------- */
+nav.months { display: flex; align-items: center; gap: 10px; }
+nav.months button, nav.months select {
+  font-family: var(--font); font-size: .9rem;
+  background: rgba(255,255,255,.08); color: inherit;
+  border: 1px solid rgba(255,255,255,.25); border-radius: var(--radius);
+  padding: 8px 14px; cursor: pointer;
+}
+nav.months button:hover:not(:disabled) { background: rgba(255,255,255,.18); }
+nav.months button:disabled { opacity: .35; cursor: default; }
+nav.months select { min-width: 160px; }
+nav.months select option { color: #111; }
+
+/* ---------- Sections ---------- */
+h2.section {
+  font-size: .82rem; text-transform: uppercase; letter-spacing: .16em;
+  color: var(--text-soft); margin: 44px 0 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+h2.section::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+/* ---------- Cartes KPI ---------- */
+.kpi-grid {
+  display: grid; gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.kpi-card {
+  background: var(--card); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 20px 22px;
+  border-top: 3px solid var(--brand-primary);
+}
+.kpi-card.accent { border-top-color: var(--brand-accent); }
+.kpi-card h3 {
+  font-size: .78rem; text-transform: uppercase; letter-spacing: .12em;
+  color: var(--text-soft); font-weight: 600; margin-bottom: 10px;
+}
+.kpi-main { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.kpi-value { font-size: 2.1rem; font-weight: 700; line-height: 1.1; }
+.kpi-delta {
+  font-size: .82rem; font-weight: 600; padding: 2px 8px;
+  border-radius: 999px; white-space: nowrap;
+}
+.kpi-delta.up   { color: var(--positive); background: color-mix(in srgb, var(--positive) 12%, transparent); }
+.kpi-delta.down { color: var(--negative); background: color-mix(in srgb, var(--negative) 12%, transparent); }
+.kpi-delta.flat { color: var(--text-soft); background: var(--brand-primary-soft); }
+.kpi-sub { margin-top: 10px; font-size: .85rem; color: var(--text-soft); }
+.kpi-sub span { display: inline-block; margin-right: 14px; }
+.kpi-sub strong { color: var(--text); font-weight: 600; }
+
+/* ---------- Graphiques ---------- */
+.chart-grid {
+  display: grid; gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+.chart-card {
+  background: var(--card); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 20px 22px;
+}
+.chart-card h3 { font-size: .95rem; font-weight: 600; margin-bottom: 14px; }
+.chart-card .canvas-box { position: relative; height: 260px; }
+
+/* ---------- Tableaux (top pages / top posts) ---------- */
+.table-card {
+  background: var(--card); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 8px 22px 14px; overflow-x: auto;
+}
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); }
+tr:last-child td { border-bottom: none; }
+th {
+  font-size: .74rem; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--text-soft); font-weight: 600;
+}
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td a { color: var(--brand-primary); text-decoration: none; }
+td a:hover { text-decoration: underline; }
+.badge-canal {
+  display: inline-block; font-size: .74rem; font-weight: 600;
+  padding: 2px 8px; border-radius: 999px;
+  background: var(--brand-accent-soft); color: var(--text);
+}
+
+/* ---------- Analyse du mois ---------- */
+.analysis {
+  background: var(--card); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 28px 32px;
+  border-left: 4px solid var(--brand-accent);
+}
+.analysis h3 { font-size: 1.05rem; margin: 18px 0 8px; }
+.analysis h3:first-child { margin-top: 0; }
+.analysis p { margin: 0 0 12px; }
+.analysis ul { margin: 0 0 12px 20px; }
+.analysis li { margin-bottom: 6px; }
+.reco { margin-top: 20px; }
+.reco h3 {
+  font-size: .82rem; text-transform: uppercase; letter-spacing: .14em;
+  color: var(--text-soft);
+}
+.reco ol { margin: 10px 0 0 20px; }
+.reco li { margin-bottom: 8px; }
+
+/* ---------- Pied de page & états ---------- */
+footer {
+  margin-top: 48px; font-size: .8rem; color: var(--text-soft);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+.state { text-align: center; padding: 80px 20px; color: var(--text-soft); }
+[hidden] { display: none !important; }
+
+@media (max-width: 640px) {
+  .kpi-value { font-size: 1.7rem; }
+  .analysis { padding: 20px; }
+  header.site .wrap { flex-direction: column; align-items: flex-start; }
+}
+
+/* ---------- Overrides démo Meridian (vie graphique de la marque) ---------- */
+:root {
+  --font-display: 'Fraunces', Georgia, serif;
+  --or-text: #9a7c30; /* or foncé lisible sur fond clair */
+}
+.brand-name, .kpi-value, #period-label { font-family: var(--font-display); }
+.kpi-value { font-weight: 600; letter-spacing: -0.01em; }
+.reco h3 { color: var(--or-text); }
+header.site { position: relative; overflow: hidden; }
+header.site::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 960 540'%3E%3Cg fill='none' stroke='%23fcfbf8' stroke-width='1.3'%3E%3Cpath d='M0 40 C160 10 320 72 480 46 C640 20 800 66 960 34'/%3E%3Cpath d='M0 106 C170 72 330 132 490 104 C650 76 810 128 960 92'/%3E%3Cpath d='M0 172 C180 134 340 198 500 168 C660 138 820 192 960 154'/%3E%3Cpath d='M0 240 C190 198 350 264 510 230 C670 196 830 258 960 216'/%3E%3Cpath d='M0 310 C200 264 360 332 520 294 C680 256 840 326 960 280'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 960px 540px;
+}
+header.site .wrap { position: relative; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand-block">
+      <!-- <img src="assets/logo.svg" alt="" class="logo"> -->
+      <div>
+        <span class="report-label">Reporting marketing · démo</span>
+        <span class="brand-name">Meridian Conseil</span>
+      </div>
+    </div>
+    <nav class="months" aria-label="Navigation par mois">
+      <button id="prev-month" title="Mois précédent" aria-label="Mois précédent">‹</button>
+      <select id="month-select" aria-label="Choisir le mois"></select>
+      <button id="next-month" title="Mois suivant" aria-label="Mois suivant">›</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="loading" class="state">Chargement des données…</div>
+  <div id="error" class="state" hidden>
+    Impossible de charger les données du reporting.<br>
+    Vérifiez que <code>data/index.json</code> et les snapshots mensuels sont bien déployés.
+  </div>
+
+  <div id="report" hidden>
+
+    <!-- Vue d'ensemble : 4 cartes KPI -->
+    <h2 class="section">Vue d'ensemble — <span id="period-label"></span></h2>
+    <div class="kpi-grid">
+      <div class="kpi-card" id="card-trafic">
+        <h3>Trafic du site</h3>
+        <div class="kpi-main">
+          <span class="kpi-value" data-kpi="sessions">—</span>
+          <span class="kpi-delta" data-delta="sessions"></span>
+        </div>
+        <div class="kpi-sub">
+          <span><strong data-kpi="utilisateurs">—</strong> visiteurs</span>
+          <span><strong data-kpi="pages_vues">—</strong> pages vues</span>
+        </div>
+      </div>
+
+      <div class="kpi-card accent" id="card-conversions">
+        <h3>Conversions</h3>
+        <div class="kpi-main">
+          <span class="kpi-value" data-kpi="conversions">—</span>
+          <span class="kpi-delta" data-delta="conversions"></span>
+        </div>
+        <div class="kpi-sub">
+          <span>taux : <strong data-kpi="taux_conversion">—</strong></span>
+        </div>
+      </div>
+
+      <div class="kpi-card" id="card-emailing">
+        <h3>Emailing</h3>
+        <div class="kpi-main">
+          <span class="kpi-value" data-kpi="taux_ouverture">—</span>
+          <span class="kpi-delta" data-delta="taux_ouverture"></span>
+        </div>
+        <div class="kpi-sub">
+          <span><strong data-kpi="emails_envoyes">—</strong> emails</span>
+          <span>clics : <strong data-kpi="taux_clic">—</strong></span>
+        </div>
+      </div>
+
+      <div class="kpi-card accent" id="card-social">
+        <h3>Réseaux sociaux</h3>
+        <div class="kpi-main">
+          <span class="kpi-value" data-kpi="interactions">—</span>
+          <span class="kpi-delta" data-delta="interactions"></span>
+        </div>
+        <div class="kpi-sub">
+          <span><strong data-kpi="posts_publies">—</strong> posts</span>
+          <span><strong data-kpi="impressions">—</strong> impressions</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Évolution : graphiques sur l'historique complet -->
+    <h2 class="section">Évolution</h2>
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h3>Trafic &amp; conversions</h3>
+        <div class="canvas-box"><canvas id="chart-trafic"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Engagement — emailing &amp; social</h3>
+        <div class="canvas-box"><canvas id="chart-engagement"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Top pages -->
+    <section id="section-top-pages">
+      <h2 class="section">Pages les plus visitées</h2>
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr><th>Page</th><th class="num">Sessions</th><th class="num">Conversions</th></tr>
+          </thead>
+          <tbody id="top-pages-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Top posts -->
+    <section id="section-top-posts">
+      <h2 class="section">Publications les plus performantes</h2>
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr><th>Canal</th><th>Publication</th><th class="num">Impressions</th><th class="num">Interactions</th></tr>
+          </thead>
+          <tbody id="top-posts-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Analyse du mois : markdown rendu + recommandations -->
+    <h2 class="section">Analyse du mois</h2>
+    <div class="analysis">
+      <div id="analysis-body"></div>
+      <div class="reco" id="reco-block" hidden>
+        <h3>Recommandations</h3>
+        <ol id="reco-list"></ol>
+      </div>
+    </div>
+
+    <footer>
+      <span>Snapshot généré le <span id="generated-at">—</span></span>
+      <span>Meridian Conseil (marque fictive) — reporting mensuel de démonstration, données fictives</span>
+    </footer>
+  </div>
+</main>
+
+<!-- Données de démo embarquées : la démo fonctionne en double-clic (file://),
+     sans serveur. Les fichiers ./data/*.json restent la référence du format
+     (et servent de fallback fetch si ce bloc est retiré). -->
+<script type="application/json" id="demo-data">{"index": {"client": "Meridian Conseil", "_note": "Démo — données 100 % fictives (marque fictive Meridian Conseil). Générée depuis ../template.html, voir README.md.", "mois": ["2026-03", "2026-04", "2026-05", "2026-06"]}, "snapshots": {"2026-03": {"periode": "2026-03", "libelle": "Mars 2026 (démo)", "genere_le": "2026-04-01", "sources": {"ga4": "propriété GA4 de démonstration (données fictives)", "search_console": "https://meridian-conseil.example", "social": "postiz (démo)", "emailing": "brevo (démo)", "google_ads": "mcp-google-ads (démo, compte fictif)"}, "kpis": {"trafic": {"sessions": 3480, "utilisateurs": 2840, "pages_vues": 8120, "duree_moyenne_s": 84}, "conversions": {"total": 52, "taux_pct": 1.5, "par_objectif": [{"nom": "Demande de diagnostic", "total": 19}, {"nom": "Inscription newsletter", "total": 33}]}, "emailing": {"campagnes": 2, "emails_envoyes": 2900, "taux_ouverture_pct": 38.2, "taux_clic_pct": 3.2, "desabonnements": 9, "nouveaux_abonnes": 74}, "social": {"posts_publies": 11, "impressions": 47200, "interactions": 1450, "taux_engagement_pct": 2.6, "nouveaux_abonnes": 140}, "google_ads": {"cout": 980.0, "impressions": 118000, "clics": 2400, "conversions": 28, "cpa": 35.0}}, "seo": {"clics": 890, "impressions": 71400, "ctr_pct": 1.2, "position_moyenne": 16.8, "top_requetes": [{"requete": "bilan carbone pme", "clics": 96, "impressions": 4100, "position": 8.2}, {"requete": "cabinet conseil rse", "clics": 64, "impressions": 2900, "position": 11.4}]}, "top_pages": [{"url": "https://meridian-conseil.example/", "titre": "Accueil", "sessions": 1240, "conversions": 32}, {"url": "https://meridian-conseil.example/offre-bilan-carbone", "titre": "Offre bilan carbone", "sessions": 460, "conversions": 11}, {"url": "https://meridian-conseil.example/blog/csrd-pme-2026", "titre": "CSRD : ce qui change pour les PME", "sessions": 380, "conversions": 5}], "top_posts": [{"canal": "linkedin", "titre": "Diagnostic RSE en 5 questions (carrousel)", "date": "2026-03-12", "impressions": 9800, "interactions": 310, "url": ""}, {"canal": "linkedin", "titre": "Retour de mission : 3 idées reçues sur le bilan carbone", "date": "2026-03-24", "impressions": 6200, "interactions": 185, "url": ""}], "social_par_canal": [{"canal": "linkedin", "posts": 8, "impressions": 38400, "interactions": 1210, "abonnes": 2620, "nouveaux_abonnes": 118}, {"canal": "instagram", "posts": 3, "impressions": 8800, "interactions": 240, "abonnes": 940, "nouveaux_abonnes": 22}], "analyse_md": "## Ce qu'il faut retenir\n\nPremier mois complet de mesure : 3 480 sessions, 52 conversions (1,5 %). Le socle est posé mais la conversion repose trop sur la page d'accueil — 61 % des conversions viennent d'une seule page.\n\n### Ce qui a fonctionné\n\n- Le post LinkedIn « diagnostic RSE en 5 questions » : 9 800 impressions, 2× la moyenne du compte\n- Google Ads tient un CPA de 35,00 € pour 28 conversions, sous le seuil de rentabilité fixé à 42 €\n\n### Points de vigilance\n\n- Position moyenne SEO à 16,8 : le blog ne compte que 6 articles indexés, trop peu pour peser\n- Taux d'ouverture emailing à 38,2 %, sous l'objectif de 40 %", "recommandations": ["Publier 2 articles du cluster « bilan carbone PME » en avril pour attaquer la position moyenne (16,8 → cible 15).", "Créer une landing dédiée au diagnostic pour désengorger la page d'accueil (61 % des conversions sur une seule page).", "Tester un nouvel objet de newsletter au format question pour repasser l'ouverture au-dessus de 40 %."]}, "2026-04": {"periode": "2026-04", "libelle": "Avril 2026 (démo)", "genere_le": "2026-05-01", "sources": {"ga4": "propriété GA4 de démonstration (données fictives)", "search_console": "https://meridian-conseil.example", "social": "postiz (démo)", "emailing": "brevo (démo)", "google_ads": "mcp-google-ads (démo, compte fictif)"}, "kpis": {"trafic": {"sessions": 3890, "utilisateurs": 3160, "pages_vues": 9340, "duree_moyenne_s": 89}, "conversions": {"total": 61, "taux_pct": 1.6, "par_objectif": [{"nom": "Demande de diagnostic", "total": 24}, {"nom": "Inscription newsletter", "total": 37}]}, "emailing": {"campagnes": 2, "emails_envoyes": 3050, "taux_ouverture_pct": 39.6, "taux_clic_pct": 3.5, "desabonnements": 7, "nouveaux_abonnes": 88}, "social": {"posts_publies": 12, "impressions": 54100, "interactions": 1690, "taux_engagement_pct": 2.8, "nouveaux_abonnes": 165}, "google_ads": {"cout": 1050.0, "impressions": 126000, "clics": 2600, "conversions": 33, "cpa": 31.8}}, "seo": {"clics": 1010, "impressions": 76800, "ctr_pct": 1.3, "position_moyenne": 15.9, "top_requetes": [{"requete": "bilan carbone pme", "clics": 132, "impressions": 4700, "position": 6.9}, {"requete": "audit rse obligatoire", "clics": 78, "impressions": 3300, "position": 9.8}]}, "top_pages": [{"url": "https://meridian-conseil.example/", "titre": "Accueil", "sessions": 1310, "conversions": 28}, {"url": "https://meridian-conseil.example/diagnostic", "titre": "Landing diagnostic RSE", "sessions": 520, "conversions": 14}, {"url": "https://meridian-conseil.example/blog/bilan-carbone-pme-methode", "titre": "Bilan carbone PME : la méthode en 4 étapes", "sessions": 210, "conversions": 6}], "top_posts": [{"canal": "linkedin", "titre": "Carrousel : 4 étapes d'un bilan carbone utile", "date": "2026-04-15", "impressions": 11200, "interactions": 385, "url": ""}, {"canal": "linkedin", "titre": "Étude de cas anonymisée : -18 % d'émissions en 1 an", "date": "2026-04-22", "impressions": 7400, "interactions": 240, "url": ""}], "social_par_canal": [{"canal": "linkedin", "posts": 9, "impressions": 44600, "interactions": 1485, "abonnes": 2790, "nouveaux_abonnes": 145}, {"canal": "instagram", "posts": 3, "impressions": 9500, "interactions": 205, "abonnes": 960, "nouveaux_abonnes": 20}], "analyse_md": "## Ce qu'il faut retenir\n\nLe trafic progresse de **12 %** (3 890 sessions) et les conversions de **17 %** (61). Les 2 articles du cluster « bilan carbone PME » publiés mi-avril captent déjà 210 sessions à eux deux.\n\n### Ce qui a fonctionné\n\n- La landing diagnostic mise en ligne le 8 avril : 14 conversions en 3 semaines, sans cannibaliser l'accueil\n- L'objet de newsletter au format question : 41,2 % d'ouverture sur l'édition d'avril (vs 38,2 % en mars)\n\n### Points de vigilance\n\n- Instagram décroche (240 → 205 interactions) : le format « citation » ne prend pas sur ce compte\n- Le CPA Google Ads s'améliore (31,80 €) mais le volume de clics plafonne sur la campagne « audit »", "recommandations": ["Doubler la cadence LinkedIn sur le format carrousel (2 des 3 meilleurs posts d'avril) : passer de 1 à 2 carrousels/mois.", "Réallouer 20 % du budget Instagram vers LinkedIn au vu du différentiel d'engagement (2,2 % vs 3,1 %).", "Élargir la campagne Ads « audit » avec 5 nouvelles requêtes issues des termes GSC en position 4-10."]}, "2026-05": {"periode": "2026-05", "libelle": "Mai 2026 (démo)", "genere_le": "2026-06-01", "sources": {"ga4": "propriété GA4 de démonstration (données fictives)", "search_console": "https://meridian-conseil.example", "social": "postiz (démo)", "emailing": "brevo (démo)", "google_ads": "mcp-google-ads (démo, compte fictif)"}, "kpis": {"trafic": {"sessions": 4210, "utilisateurs": 3420, "pages_vues": 10160, "duree_moyenne_s": 92}, "conversions": {"total": 74, "taux_pct": 1.8, "par_objectif": [{"nom": "Demande de diagnostic", "total": 30}, {"nom": "Inscription newsletter", "total": 44}]}, "emailing": {"campagnes": 2, "emails_envoyes": 3200, "taux_ouverture_pct": 41.8, "taux_clic_pct": 3.9, "desabonnements": 6, "nouveaux_abonnes": 102}, "social": {"posts_publies": 13, "impressions": 61300, "interactions": 1880, "taux_engagement_pct": 2.9, "nouveaux_abonnes": 185}, "google_ads": {"cout": 1150.0, "impressions": 139000, "clics": 2850, "conversions": 38, "cpa": 30.3}}, "seo": {"clics": 1160, "impressions": 82100, "ctr_pct": 1.4, "position_moyenne": 15.1, "top_requetes": [{"requete": "bilan carbone pme", "clics": 158, "impressions": 5100, "position": 5.8}, {"requete": "csrd pme", "clics": 92, "impressions": 3800, "position": 8.4}]}, "top_pages": [{"url": "https://meridian-conseil.example/", "titre": "Accueil", "sessions": 1290, "conversions": 25}, {"url": "https://meridian-conseil.example/diagnostic", "titre": "Landing diagnostic RSE", "sessions": 610, "conversions": 19}, {"url": "https://meridian-conseil.example/blog/bilan-carbone-pme-methode", "titre": "Bilan carbone PME : la méthode en 4 étapes", "sessions": 340, "conversions": 9}], "top_posts": [{"canal": "linkedin", "titre": "Carrousel : le vrai coût d'un bilan carbone", "date": "2026-05-13", "impressions": 12800, "interactions": 425, "url": ""}, {"canal": "linkedin", "titre": "Pourquoi vos fournisseurs vont vous demander vos émissions", "date": "2026-05-27", "impressions": 8100, "interactions": 265, "url": ""}], "social_par_canal": [{"canal": "linkedin", "posts": 10, "impressions": 51200, "interactions": 1670, "abonnes": 2980, "nouveaux_abonnes": 168}, {"canal": "instagram", "posts": 3, "impressions": 10100, "interactions": 210, "abonnes": 975, "nouveaux_abonnes": 17}], "analyse_md": "## Ce qu'il faut retenir\n\nMeilleur mois depuis le début de la mesure : 74 conversions (+21 %) pour un taux de 1,8 %. La stratégie carrousel paie — les 2 carrousels de mai font 44 % des impressions LinkedIn du mois.\n\n### Ce qui a fonctionné\n\n- Le cluster « bilan carbone PME » : 3 articles dans le top 5 des pages, 480 sessions organiques cumulées\n- L'emailing repasse durablement au-dessus de 40 % d'ouverture (41,8 %) avec un clic à 3,9 %\n\n### Points de vigilance\n\n- La durée moyenne de session progresse peu (92 s) : les articles convertissent mais ne retiennent pas\n- 5 requêtes GSC en position 11-14, à portée de première page", "recommandations": ["Ajouter un module « calculer votre empreinte en 2 min » en fin d'article pour allonger la session et capter la conversion (cible : 110 s).", "Optimiser les 5 requêtes en position 11-14 (maillage interne + réécriture des title) pour viser la première page en juin.", "Créer la déclinaison email de l'étude de cas -18 % : meilleur contenu du trimestre, jamais exploité en newsletter."]}, "2026-06": {"periode": "2026-06", "libelle": "Juin 2026 (démo)", "genere_le": "2026-07-01", "sources": {"ga4": "propriété GA4 de démonstration (données fictives)", "search_console": "https://meridian-conseil.example", "social": "postiz (démo)", "emailing": "brevo (démo)", "google_ads": "mcp-google-ads (démo, compte fictif)"}, "kpis": {"trafic": {"sessions": 4680, "utilisateurs": 3810, "pages_vues": 11420, "duree_moyenne_s": 101}, "conversions": {"total": 89, "taux_pct": 1.9, "par_objectif": [{"nom": "Demande de diagnostic", "total": 36}, {"nom": "Inscription newsletter", "total": 53}]}, "emailing": {"campagnes": 3, "emails_envoyes": 3400, "taux_ouverture_pct": 43.1, "taux_clic_pct": 4.2, "desabonnements": 6, "nouveaux_abonnes": 118}, "social": {"posts_publies": 14, "impressions": 69800, "interactions": 2210, "taux_engagement_pct": 3.2, "nouveaux_abonnes": 212}, "google_ads": {"cout": 1220.0, "impressions": 151000, "clics": 3050, "conversions": 44, "cpa": 27.7}}, "seo": {"clics": 1320, "impressions": 87600, "ctr_pct": 1.5, "position_moyenne": 14.3, "top_requetes": [{"requete": "bilan carbone pme", "clics": 176, "impressions": 5400, "position": 5.2}, {"requete": "csrd pme", "clics": 121, "impressions": 4300, "position": 7.0}]}, "top_pages": [{"url": "https://meridian-conseil.example/", "titre": "Accueil", "sessions": 1350, "conversions": 24}, {"url": "https://meridian-conseil.example/diagnostic", "titre": "Landing diagnostic RSE", "sessions": 680, "conversions": 22}, {"url": "https://meridian-conseil.example/blog/csrd-pme-2026", "titre": "CSRD : ce qui change pour les PME", "sessions": 410, "conversions": 11}], "top_posts": [{"canal": "linkedin", "titre": "Carrousel : 6 chiffres pour convaincre votre DAF", "date": "2026-06-10", "impressions": 13600, "interactions": 470, "url": ""}, {"canal": "linkedin", "titre": "Ce que la CSRD change vraiment pour une PME de 80 salariés", "date": "2026-06-24", "impressions": 9200, "interactions": 300, "url": ""}], "social_par_canal": [{"canal": "linkedin", "posts": 11, "impressions": 58900, "interactions": 1990, "abonnes": 3190, "nouveaux_abonnes": 195}, {"canal": "instagram", "posts": 3, "impressions": 10900, "interactions": 220, "abonnes": 992, "nouveaux_abonnes": 17}], "analyse_md": "## Ce qu'il faut retenir\n\nLe trimestre se clôt sur 4 680 sessions (+35 % vs mars) et 89 conversions (+71 % vs mars). Le calculateur d'empreinte ajouté aux articles porte à lui seul 11 conversions et fait grimper la durée de session à 101 s.\n\n### Ce qui a fonctionné\n\n- 3 des 5 requêtes optimisées en mai sont passées en première page — dont « csrd pme » en position 7\n- L'email étude de cas : 46,9 % d'ouverture, meilleur envoi depuis le lancement\n- Google Ads : CPA à 27,70 € (-21 % vs mars) à budget quasi constant\n\n### Points de vigilance\n\n- Instagram reste le canal faible (17 nouveaux abonnés) : décision à prendre au trimestre\n- La croissance des sessions ralentit hors SEO : la notoriété LinkedIn plafonne sans nouveaux formats", "recommandations": ["Statuer sur Instagram à la revue trimestrielle : passer en re-post minimal ou tester le format Reels 15-30 s un mois.", "Industrialiser le calculateur (page dédiée + campagne Ads) : 11 conversions en 3 semaines en simple module d'article.", "Lancer un format vidéo LinkedIn court (< 90 s, sous-titré) pour relancer la portée organique au T3."]}}}</script>
+
+<script>
+/* ============================================================
+   Logique du dashboard — vanilla JS, aucun build.
+   1. Charge data/index.json  → liste des mois disponibles.
+   2. Charge tous les snapshots data/YYYY-MM.json (historique
+      nécessaire aux graphiques d'évolution).
+   3. Affiche le mois sélectionné (par défaut : le plus récent,
+      ou celui du hash d'URL #YYYY-MM).
+   ============================================================ */
+(function () {
+  "use strict";
+
+  const $ = (sel) => document.querySelector(sel);
+  const state = { months: [], snapshots: new Map(), current: null, charts: {} };
+
+  /* ---------- Formatage ---------- */
+  const fmtInt = (n) => (n == null ? "—" : new Intl.NumberFormat("fr-FR").format(Math.round(n)));
+  const fmtPct = (n) => (n == null ? "—" : new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 1 }).format(n) + " %");
+  const monthLabel = (ym) => {
+    const [y, m] = ym.split("-").map(Number);
+    const label = new Date(y, m - 1, 1).toLocaleDateString("fr-FR", { month: "long", year: "numeric" });
+    return label.charAt(0).toUpperCase() + label.slice(1);
+  };
+  const cssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+  /* ---------- Accès sûr aux champs imbriqués ---------- */
+  const get = (obj, path) => path.split(".").reduce((o, k) => (o == null ? null : o[k]), obj);
+
+  /* ---------- Chargement ---------- */
+  /* Démo : données embarquées dans #demo-data → double-clic (file://) OK.
+     Fetch conservé en fallback (mode déployé, comme ../template.html). */
+  const embedded = (() => {
+    const el = document.getElementById("demo-data");
+    if (!el) return null;
+    try { return JSON.parse(el.textContent); } catch (e) { return null; }
+  })();
+  async function loadJSON(url) {
+    if (embedded) {
+      if (url.endsWith("index.json")) return embedded.index;
+      const m = url.match(/(\d{4}-\d{2})\.json$/);
+      if (m && embedded.snapshots[m[1]]) return embedded.snapshots[m[1]];
+    }
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(url + " → HTTP " + res.status);
+    return res.json();
+  }
+
+  async function init() {
+    try {
+      const index = await loadJSON("data/index.json");
+      state.months = [...index.mois].sort();
+      if (!state.months.length) throw new Error("index.json ne liste aucun mois");
+
+      const loaded = await Promise.all(
+        state.months.map((m) => loadJSON("data/" + m + ".json").catch(() => null))
+      );
+      state.months.forEach((m, i) => { if (loaded[i]) state.snapshots.set(m, loaded[i]); });
+      state.months = state.months.filter((m) => state.snapshots.has(m));
+
+      const fromHash = location.hash.replace("#", "");
+      state.current = state.snapshots.has(fromHash) ? fromHash : state.months[state.months.length - 1];
+
+      buildMonthNav();
+      render();
+      $("#loading").hidden = true;
+      $("#report").hidden = false;
+    } catch (err) {
+      console.error(err);
+      $("#loading").hidden = true;
+      $("#error").hidden = false;
+    }
+  }
+
+  /* ---------- Navigation mois ---------- */
+  function buildMonthNav() {
+    const select = $("#month-select");
+    select.innerHTML = "";
+    state.months.forEach((m) => {
+      const opt = document.createElement("option");
+      opt.value = m;
+      opt.textContent = monthLabel(m);
+      select.appendChild(opt);
+    });
+    select.addEventListener("change", () => goTo(select.value));
+    $("#prev-month").addEventListener("click", () => shift(-1));
+    $("#next-month").addEventListener("click", () => shift(1));
+    window.addEventListener("hashchange", () => {
+      const m = location.hash.replace("#", "");
+      if (state.snapshots.has(m) && m !== state.current) goTo(m);
+    });
+  }
+
+  function shift(delta) {
+    const i = state.months.indexOf(state.current) + delta;
+    if (i >= 0 && i < state.months.length) goTo(state.months[i]);
+  }
+
+  function goTo(month) {
+    state.current = month;
+    history.replaceState(null, "", "#" + month);
+    render();
+  }
+
+  /* ---------- Rendu du mois courant ---------- */
+  function render() {
+    const snap = state.snapshots.get(state.current);
+    const idx = state.months.indexOf(state.current);
+    const prev = idx > 0 ? state.snapshots.get(state.months[idx - 1]) : null;
+
+    $("#month-select").value = state.current;
+    $("#prev-month").disabled = idx === 0;
+    $("#next-month").disabled = idx === state.months.length - 1;
+    $("#period-label").textContent = snap.libelle || monthLabel(state.current);
+    $("#generated-at").textContent = snap.genere_le || "—";
+
+    renderKPIs(snap, prev);
+    renderCharts();
+    renderTable("#top-pages-body", "#section-top-pages", snap.top_pages, (p) => `
+      <tr>
+        <td>${p.url ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.titre || p.url)}</a>` : esc(p.titre || "")}</td>
+        <td class="num">${fmtInt(p.sessions)}</td>
+        <td class="num">${fmtInt(p.conversions)}</td>
+      </tr>`);
+    renderTable("#top-posts-body", "#section-top-posts", snap.top_posts, (p) => `
+      <tr>
+        <td><span class="badge-canal">${esc(p.canal || "")}</span></td>
+        <td>${p.url ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.titre || p.url)}</a>` : esc(p.titre || "")}</td>
+        <td class="num">${fmtInt(p.impressions)}</td>
+        <td class="num">${fmtInt(p.interactions)}</td>
+      </tr>`);
+    renderAnalysis(snap);
+  }
+
+  /* ---------- Cartes KPI + variation vs mois précédent ---------- */
+  function renderKPIs(snap, prev) {
+    const map = {
+      sessions:        { path: "kpis.trafic.sessions",              fmt: fmtInt },
+      utilisateurs:    { path: "kpis.trafic.utilisateurs",          fmt: fmtInt },
+      pages_vues:      { path: "kpis.trafic.pages_vues",            fmt: fmtInt },
+      conversions:     { path: "kpis.conversions.total",            fmt: fmtInt },
+      taux_conversion: { path: "kpis.conversions.taux_pct",         fmt: fmtPct },
+      taux_ouverture:  { path: "kpis.emailing.taux_ouverture_pct",  fmt: fmtPct },
+      taux_clic:       { path: "kpis.emailing.taux_clic_pct",       fmt: fmtPct },
+      emails_envoyes:  { path: "kpis.emailing.emails_envoyes",      fmt: fmtInt },
+      interactions:    { path: "kpis.social.interactions",          fmt: fmtInt },
+      impressions:     { path: "kpis.social.impressions",           fmt: fmtInt },
+      posts_publies:   { path: "kpis.social.posts_publies",         fmt: fmtInt }
+    };
+
+    document.querySelectorAll("[data-kpi]").forEach((el) => {
+      const def = map[el.dataset.kpi];
+      el.textContent = def ? def.fmt(get(snap, def.path)) : "—";
+    });
+
+    document.querySelectorAll("[data-delta]").forEach((el) => {
+      const def = map[el.dataset.delta];
+      const now = def ? get(snap, def.path) : null;
+      const before = def && prev ? get(prev, def.path) : null;
+      if (now == null || before == null || before === 0) { el.textContent = ""; el.className = "kpi-delta"; return; }
+      const pct = ((now - before) / Math.abs(before)) * 100;
+      const dir = pct > 0.5 ? "up" : pct < -0.5 ? "down" : "flat";
+      el.className = "kpi-delta " + dir;
+      el.textContent = (pct > 0 ? "+" : "") + new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 1 }).format(pct) + " %";
+      el.title = "vs mois précédent";
+    });
+  }
+
+  /* ---------- Graphiques d'évolution (historique complet) ---------- */
+  function renderCharts() {
+    const labels = state.months.map(monthLabel);
+    const series = (path) => state.months.map((m) => get(state.snapshots.get(m), path));
+    const primary = cssVar("--brand-primary");
+    const accent = cssVar("--brand-accent");
+    const baseOpts = {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: { legend: { labels: { font: { family: cssVar("--font") } } } },
+      scales: { x: { grid: { display: false } } }
+    };
+
+    drawChart("chart-trafic", {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          { label: "Sessions", data: series("kpis.trafic.sessions"),
+            borderColor: primary, backgroundColor: primary, tension: .3, yAxisID: "y" },
+          { label: "Conversions", data: series("kpis.conversions.total"),
+            borderColor: accent, backgroundColor: accent, tension: .3, yAxisID: "y2" }
+        ]
+      },
+      options: { ...baseOpts, scales: { ...baseOpts.scales,
+        y:  { beginAtZero: true, position: "left" },
+        y2: { beginAtZero: true, position: "right", grid: { drawOnChartArea: false } }
+      } }
+    });
+
+    drawChart("chart-engagement", {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          { label: "Taux d'ouverture email (%)", data: series("kpis.emailing.taux_ouverture_pct"),
+            borderColor: primary, backgroundColor: primary, tension: .3 },
+          { label: "Taux d'engagement social (%)", data: series("kpis.social.taux_engagement_pct"),
+            borderColor: accent, backgroundColor: accent, tension: .3 }
+        ]
+      },
+      options: { ...baseOpts, scales: { ...baseOpts.scales, y: { beginAtZero: true } } }
+    });
+  }
+
+  function drawChart(canvasId, config) {
+    if (state.charts[canvasId]) state.charts[canvasId].destroy();
+    state.charts[canvasId] = new Chart(document.getElementById(canvasId), config);
+  }
+
+  /* ---------- Tableaux ---------- */
+  function renderTable(bodySel, sectionSel, rows, template) {
+    const section = $(sectionSel);
+    if (!rows || !rows.length) { section.hidden = true; return; }
+    section.hidden = false;
+    $(bodySel).innerHTML = rows.map(template).join("");
+  }
+
+  /* ---------- Analyse du mois : mini-rendu markdown ---------- */
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  /* Rend le sous-ensemble de markdown utilisé par l'analyse :
+     titres ##/###, gras, italique, listes à puces, paragraphes. */
+  function renderMarkdown(md) {
+    const inline = (s) => esc(s)
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*(.+?)\*/g, "<em>$1</em>");
+    const blocks = String(md).split(/\n{2,}/);
+    return blocks.map((block) => {
+      const lines = block.split("\n").map((l) => l.trim()).filter(Boolean);
+      if (!lines.length) return "";
+      if (lines.every((l) => l.startsWith("- ")))
+        return "<ul>" + lines.map((l) => "<li>" + inline(l.slice(2)) + "</li>").join("") + "</ul>";
+      return lines.map((l) => {
+        if (l.startsWith("### ")) return "<h3>" + inline(l.slice(4)) + "</h3>";
+        if (l.startsWith("## "))  return "<h3>" + inline(l.slice(3)) + "</h3>";
+        return "<p>" + inline(l) + "</p>";
+      }).join("");
+    }).join("");
+  }
+
+  function renderAnalysis(snap) {
+    $("#analysis-body").innerHTML = snap.analyse_md
+      ? renderMarkdown(snap.analyse_md)
+      : "<p>Analyse non disponible pour ce mois.</p>";
+    const recos = snap.recommandations || [];
+    $("#reco-block").hidden = !recos.length;
+    $("#reco-list").innerHTML = recos.map((r) => "<li>" + esc(r) + "</li>").join("");
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

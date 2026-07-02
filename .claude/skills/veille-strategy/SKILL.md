@@ -92,6 +92,17 @@ Avant livraison, relire chaque proposition : si elle reste vraie sans le signal 
 - Peut être branchée sur le cron hebdo si `features.weekly_cron` est actif ; sinon, run manuel à la demande.
 - Un run partiel est possible (« veille concurrents seulement ») : ne dispatcher que le niveau demandé, mais archiver au même endroit.
 
+## Règles état de l'art (2026)
+
+Voir `docs/etat-de-lart/veille-intelligence.md` pour le détail sourcé :
+
+1. **Grille de signaux concurrents par ordre de valeur** : pricing (change tous les ~37 jours en B2B SaaS) > offres d'emploi (la vélocité d'embauche révèle la roadmap avant toute annonce) > changelog/docs API > publicités actives (Meta Ad Library, Google Ads Transparency Center) > contenus publiés > avis clients > actualité corporate.
+2. **Framework signal → décision** : chaque item de synthèse porte 4 champs — impact (« et alors ? »), réponse proposée (idée de contenu / ajustement stratégique / battlecard), échéance, décideur. Pas d'impact = archivé sans restitution.
+3. **Anti-biais de confirmation** : formuler les questions d'intelligence AVANT de collecter, chercher au moins un signal contraire avant de conclure, séparer fait observé et interprétation dans la synthèse.
+4. **Péremption des signaux** : horodater chaque fait ; revalider tout signal pricing de plus de 60 jours avant réutilisation dans un livrable.
+5. **Cadence courte, restitution courte** : une page hebdo exploitée bat le rapport trimestriel fleuve ; changement matériel (pricing, lancement, dirigeant) = mise à jour sous 24-48 h.
+6. **Recalibrage trimestriel des règles IA/AEO** avec les études CTR et citations récentes (Ahrefs, Semrush, Pew) — le terrain bouge vite (voir `docs/etat-de-lart/contenu-aeo.md`).
+
 ## Ce que cette skill ne fait PAS
 
 - ❌ Rédiger les contenus proposés (→ `social-content`, `email`, `seo`...)

@@ -1,0 +1,138 @@
+{
+  "periode": "2026-04",
+  "libelle": "Avril 2026 (démo)",
+  "genere_le": "2026-05-01",
+  "sources": {
+    "ga4": "propriété GA4 de démonstration (données fictives)",
+    "search_console": "https://meridian-conseil.example",
+    "social": "postiz (démo)",
+    "emailing": "brevo (démo)",
+    "google_ads": "mcp-google-ads (démo, compte fictif)"
+  },
+  "kpis": {
+    "trafic": {
+      "sessions": 3890,
+      "utilisateurs": 3160,
+      "pages_vues": 9340,
+      "duree_moyenne_s": 89
+    },
+    "conversions": {
+      "total": 61,
+      "taux_pct": 1.6,
+      "par_objectif": [
+        {
+          "nom": "Demande de diagnostic",
+          "total": 24
+        },
+        {
+          "nom": "Inscription newsletter",
+          "total": 37
+        }
+      ]
+    },
+    "emailing": {
+      "campagnes": 2,
+      "emails_envoyes": 3050,
+      "taux_ouverture_pct": 39.6,
+      "taux_clic_pct": 3.5,
+      "desabonnements": 7,
+      "nouveaux_abonnes": 88
+    },
+    "social": {
+      "posts_publies": 12,
+      "impressions": 54100,
+      "interactions": 1690,
+      "taux_engagement_pct": 2.8,
+      "nouveaux_abonnes": 165
+    },
+    "google_ads": {
+      "cout": 1050.0,
+      "impressions": 126000,
+      "clics": 2600,
+      "conversions": 33,
+      "cpa": 31.8
+    }
+  },
+  "seo": {
+    "clics": 1010,
+    "impressions": 76800,
+    "ctr_pct": 1.3,
+    "position_moyenne": 15.9,
+    "top_requetes": [
+      {
+        "requete": "bilan carbone pme",
+        "clics": 132,
+        "impressions": 4700,
+        "position": 6.9
+      },
+      {
+        "requete": "audit rse obligatoire",
+        "clics": 78,
+        "impressions": 3300,
+        "position": 9.8
+      }
+    ]
+  },
+  "top_pages": [
+    {
+      "url": "https://meridian-conseil.example/",
+      "titre": "Accueil",
+      "sessions": 1310,
+      "conversions": 28
+    },
+    {
+      "url": "https://meridian-conseil.example/diagnostic",
+      "titre": "Landing diagnostic RSE",
+      "sessions": 520,
+      "conversions": 14
+    },
+    {
+      "url": "https://meridian-conseil.example/blog/bilan-carbone-pme-methode",
+      "titre": "Bilan carbone PME : la méthode en 4 étapes",
+      "sessions": 210,
+      "conversions": 6
+    }
+  ],
+  "top_posts": [
+    {
+      "canal": "linkedin",
+      "titre": "Carrousel : 4 étapes d'un bilan carbone utile",
+      "date": "2026-04-15",
+      "impressions": 11200,
+      "interactions": 385,
+      "url": ""
+    },
+    {
+      "canal": "linkedin",
+      "titre": "Étude de cas anonymisée : -18 % d'émissions en 1 an",
+      "date": "2026-04-22",
+      "impressions": 7400,
+      "interactions": 240,
+      "url": ""
+    }
+  ],
+  "social_par_canal": [
+    {
+      "canal": "linkedin",
+      "posts": 9,
+      "impressions": 44600,
+      "interactions": 1485,
+      "abonnes": 2790,
+      "nouveaux_abonnes": 145
+    },
+    {
+      "canal": "instagram",
+      "posts": 3,
+      "impressions": 9500,
+      "interactions": 205,
+      "abonnes": 960,
+      "nouveaux_abonnes": 20
+    }
+  ],
+  "analyse_md": "## Ce qu'il faut retenir\n\nLe trafic progresse de **12 %** (3 890 sessions) et les conversions de **17 %** (61). Les 2 articles du cluster « bilan carbone PME » publiés mi-avril captent déjà 210 sessions à eux deux.\n\n### Ce qui a fonctionné\n\n- La landing diagnostic mise en ligne le 8 avril : 14 conversions en 3 semaines, sans cannibaliser l'accueil\n- L'objet de newsletter au format question : 41,2 % d'ouverture sur l'édition d'avril (vs 38,2 % en mars)\n\n### Points de vigilance\n\n- Instagram décroche (240 → 205 interactions) : le format « citation » ne prend pas sur ce compte\n- Le CPA Google Ads s'améliore (31,80 €) mais le volume de clics plafonne sur la campagne « audit »",
+  "recommandations": [
+    "Doubler la cadence LinkedIn sur le format carrousel (2 des 3 meilleurs posts d'avril) : passer de 1 à 2 carrousels/mois.",
+    "Réallouer 20 % du budget Instagram vers LinkedIn au vu du différentiel d'engagement (2,2 % vs 3,1 %).",
+    "Élargir la campagne Ads « audit » avec 5 nouvelles requêtes issues des termes GSC en position 4-10."
+  ]
+}

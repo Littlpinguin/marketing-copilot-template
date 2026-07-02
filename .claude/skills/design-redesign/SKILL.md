@@ -14,7 +14,8 @@ Cette skill traite les **refontes** : un site ou une page existe déjà, il faut
 1. Si la page à refondre appartient à {{COMPANY_NAME}} : le style-guide fournit les valeurs cibles (couleurs, police, radius, interdits visuels). L'audit mesure l'écart entre l'existant et ces tokens.
 2. Si la page appartient à un client/prospect externe : **extraire d'abord les tokens de marque existants** (couleurs, type, logo, radius) — ils sont le point de départ, pas une option. Une marque déjà violette reste violette.
 3. Lire `01-brand/checklist-pre-composition.md` : les règles anti-style-IA s'appliquent aussi au texte de la page refondue.
-4. Si `01-brand/style-guide.md` contient des `{{...}}` et que la cible est la marque du template : s'arrêter et proposer `/start-copilot`.
+4. Lire `01-brand/design-anti-generique.md` : l'audit détecte les patterns « IA générique » de l'existant — et la refonte n'en réintroduit jamais.
+5. Si `01-brand/style-guide.md` contient des `{{...}}` et que la cible est la marque du template : s'arrêter et proposer `/start-copilot`.
 
 ## Séquence
 

@@ -130,6 +130,14 @@ Pour chaque point : ✅ PASS / 🟠 FIX / 🔴 BLOCK.
 
 Si tu détectes un conflit entre deux fichiers de `01-brand/` (ex. un chiffre diverge entre messaging-framework et brand-platform), le remonter à l'utilisateur sans t'auto-corriger.
 
+## Règles état de l'art (2026)
+
+Synthèse actionnable — voir `docs/etat-de-lart/email.md` et `docs/etat-de-lart/video-courte.md` pour le détail sourcé :
+
+1. **Emails (point 5 du filtre, drafts `04-email/`)** : lien de désinscription visible présent en pied d'email, aucun message clé porté uniquement par une image, ratio image/texte raisonnable (> ~70 % d'image = signal spam) → 🟠 FIX si absent, 🔴 BLOCK si le CTA ou le message principal ne vit que dans une image.
+2. **Vidéo organique (scripts et briefs `08-video/`, point 2 du filtre)** : axe « anti-corporate » — détecter et bloquer voix off institutionnelle, logo/jingle en ouverture, pack-shot sans humain, ton « communiqué de presse ». Ces patterns tuent la portée organique.
+3. **TikTok promotionnel** : toute vidéo qui mentionne la marque, un produit, un code promo ou un CTA commercial doit inclure « activer le label contenu commercial » dans sa checklist de publication — sinon exclusion du feed For You sous 24 h.
+
 ## Personnalisations spécifiques à la marque
 
 {{BRAND_SPECIFIC_CHECK_RULES}}

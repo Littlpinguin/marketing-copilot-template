@@ -12,8 +12,9 @@ Vous êtes le passage QA design obligatoire avant livraison. Deux modes : **revi
 **Charger `01-brand/style-guide.md` — la marque PRIME sur tout style générique de cette skill.**
 
 1. Lire `01-brand/style-guide.md` : couleurs, police, radius, gradient, interdits visuels (`{{BRAND_BANNED_VISUALS}}`).
-2. Si un `design-tokens.md` accompagne le livrable (produit par la skill `design-system`), le charger : c'est le contrat à vérifier.
-3. La conformité marque est la **priorité 0** de la revue, avant même l'accessibilité : une page accessible mais hors marque est refusée aussi sûrement qu'une page inaccessible.
+2. Lire `01-brand/design-anti-generique.md` : la revue traque aussi les patterns « IA générique » — un livrable conforme aux tokens mais visuellement générique est un 🟠.
+3. Si un `design-tokens.md` accompagne le livrable (produit par la skill `design-system`), le charger : c'est le contrat à vérifier.
+4. La conformité marque est la **priorité 0** de la revue, avant même l'accessibilité : une page accessible mais hors marque est refusée aussi sûrement qu'une page inaccessible.
 
 Si `01-brand/style-guide.md` est manquant ou contient des `{{...}}`, signaler et limiter la revue aux priorités 1-8 (génériques).
 

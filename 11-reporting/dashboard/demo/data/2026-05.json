@@ -1,0 +1,138 @@
+{
+  "periode": "2026-05",
+  "libelle": "Mai 2026 (démo)",
+  "genere_le": "2026-06-01",
+  "sources": {
+    "ga4": "propriété GA4 de démonstration (données fictives)",
+    "search_console": "https://meridian-conseil.example",
+    "social": "postiz (démo)",
+    "emailing": "brevo (démo)",
+    "google_ads": "mcp-google-ads (démo, compte fictif)"
+  },
+  "kpis": {
+    "trafic": {
+      "sessions": 4210,
+      "utilisateurs": 3420,
+      "pages_vues": 10160,
+      "duree_moyenne_s": 92
+    },
+    "conversions": {
+      "total": 74,
+      "taux_pct": 1.8,
+      "par_objectif": [
+        {
+          "nom": "Demande de diagnostic",
+          "total": 30
+        },
+        {
+          "nom": "Inscription newsletter",
+          "total": 44
+        }
+      ]
+    },
+    "emailing": {
+      "campagnes": 2,
+      "emails_envoyes": 3200,
+      "taux_ouverture_pct": 41.8,
+      "taux_clic_pct": 3.9,
+      "desabonnements": 6,
+      "nouveaux_abonnes": 102
+    },
+    "social": {
+      "posts_publies": 13,
+      "impressions": 61300,
+      "interactions": 1880,
+      "taux_engagement_pct": 2.9,
+      "nouveaux_abonnes": 185
+    },
+    "google_ads": {
+      "cout": 1150.0,
+      "impressions": 139000,
+      "clics": 2850,
+      "conversions": 38,
+      "cpa": 30.3
+    }
+  },
+  "seo": {
+    "clics": 1160,
+    "impressions": 82100,
+    "ctr_pct": 1.4,
+    "position_moyenne": 15.1,
+    "top_requetes": [
+      {
+        "requete": "bilan carbone pme",
+        "clics": 158,
+        "impressions": 5100,
+        "position": 5.8
+      },
+      {
+        "requete": "csrd pme",
+        "clics": 92,
+        "impressions": 3800,
+        "position": 8.4
+      }
+    ]
+  },
+  "top_pages": [
+    {
+      "url": "https://meridian-conseil.example/",
+      "titre": "Accueil",
+      "sessions": 1290,
+      "conversions": 25
+    },
+    {
+      "url": "https://meridian-conseil.example/diagnostic",
+      "titre": "Landing diagnostic RSE",
+      "sessions": 610,
+      "conversions": 19
+    },
+    {
+      "url": "https://meridian-conseil.example/blog/bilan-carbone-pme-methode",
+      "titre": "Bilan carbone PME : la méthode en 4 étapes",
+      "sessions": 340,
+      "conversions": 9
+    }
+  ],
+  "top_posts": [
+    {
+      "canal": "linkedin",
+      "titre": "Carrousel : le vrai coût d'un bilan carbone",
+      "date": "2026-05-13",
+      "impressions": 12800,
+      "interactions": 425,
+      "url": ""
+    },
+    {
+      "canal": "linkedin",
+      "titre": "Pourquoi vos fournisseurs vont vous demander vos émissions",
+      "date": "2026-05-27",
+      "impressions": 8100,
+      "interactions": 265,
+      "url": ""
+    }
+  ],
+  "social_par_canal": [
+    {
+      "canal": "linkedin",
+      "posts": 10,
+      "impressions": 51200,
+      "interactions": 1670,
+      "abonnes": 2980,
+      "nouveaux_abonnes": 168
+    },
+    {
+      "canal": "instagram",
+      "posts": 3,
+      "impressions": 10100,
+      "interactions": 210,
+      "abonnes": 975,
+      "nouveaux_abonnes": 17
+    }
+  ],
+  "analyse_md": "## Ce qu'il faut retenir\n\nMeilleur mois depuis le début de la mesure : 74 conversions (+21 %) pour un taux de 1,8 %. La stratégie carrousel paie — les 2 carrousels de mai font 44 % des impressions LinkedIn du mois.\n\n### Ce qui a fonctionné\n\n- Le cluster « bilan carbone PME » : 3 articles dans le top 5 des pages, 480 sessions organiques cumulées\n- L'emailing repasse durablement au-dessus de 40 % d'ouverture (41,8 %) avec un clic à 3,9 %\n\n### Points de vigilance\n\n- La durée moyenne de session progresse peu (92 s) : les articles convertissent mais ne retiennent pas\n- 5 requêtes GSC en position 11-14, à portée de première page",
+  "recommandations": [
+    "Ajouter un module « calculer votre empreinte en 2 min » en fin d'article pour allonger la session et capter la conversion (cible : 110 s).",
+    "Optimiser les 5 requêtes en position 11-14 (maillage interne + réécriture des title) pour viser la première page en juin.",
+    "Créer la déclinaison email de l'étude de cas -18 % : meilleur contenu du trimestre, jamais exploité en newsletter."
+  ]
+}

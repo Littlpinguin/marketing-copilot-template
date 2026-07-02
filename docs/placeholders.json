@@ -1,7 +1,7 @@
 {
   "$schema": "./placeholders.schema.json",
-  "version": "0.2.0",
-  "description": "Canonical list of Mustache-style placeholders used in templates. The wizard replaces them; /validate-setup blocks if any remain.",
+  "version": "0.3.0",
+  "description": "Canonical list of Mustache-style placeholders used in templates. The wizard replaces them; /validate-setup blocks if any remain. Note: the in-place strategy and persona files (01-brand/personas.md, 02-strategy/objectifs.md, parcours-client.md, kpi-framework.md, channel-strategy.md, content-pillars.md) carry additional fine-grained interview slots (CIBLE_x, P1_*, SEUIL...) filled by /brand-discover Steps 5-6 — they are enumerated by the files themselves, not duplicated here. Entries with marker:true survive the wizard by design and are allow-listed in scripts/lint-placeholders.py.",
   "groups": {
     "identity": [
       { "name": "COMPANY_NAME",          "required": true,  "example": "Acme Inc." },
@@ -16,7 +16,8 @@
       { "name": "COMPANY_HQ",            "required": false, "example": "Paris, France" },
       { "name": "COMPANY_FOUNDERS",      "required": false, "example": "Alice Dupont, Bob Martin" },
       { "name": "COMPANY_MAIN_CONTACT",  "required": true,  "example": "Claire Durand, Head of Marketing" },
-      { "name": "SALES_CONTACT",         "required": false, "example": "Paul Bernard, Sales" }
+      { "name": "SALES_CONTACT",         "required": false, "example": "Paul Bernard, Sales" },
+      { "name": "EMAIL_CONTACT",         "required": false, "example": "contact@acme.com", "description": "Public contact email shown in page footers and capture sections" }
     ],
     "visual_identity": [
       { "name": "BRAND_FONT_PRIMARY",       "required": true,  "example": "Inter" },
@@ -109,6 +110,24 @@
       { "name": "CRM_ENABLED" },
       { "name": "IMAGE_GENERATION_ENABLED" }
     ],
+    "tracking_acquisition": [
+      { "name": "GA4_MEASUREMENT_ID",     "marker": true, "used_in": "05-web-content (CLAUDE.md, templates gallery), skill landing-page", "description": "GA4 measurement ID (G-XXXX) injected in the gtag snippet of each landing page when web_analytics is enabled — filled per page, stays tokenized in the template gallery", "example": "G-AB12CD34EF" },
+      { "name": "GA4_PROPERTY_ID",        "marker": true, "used_in": "11-reporting/dashboard/data-schema.md", "description": "GA4 property ID used by the reporting module snapshot (module reporting)", "example": "123456789" },
+      { "name": "GOOGLE_ADS_CUSTOMER_ID", "marker": true, "used_in": "12-acquisition/google-ads/, 11-reporting/dashboard/data-schema.md", "description": "Google Ads account ID read by the mcp-google-ads server (module acquisition) — environment variable, see .env.example", "example": "123-456-7890" },
+      { "name": "LEMLIST_SIGNUP_URL",     "marker": true, "used_in": "12-acquisition/setup-lemlist.md, 12-acquisition/README.md", "description": "Public signup/booking URL inserted in Lemlist outreach sequences (module acquisition)", "example": "https://acme.com/demo" },
+      { "name": "CAMPAIGN_SLUG",          "marker": true, "used_in": "skill landing-page (UTM conventions)", "description": "Campaign slug used in UTM naming patterns — resolved per campaign at production time", "example": "lancement-produit-2026" }
+    ],
+    "web_page_markers": [
+      { "name": "FORM_ENDPOINT",        "marker": true, "used_in": "05-web-content/sections-library.md, 05-web-content/templates gallery", "description": "Form POST endpoint (n8n webhook or form service) — replaced when a gallery template is copied into a real page", "example": "https://n8n.example.com/webhook/lead-capture" },
+      { "name": "URL_CONFIDENTIALITE",  "marker": true, "used_in": "05-web-content templates gallery (footers, RGPD mentions)", "description": "URL of the privacy policy page — replaced per copied page", "example": "https://acme.com/confidentialite" },
+      { "name": "LIEN_CONFIDENTIALITE", "marker": true, "used_in": "05-web-content/sections-library.md (capture section)", "description": "Anchor text of the privacy policy link", "example": "politique de confidentialité" },
+      { "name": "MENTION_RGPD",         "marker": true, "used_in": "05-web-content/sections-library.md (capture section)", "description": "RGPD consent sentence next to capture forms", "example": "En soumettant ce formulaire, vous acceptez notre" },
+      { "name": "URL_MENTIONS_LEGALES", "marker": true, "used_in": "05-web-content templates gallery (footers)", "description": "URL of the legal notice page — replaced per copied page", "example": "https://acme.com/mentions-legales" },
+      { "name": "URL_SITE",             "marker": true, "used_in": "05-web-content/templates/lead-magnets/", "description": "Main site URL used in lead-magnet tool footers — replaced per copied page", "example": "https://acme.com" },
+      { "name": "URL_ESSAI",            "marker": true, "used_in": "05-web-content/templates/landing-pages/tarifs.html", "description": "Trial/signup URL — replaced per copied page", "example": "https://app.acme.com/signup" },
+      { "name": "URL_ITINERAIRE",       "marker": true, "used_in": "05-web-content/templates/landing-pages/one-pager-local.html", "description": "Google Maps directions URL for the local one-pager — replaced per copied page", "example": "https://maps.google.com/?q=acme" },
+      { "name": "CONCURRENT",           "marker": true, "used_in": "05-web-content/templates/landing-pages/comparateur-concurrent.html", "description": "Competitor name in the vs-competitor landing template — replaced per comparison page", "example": "CompetitorX" }
+    ],
     "decks": [
       { "name": "DECK_TITLE",   "marker": true, "used_in": "06-graphic-design/presentations/templates/base.html", "description": "Title for an individual deck — replaced when copying base.html into decks/" }
     ],
@@ -124,7 +143,41 @@
       { "name": "PROJECT_ROOT", "required": true, "example": "/Users/alice/code/acme-copilot" },
       { "name": "SETUP_DATE",   "required": true, "example": "2026-04-15" },
       { "name": "TODO",         "marker": true,   "description": "Temporary marker for gaps to fill later" },
-      { "name": "MONTH_YEAR",   "used_in": "04-email/newsletter/drafts/", "example": "MARCH_2026" }
+      { "name": "MONTH_YEAR",   "used_in": "04-email/newsletter/drafts/", "example": "MARCH_2026" },
+      { "name": "MOIS_ANNEE",   "marker": true,   "used_in": "02-strategy (naming pattern plan-{{MOIS_ANNEE}}.md)", "description": "Runtime naming pattern — never substituted by the wizard (see tools-setup.md)", "example": "mars-2026" }
+    ],
+    "runtime_slots": [
+      { "name": "DATE_LUNDI_ISO",       "marker": true, "used_in": "02-strategy/calendar/calendar.md", "description": "Monday date of the current calendar week — filled when a week section is created", "example": "2026-07-06" },
+      { "name": "DATE_LUNDI_ISO_S1",    "marker": true, "used_in": "02-strategy/calendar/calendar.md", "description": "Monday date of the following week", "example": "2026-07-13" },
+      { "name": "NUMERO_SEMAINE",       "marker": true, "used_in": "02-strategy/calendar/calendar.md", "example": "28" },
+      { "name": "NUMERO_SEMAINE_S1",    "marker": true, "used_in": "02-strategy/calendar/calendar.md", "example": "29" },
+      { "name": "DATE_ISO",             "marker": true, "used_in": "02-strategy/calendar/calendar.md (entry rows)", "description": "Target publication date of a calendar entry — one per row, filled at planning time", "example": "2026-07-08" },
+      { "name": "SUJET",                "marker": true, "used_in": "02-strategy/calendar/calendar.md, 01-brand/personas.md (signaux example)", "description": "Topic of a calendar entry", "example": "Benchmark CI 2026" },
+      { "name": "PILIER",               "marker": true, "used_in": "02-strategy/calendar/calendar.md", "description": "Content pillar of a calendar entry (one of content-pillars.md)", "example": "Data & Expertise" },
+      { "name": "SLUG",                 "marker": true, "used_in": "02-strategy/calendar/calendar.md (deliverable paths)", "example": "benchmark-ci-2026" },
+      { "name": "CAMPAGNE",             "marker": true, "used_in": "02-strategy/calendar/calendar.md (utm_campaign)", "example": "lancement-offre-audit" },
+      { "name": "ANNEE",                "marker": true, "used_in": "02-strategy/calendar/calendar.md (archive naming)", "example": "2026" },
+      { "name": "EXEMPLE_SUJET_BACKLOG","marker": true, "used_in": "02-strategy/calendar/calendar.md (backlog demo row)", "description": "Demo row of the idea backlog — replaced by the first real idea" },
+      { "name": "DATE",                 "marker": true, "used_in": "01-brand/personas.md (signaux 00-intel rows)", "description": "Date of a field signal — one per row, added at classification time", "example": "2026-07-02" },
+      { "name": "SIGNAL",               "marker": true, "used_in": "01-brand/personas.md (signaux 00-intel rows)", "description": "Reformulated, anonymized field signal" },
+      { "name": "IMPACT",               "marker": true, "used_in": "01-brand/personas.md (signaux 00-intel rows)", "description": "What the signal changes (persona, journey, objection...)" }
+    ],
+    "copy_templates_excluded_from_lint": [
+      { "name": "SLUG_CAMPAGNE", "marker": true, "used_in": "02-strategy/briefs/brief-campagne.md", "description": "brief-campagne.md is a copy-template (never filled in place — see 02-strategy/briefs/README.md); the whole file is excluded from lint-placeholders.py along with its ~40 per-campaign slots" }
+    ],
+    "module_import_slots": [
+      { "name": "ERROR_WORKFLOW_ID",           "marker": true, "used_in": "10-automatisations (INSTALL.md, workflows/)", "description": "n8n error-handler workflow ID — filled at import into the user's n8n instance, never by the wizard" },
+      { "name": "N8N_CREDENTIAL_ID_LLM",       "marker": true, "used_in": "10-automatisations/workflows/", "description": "n8n credential ID — filled at workflow import" },
+      { "name": "N8N_CREDENTIAL_ID_METRIQUES", "marker": true, "used_in": "10-automatisations/workflows/", "description": "n8n credential ID — filled at workflow import" },
+      { "name": "N8N_CREDENTIAL_ID_RECHERCHE", "marker": true, "used_in": "10-automatisations/workflows/", "description": "n8n credential ID — filled at workflow import" },
+      { "name": "N8N_CREDENTIAL_ID_SMTP",      "marker": true, "used_in": "10-automatisations/workflows/", "description": "n8n credential ID — filled at workflow import" },
+      { "name": "NOTIFICATION_EMAIL",          "marker": true, "used_in": "10-automatisations/workflows/", "description": "Recipient of n8n error/report notifications — filled at workflow import" },
+      { "name": "SENDER_EMAIL",                "marker": true, "used_in": "10-automatisations/workflows/", "description": "Sender address of n8n notifications — filled at workflow import" },
+      { "name": "VOTRE_DOMAINE",               "marker": true, "used_in": "10-automatisations/INSTALL.md", "description": "Example slot in the n8n VPS install guide — filled by the user during installation" },
+      { "name": "NOM_DU_WORKFLOW",             "marker": true, "used_in": "10-automatisations/rex-template.md", "description": "rex-template.md is a copy-template — one REX per deployed workflow" },
+      { "name": "WORKFLOW_ID",                 "marker": true, "used_in": "10-automatisations/rex-template.md", "description": "rex-template.md copy-template slot" },
+      { "name": "MOIS",                        "marker": true, "used_in": "11-reporting/README.md (notification email subject)", "description": "Month name in the monthly client notification — runtime slot" },
+      { "name": "POSTIZ_URL",                  "marker": true, "used_in": "11-reporting/automation.md", "description": "Postiz instance URL — env-level value referenced in ops docs" }
     ]
   }
 }

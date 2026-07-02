@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "placeholders.schema.json",
+  "title": "Marketing Copilot — placeholders registry",
+  "description": "Schema for docs/placeholders.json: the canonical list of Mustache-style placeholders used in templates, grouped by domain. The wizard replaces wizard-owned placeholders; entries with \"marker\": true are per-deliverable runtime slots that survive the wizard.",
+  "type": "object",
+  "required": ["version", "groups"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": { "type": "string" },
+    "groups": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "$ref": "#/$defs/placeholder" }
+      }
+    }
+  },
+  "$defs": {
+    "placeholder": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$",
+          "description": "Placeholder name as it appears between {{ }} in template files."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "True when the wizard must fill this placeholder before /validate-setup can pass."
+        },
+        "marker": {
+          "type": "boolean",
+          "description": "True for runtime slots resolved per deliverable at production time — never substituted by the wizard."
+        },
+        "example": { "type": "string" },
+        "description": { "type": "string" },
+        "used_in": {
+          "type": "string",
+          "description": "File(s), folder(s) or skill(s) where this placeholder appears."
+        }
+      }
+    }
+  }
+}

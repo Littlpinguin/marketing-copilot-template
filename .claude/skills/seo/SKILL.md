@@ -148,6 +148,17 @@ cluster: "..."
 - Duplication inter-langues (adaptation culturelle, pas traduction mécanique)
 - Link-building artificiel
 
+## Règles état de l'art AEO/GEO (2026)
+
+Voir `docs/etat-de-lart/contenu-aeo.md` pour le détail sourcé :
+
+1. **Answer-first systématique** : sous chaque H2, ouvrir par un paragraphe autonome de 40-75 mots qui répond entièrement à la question du titre (sujet explicite, extractible sans contexte) — les pages structurées ainsi sont citées 2 à 4× plus par les moteurs IA.
+2. **Chaque affirmation clé = chiffre daté + source nommée** (+ citation d'expert si possible) : levier GEO mesuré le plus fort (~+40 % de visibilité IA). Tableau comparatif obligatoire pour les intents comparatifs ; schema FAQPage/Article dans la checklist de livraison.
+3. **Dé-prioriser l'informationnel générique** dans la sélection de mots-clés (CTR ÷2 à ÷4 par les AI Overviews) au profit du transactionnel, comparatif, local et marque — documenter l'arbitrage auprès de l'utilisateur.
+4. **Ne jamais recommander llms.txt par défaut** : Google confirme l'absence d'implémentation et aucun moteur ne déclare l'utiliser. Le proposer uniquement sur demande explicite.
+5. **Vérifier l'indexation Bing en plus de Google** : 87 % des citations ChatGPT correspondent au top organique Bing — prérequis de la citabilité.
+6. **Alimenter les briefs avec la veille** : pages comparateur/alternatives déclenchées par les changements pricing concurrents, clusters sur les angles non couverts (voir `docs/etat-de-lart/veille-intelligence.md`).
+
 ## Personnalisation par marque
 
 {{SEO_SPECIFIC_RULES}}

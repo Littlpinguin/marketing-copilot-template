@@ -1,0 +1,138 @@
+{
+  "periode": "2026-03",
+  "libelle": "Mars 2026 (démo)",
+  "genere_le": "2026-04-01",
+  "sources": {
+    "ga4": "propriété GA4 de démonstration (données fictives)",
+    "search_console": "https://meridian-conseil.example",
+    "social": "postiz (démo)",
+    "emailing": "brevo (démo)",
+    "google_ads": "mcp-google-ads (démo, compte fictif)"
+  },
+  "kpis": {
+    "trafic": {
+      "sessions": 3480,
+      "utilisateurs": 2840,
+      "pages_vues": 8120,
+      "duree_moyenne_s": 84
+    },
+    "conversions": {
+      "total": 52,
+      "taux_pct": 1.5,
+      "par_objectif": [
+        {
+          "nom": "Demande de diagnostic",
+          "total": 19
+        },
+        {
+          "nom": "Inscription newsletter",
+          "total": 33
+        }
+      ]
+    },
+    "emailing": {
+      "campagnes": 2,
+      "emails_envoyes": 2900,
+      "taux_ouverture_pct": 38.2,
+      "taux_clic_pct": 3.2,
+      "desabonnements": 9,
+      "nouveaux_abonnes": 74
+    },
+    "social": {
+      "posts_publies": 11,
+      "impressions": 47200,
+      "interactions": 1450,
+      "taux_engagement_pct": 2.6,
+      "nouveaux_abonnes": 140
+    },
+    "google_ads": {
+      "cout": 980.0,
+      "impressions": 118000,
+      "clics": 2400,
+      "conversions": 28,
+      "cpa": 35.0
+    }
+  },
+  "seo": {
+    "clics": 890,
+    "impressions": 71400,
+    "ctr_pct": 1.2,
+    "position_moyenne": 16.8,
+    "top_requetes": [
+      {
+        "requete": "bilan carbone pme",
+        "clics": 96,
+        "impressions": 4100,
+        "position": 8.2
+      },
+      {
+        "requete": "cabinet conseil rse",
+        "clics": 64,
+        "impressions": 2900,
+        "position": 11.4
+      }
+    ]
+  },
+  "top_pages": [
+    {
+      "url": "https://meridian-conseil.example/",
+      "titre": "Accueil",
+      "sessions": 1240,
+      "conversions": 32
+    },
+    {
+      "url": "https://meridian-conseil.example/offre-bilan-carbone",
+      "titre": "Offre bilan carbone",
+      "sessions": 460,
+      "conversions": 11
+    },
+    {
+      "url": "https://meridian-conseil.example/blog/csrd-pme-2026",
+      "titre": "CSRD : ce qui change pour les PME",
+      "sessions": 380,
+      "conversions": 5
+    }
+  ],
+  "top_posts": [
+    {
+      "canal": "linkedin",
+      "titre": "Diagnostic RSE en 5 questions (carrousel)",
+      "date": "2026-03-12",
+      "impressions": 9800,
+      "interactions": 310,
+      "url": ""
+    },
+    {
+      "canal": "linkedin",
+      "titre": "Retour de mission : 3 idées reçues sur le bilan carbone",
+      "date": "2026-03-24",
+      "impressions": 6200,
+      "interactions": 185,
+      "url": ""
+    }
+  ],
+  "social_par_canal": [
+    {
+      "canal": "linkedin",
+      "posts": 8,
+      "impressions": 38400,
+      "interactions": 1210,
+      "abonnes": 2620,
+      "nouveaux_abonnes": 118
+    },
+    {
+      "canal": "instagram",
+      "posts": 3,
+      "impressions": 8800,
+      "interactions": 240,
+      "abonnes": 940,
+      "nouveaux_abonnes": 22
+    }
+  ],
+  "analyse_md": "## Ce qu'il faut retenir\n\nPremier mois complet de mesure : 3 480 sessions, 52 conversions (1,5 %). Le socle est posé mais la conversion repose trop sur la page d'accueil — 61 % des conversions viennent d'une seule page.\n\n### Ce qui a fonctionné\n\n- Le post LinkedIn « diagnostic RSE en 5 questions » : 9 800 impressions, 2× la moyenne du compte\n- Google Ads tient un CPA de 35,00 € pour 28 conversions, sous le seuil de rentabilité fixé à 42 €\n\n### Points de vigilance\n\n- Position moyenne SEO à 16,8 : le blog ne compte que 6 articles indexés, trop peu pour peser\n- Taux d'ouverture emailing à 38,2 %, sous l'objectif de 40 %",
+  "recommandations": [
+    "Publier 2 articles du cluster « bilan carbone PME » en avril pour attaquer la position moyenne (16,8 → cible 15).",
+    "Créer une landing dédiée au diagnostic pour désengorger la page d'accueil (61 % des conversions sur une seule page).",
+    "Tester un nouvel objet de newsletter au format question pour repasser l'ouverture au-dessus de 40 %."
+  ]
+}

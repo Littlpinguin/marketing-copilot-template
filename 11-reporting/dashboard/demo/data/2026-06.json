@@ -1,0 +1,138 @@
+{
+  "periode": "2026-06",
+  "libelle": "Juin 2026 (démo)",
+  "genere_le": "2026-07-01",
+  "sources": {
+    "ga4": "propriété GA4 de démonstration (données fictives)",
+    "search_console": "https://meridian-conseil.example",
+    "social": "postiz (démo)",
+    "emailing": "brevo (démo)",
+    "google_ads": "mcp-google-ads (démo, compte fictif)"
+  },
+  "kpis": {
+    "trafic": {
+      "sessions": 4680,
+      "utilisateurs": 3810,
+      "pages_vues": 11420,
+      "duree_moyenne_s": 101
+    },
+    "conversions": {
+      "total": 89,
+      "taux_pct": 1.9,
+      "par_objectif": [
+        {
+          "nom": "Demande de diagnostic",
+          "total": 36
+        },
+        {
+          "nom": "Inscription newsletter",
+          "total": 53
+        }
+      ]
+    },
+    "emailing": {
+      "campagnes": 3,
+      "emails_envoyes": 3400,
+      "taux_ouverture_pct": 43.1,
+      "taux_clic_pct": 4.2,
+      "desabonnements": 6,
+      "nouveaux_abonnes": 118
+    },
+    "social": {
+      "posts_publies": 14,
+      "impressions": 69800,
+      "interactions": 2210,
+      "taux_engagement_pct": 3.2,
+      "nouveaux_abonnes": 212
+    },
+    "google_ads": {
+      "cout": 1220.0,
+      "impressions": 151000,
+      "clics": 3050,
+      "conversions": 44,
+      "cpa": 27.7
+    }
+  },
+  "seo": {
+    "clics": 1320,
+    "impressions": 87600,
+    "ctr_pct": 1.5,
+    "position_moyenne": 14.3,
+    "top_requetes": [
+      {
+        "requete": "bilan carbone pme",
+        "clics": 176,
+        "impressions": 5400,
+        "position": 5.2
+      },
+      {
+        "requete": "csrd pme",
+        "clics": 121,
+        "impressions": 4300,
+        "position": 7.0
+      }
+    ]
+  },
+  "top_pages": [
+    {
+      "url": "https://meridian-conseil.example/",
+      "titre": "Accueil",
+      "sessions": 1350,
+      "conversions": 24
+    },
+    {
+      "url": "https://meridian-conseil.example/diagnostic",
+      "titre": "Landing diagnostic RSE",
+      "sessions": 680,
+      "conversions": 22
+    },
+    {
+      "url": "https://meridian-conseil.example/blog/csrd-pme-2026",
+      "titre": "CSRD : ce qui change pour les PME",
+      "sessions": 410,
+      "conversions": 11
+    }
+  ],
+  "top_posts": [
+    {
+      "canal": "linkedin",
+      "titre": "Carrousel : 6 chiffres pour convaincre votre DAF",
+      "date": "2026-06-10",
+      "impressions": 13600,
+      "interactions": 470,
+      "url": ""
+    },
+    {
+      "canal": "linkedin",
+      "titre": "Ce que la CSRD change vraiment pour une PME de 80 salariés",
+      "date": "2026-06-24",
+      "impressions": 9200,
+      "interactions": 300,
+      "url": ""
+    }
+  ],
+  "social_par_canal": [
+    {
+      "canal": "linkedin",
+      "posts": 11,
+      "impressions": 58900,
+      "interactions": 1990,
+      "abonnes": 3190,
+      "nouveaux_abonnes": 195
+    },
+    {
+      "canal": "instagram",
+      "posts": 3,
+      "impressions": 10900,
+      "interactions": 220,
+      "abonnes": 992,
+      "nouveaux_abonnes": 17
+    }
+  ],
+  "analyse_md": "## Ce qu'il faut retenir\n\nLe trimestre se clôt sur 4 680 sessions (+35 % vs mars) et 89 conversions (+71 % vs mars). Le calculateur d'empreinte ajouté aux articles porte à lui seul 11 conversions et fait grimper la durée de session à 101 s.\n\n### Ce qui a fonctionné\n\n- 3 des 5 requêtes optimisées en mai sont passées en première page — dont « csrd pme » en position 7\n- L'email étude de cas : 46,9 % d'ouverture, meilleur envoi depuis le lancement\n- Google Ads : CPA à 27,70 € (-21 % vs mars) à budget quasi constant\n\n### Points de vigilance\n\n- Instagram reste le canal faible (17 nouveaux abonnés) : décision à prendre au trimestre\n- La croissance des sessions ralentit hors SEO : la notoriété LinkedIn plafonne sans nouveaux formats",
+  "recommandations": [
+    "Statuer sur Instagram à la revue trimestrielle : passer en re-post minimal ou tester le format Reels 15-30 s un mois.",
+    "Industrialiser le calculateur (page dédiée + campagne Ads) : 11 conversions en 3 semaines en simple module d'article.",
+    "Lancer un format vidéo LinkedIn court (< 90 s, sous-titré) pour relancer la portée organique au T3."
+  ]
+}

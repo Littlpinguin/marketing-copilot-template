@@ -114,6 +114,17 @@ ffmpeg -i tmp/final.mp4 -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p \
 - [ ] `brand-check` sur le script + textes à l'écran
 - [ ] Statut mis à jour dans le calendrier éditorial
 
+## Règles état de l'art (2026)
+
+Voir `docs/etat-de-lart/video-courte.md` pour le détail sourcé :
+
+1. **Gabarit de script imposé** : Hook 0-3 s → Value drop 4-15 s → Payoff → CTA dans les 5 dernières secondes, avec un beat visuel ou narratif toutes les 5-7 secondes.
+2. **Jamais de logo, jingle ou plan d'installation en ouverture** — 50-60 % des abandons ont lieu dans les 3 premières secondes.
+3. **Couper 20-30 % du script au montage** (intros, transitions, redites) : la complétion bat la durée — 45 s complétée à 70 % surperforme 15 s complétée à 40 %.
+4. **Durées cibles par plateforme** : TikTok 60-180 s (substance) / Reels 15-30 s (portée) ou 60-90 s (storytelling) / Shorts 25-40 s / LinkedIn < 60-90 s vertical 9:16 ou 4:5, upload natif uniquement.
+5. **Une déclinaison par plateforme, jamais de repost brut** (watermark TikTok sur Reels = sous-distribution) — adapter au minimum hook, sous-titres, ratio, son.
+6. **Rendu « créateur », pas corporate** en organique : smartphone, face caméra, imperfections assumées ; tout contenu promotionnel TikTok exige le label contenu commercial natif activé.
+
 ## Ce que cette skill ne fait pas
 
 - ❌ Publier (→ validation humaine, publication via le module social)

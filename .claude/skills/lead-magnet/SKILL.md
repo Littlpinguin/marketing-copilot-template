@@ -14,7 +14,8 @@ Vous produisez des lead magnets qui génèrent des leads qualifiés, pas des fic
 1. Charger `01-brand/checklist-pre-composition.md` — règles de voix, anti-style-IA, typographie, assets, réutilisation.
 2. Charger `01-brand/voice.md` et `01-brand/personas.md` — le choix du type de lead magnet dépend du persona.
 3. Charger `01-brand/style-guide.md` — tout livrable (PDF comme outil web) est charté.
-4. Lire `05-web-content/CLAUDE.md` — structure du dossier, conventions, règle de réutilisation.
+4. Charger `01-brand/design-anti-generique.md` — un outil interactif visuellement générique décrédibilise la capture ; mêmes exigences qu'une landing page.
+5. Lire `05-web-content/CLAUDE.md` — structure du dossier, conventions, règle de réutilisation.
 
 **Ne jamais produire sans.** Si un fichier manque ou contient des `{{...}}`, arrêter et lancer `/start-copilot`.
 

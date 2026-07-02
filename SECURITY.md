@@ -1,77 +1,77 @@
-# Security rules
+# Règles de sécurité
 
-This template runs inside Claude Code and interacts with external services (email platforms, CRMs, CMSs, analytics, Google AI). The rules below apply to every session and every command. They are non-negotiable.
+Ce template s'exécute dans Claude Code et interagit avec des services externes (plateformes d'emailing, CRM, CMS, analytics, Google AI). Les règles ci-dessous s'appliquent à chaque session et à chaque commande. Elles sont non négociables.
 
 ## Secrets
 
-**Never paste API keys, tokens, OAuth secrets, or credentials in a chat message.** Claude sees your messages; anything pasted becomes part of the transcript.
+**Ne jamais coller une clé API, un token, un secret OAuth ou des identifiants dans un message de chat.** Claude voit vos messages ; tout ce qui est collé devient partie de la transcription.
 
-- Keys go into `.env` only. `.env` is gitignored by default.
-- `.env.example` documents the variable names with empty or placeholder values — never real values.
-- Before every commit and push: `git diff --cached | grep -iE "key|token|secret|password|api"` — scan for accidental inclusion. If something looks off, abort and investigate.
-- If a key has been committed (even to a private branch), rotate it immediately. Git history does not forget.
-- Never echo a secret back to the user to "confirm" — presence check only (`set` / `unset`).
+- Les clés vont dans `.env` uniquement. `.env` est gitignoré par défaut.
+- `.env.example` documente les noms de variables avec des valeurs vides ou placeholder — jamais de vraies valeurs.
+- Avant chaque commit et push : `git diff --cached | grep -iE "key|token|secret|password|api"` — scanner toute inclusion accidentelle. Si quelque chose semble suspect, interrompre et investiguer.
+- Si une clé a été commitée (même sur une branche privée), la révoquer et la remplacer immédiatement. L'historique Git n'oublie pas.
+- Ne jamais réafficher un secret à l'utilisateur pour « confirmer » — vérification de présence uniquement (`définie` / `non définie`).
 
 ## Permissions
 
-Claude Code runs with the permissions you grant it. Scope them narrowly.
+Claude Code s'exécute avec les permissions que vous lui accordez. Cadrez-les au plus étroit.
 
-- **Never allow** broad `Bash(rm:*)`, `Bash(git push --force:*)`, `Bash(launchctl:*)` at the user-settings level.
-- **Per-project** permissions in `.claude/settings.json` should enumerate specific commands, not globs.
-- Reject any skill request to run a destructive command without an explicit user confirmation in the same message.
+- **Ne jamais autoriser** de larges `Bash(rm:*)`, `Bash(git push --force:*)`, `Bash(launchctl:*)` au niveau des réglages utilisateur.
+- Les permissions **par projet** dans `.claude/settings.json` doivent énumérer des commandes précises, pas des globs.
+- Refuser toute demande d'une skill d'exécuter une commande destructive sans confirmation explicite de l'utilisateur dans le même message.
 
-See `.claude/settings.json` for the current scope.
+Voir `.claude/settings.json` pour le périmètre actuel.
 
-## Dry-run before production push
+## Dry-run avant tout push en production
 
-Any connector that writes to an external service (Notion create, Mailchimp campaign, Livestorm event, HubSpot contact, WordPress publish, etc.) must first emit the payload for human review:
+Tout connecteur qui écrit vers un service externe (création Notion, campagne Mailchimp, événement Livestorm, contact HubSpot, publication WordPress, etc.) doit d'abord émettre le payload pour revue humaine :
 
 ```
-python3 scripts/dry-run-push.py --target <tool> --file <content-file>
+python3 scripts/dry-run-push.py --target <outil> --file <fichier-de-contenu>
 ```
 
-The `--target` flag tells the script which connector to invoke in **read-only mode**: it prints the exact payload that would be sent, the destination resource, and any transformations applied. The user confirms. Only then does the actual push run.
+Le flag `--target` indique au script quel connecteur invoquer en **mode lecture seule** : il affiche le payload exact qui serait envoyé, la ressource de destination, et les transformations appliquées. L'utilisateur confirme. Ce n'est qu'ensuite que le push réel s'exécute.
 
-This prevents:
-- Sending a broken draft to 10k subscribers
-- Creating 40 duplicate Notion entries in a loop
-- Scheduling an event at the wrong time because of a timezone bug
+Cela évite :
+- D'envoyer un brouillon cassé à 10 000 abonnés
+- De créer 40 entrées Notion en double dans une boucle
+- De programmer un événement à la mauvaise heure à cause d'un bug de fuseau horaire
 
-Dry-run is cheap. Skipping dry-run is expensive.
+Le dry-run ne coûte rien. Sauter le dry-run coûte cher.
 
-## AI hallucinations — verify before trusting
+## Hallucinations IA — vérifier avant de faire confiance
 
-Claude can hallucinate:
-- Package names (`pip install fake-package` — happens)
-- API endpoints (`/v2/contacts` when the real one is `/v3/contacts`)
-- Function signatures (parameters in the wrong order)
-- Field names in third-party APIs
+Claude peut halluciner :
+- Des noms de packages (`pip install fake-package` — ça arrive)
+- Des endpoints API (`/v2/contacts` quand le vrai est `/v3/contacts`)
+- Des signatures de fonctions (paramètres dans le mauvais ordre)
+- Des noms de champs dans des API tierces
 
-Before running any command Claude proposes against an external service, check the service's docs. For library functions, run `--help` or inspect the source.
+Avant d'exécuter toute commande proposée par Claude contre un service externe, vérifier la documentation du service. Pour les fonctions de bibliothèques, lancer `--help` ou inspecter la source.
 
-Same applies to numbers: Claude can fabricate statistics that sound plausible. **Every number in your published content must have a source.** The `brand-check` skill enforces this automatically — don't bypass it.
+Même chose pour les chiffres : Claude peut fabriquer des statistiques plausibles. **Chaque chiffre publié dans votre contenu doit avoir une source.** La skill `brand-check` l'impose automatiquement — ne pas la contourner.
 
-## Dialogs and destructive operations
+## Dialogues et opérations destructives
 
-Don't ask Claude to trigger destructive operations casually. Every one of these requires an explicit "yes" from you in the same session:
-- File deletion outside of `.setup-archive/`
-- Git force-push, hard reset, branch deletion
-- `launchctl unload` on system-wide agents
-- Sending email to a list (even in test mode)
-- Emptying `.env`
+Ne demandez pas à Claude de déclencher des opérations destructives à la légère. Chacune de celles-ci exige un « oui » explicite de votre part dans la même session :
+- Suppression de fichiers hors de `.setup-archive/`
+- Git force-push, hard reset, suppression de branche
+- `launchctl unload` sur des agents système
+- Envoi d'email à une liste (même en mode test)
+- Vidage de `.env`
 
-If Claude proposes one of these without your asking for it, stop and question it.
+Si Claude propose l'une de ces opérations sans que vous l'ayez demandée, arrêtez-vous et questionnez-le.
 
-## Transcripts and shared sessions
+## Transcriptions et sessions partagées
 
-Claude Code sessions can be saved, exported, shared. Before sharing:
+Les sessions Claude Code peuvent être sauvegardées, exportées, partagées. Avant de partager :
 
-- Grep the transcript for any remaining secret-shaped strings — paranoid, but cheap
-- Strip internal URLs (staging domains, internal tool URLs, customer-specific resource IDs)
-- Strip draft content that hasn't been publicly shared yet
-- Strip personal data (email addresses, phone numbers) unless the recipient is authorized
+- Grep la transcription pour toute chaîne restante ressemblant à un secret — paranoïaque, mais pas cher
+- Retirer les URLs internes (domaines de staging, URLs d'outils internes, IDs de ressources propres à un client)
+- Retirer le contenu brouillon qui n'a pas encore été publié
+- Retirer les données personnelles (adresses email, numéros de téléphone) sauf si le destinataire est autorisé
 
-If in doubt, don't share.
+En cas de doute, ne pas partager.
 
 ## Confidentialité des données & plans Claude
 
@@ -87,38 +87,38 @@ Le wizard applique un **gate de confidentialité** avant de configurer tout conn
 
 Rappel : `00-intel/` (transcriptions, intel interne/clients/prospects) est **gitignoré et ne doit jamais être versionné ni poussé sur un remote**.
 
-## AI disclosure when publishing
+## Divulgation IA lors de la publication
 
-For visuals and audio generated by AI (via `image-generation` skill or external tools):
+Pour les visuels et l'audio générés par IA (via la skill `image-generation` ou des outils externes) :
 
-- Public-facing final outputs: follow your brand's AI disclosure policy. Default recommendation: small caption or alt-text note indicating AI involvement.
-- Internal / functional / decorative assets: disclosure optional.
-- Never pass off cloned voices, deepfaked faces, or emulated living-artist styles as authentic. Beyond the ethical issue, it's a legal risk in most jurisdictions.
+- Livrables finaux publics : suivre la politique de divulgation IA de votre marque. Recommandation par défaut : une courte légende ou une note en alt-text indiquant l'intervention de l'IA.
+- Assets internes / fonctionnels / décoratifs : divulgation optionnelle.
+- Ne jamais faire passer pour authentiques des voix clonées, des visages deepfakés ou des imitations de style d'artistes vivants. Au-delà de la question éthique, c'est un risque légal dans la plupart des juridictions.
 
-Your disclosure policy is set during `/brand-discover` and lives in `01-brand/style-guide.md`.
+Votre politique de divulgation est définie pendant `/brand-discover` et vit dans `01-brand/style-guide.md`.
 
-## Staging before production
+## Staging avant production
 
-When publishing:
+Lors de la publication :
 
-- Email: push as **draft** in the email tool, never as immediate send. Review in the tool's UI, then schedule.
-- Blog: push as **draft** in the CMS, preview, then publish.
-- Social: drafts live in `03-social-media/<channel>/drafts/`, publish manually in the platform UI unless a scheduler is wired.
-- Events: create as **draft** on the events platform, review, then set live.
+- Email : pousser en **brouillon** dans l'outil d'emailing, jamais en envoi immédiat. Relire dans l'UI de l'outil, puis programmer.
+- Blog : pousser en **brouillon** dans le CMS, prévisualiser, puis publier.
+- Social : les brouillons vivent dans `03-social-media/<canal>/drafts/`, publication manuelle dans l'UI de la plateforme sauf si un scheduler est branché.
+- Événements : créer en **brouillon** sur la plateforme d'événements, relire, puis mettre en ligne.
 
-The copilot drafts and prepares. The human publishes.
+Le copilot rédige et prépare. L'humain publie.
 
-## Reporting security issues
+## Signaler un problème de sécurité
 
-If you discover a security issue in the template itself (not your customizations), open an issue on the upstream repo with "SECURITY" in the title. Do not include reproduction details that could compromise production copilots — use a minimal repro.
+Si vous découvrez un problème de sécurité dans le template lui-même (pas dans vos personnalisations), ouvrez une issue sur le repo upstream avec « SECURITY » dans le titre. N'incluez pas de détails de reproduction qui pourraient compromettre des copilots en production — utilisez une repro minimale.
 
-## Quick-check before commit
+## Check rapide avant commit
 
 ```bash
-# Run these three and make them a habit before every push
-git diff --cached | grep -iE "api_key|secret|token|password"    # secret scan
-python3 scripts/lint-placeholders.py                               # placeholder scan
-git status                                                         # unstaged things you forgot
+# Lancer ces trois commandes et en faire une habitude avant chaque push
+git diff --cached | grep -iE "api_key|secret|token|password"    # scan de secrets
+python3 scripts/lint-placeholders.py                               # scan de placeholders
+git status                                                         # les non-stagés oubliés
 ```
 
-If any of the three look wrong, fix before push.
+Si l'une des trois semble anormale, corriger avant de pousser.

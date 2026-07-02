@@ -86,7 +86,7 @@ After each sub-command completes, output a one-screen recap:
 
 > **`/brand-discover` complete.**
 >
-> Files written: `01-brand/voice.md`, `01-brand/style-guide.md`, `01-brand/personas.md`, `01-brand/messaging-framework.md` — and the strategy layer: `02-strategy/objectifs.md`, `02-strategy/parcours-client.md`, `02-strategy/kpi-framework.md`, `02-strategy/channel-strategy.md`.
+> Files written: `01-brand/voice.md`, `01-brand/style-guide.md`, `01-brand/personas.md`, `01-brand/messaging-framework.md` — and the strategy layer: `02-strategy/objectifs.md`, `02-strategy/parcours-client.md`, `02-strategy/kpi-framework.md`, `02-strategy/channel-strategy.md`, `02-strategy/content-pillars.md`.
 > Anything you'd like to revisit before moving on? (yes / no)
 
 If yes, return to the sub-command or loop back. If no, announce the next.
@@ -120,5 +120,16 @@ rm -rf 01-brand/*.md  # keep CLAUDE.md
 rm .setup-completed
 # Re-run /start-copilot
 ```
+
+**Do not delete the `02-strategy/` files.** `objectifs.md`, `parcours-client.md`, `kpi-framework.md`, `channel-strategy.md` and `content-pillars.md` are filled **in place** by `/brand-discover` (their v2 structure is the reference — there is no scaffold copy in `_templates/`). To reset them, restore the pristine tokenized versions from Git:
+
+```bash
+# Fork of the template (upstream configured — see skill sync-template):
+git checkout upstream/main -- 02-strategy/objectifs.md 02-strategy/parcours-client.md 02-strategy/kpi-framework.md 02-strategy/channel-strategy.md 02-strategy/content-pillars.md
+# Direct clone: restore from the last pre-setup commit instead
+git checkout <commit-before-setup> -- 02-strategy/
+```
+
+Same logic applies to `01-brand/personas.md` (edited in place by the wizard): restore it from Git rather than deleting it, or re-copy `_templates/brand/personas.md` (kept in sync with the v2 structure).
 
 Warn before any destructive action. Always offer to back up to `.setup-archive/` first.

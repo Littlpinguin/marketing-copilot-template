@@ -96,6 +96,12 @@ Les chiffres sont l'élément visuel principal. Un gros chiffre vaut mieux qu'un
 
 {{COPYWRITING_SPECIFIC_RULES}}
 
+## Règles état de l'art (2026)
+
+Synthèse actionnable — voir `docs/etat-de-lart/email.md` pour le détail sourcé :
+
+1. **Structure descendante** : l'information la plus importante en premier, toujours. Aucun préambule institutionnel en ouverture (« Chez X, nous sommes fiers de… ») — la première phrase porte la promesse, la donnée ou la tension, le contexte vient après. Le contenu « entonne » vers le CTA : accroche → idée principale → preuve → CTA → secondaire.
+
 ## Checklist avant livraison
 
 - [ ] Pages existantes relues pour calibrer le ton
@@ -109,6 +115,8 @@ Les chiffres sont l'élément visuel principal. Un gros chiffre vaut mieux qu'un
 - [ ] Vocabulaire de marque respecté
 - [ ] Versions bilingues si applicable
 - [ ] Rendu mobile testé
+- [ ] Entrée du calendrier éditorial mise à jour (`02-strategy/calendar/calendar.md` — statut + lien livrable)
+- [ ] Livrable indexé dans `_templates/inventory.md` (skill `inventory`, mode incrément)
 
 ## Skills associées
 

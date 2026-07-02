@@ -190,6 +190,10 @@ Pour tout visuel **avec texte, data ou logo** (la majorité des cas) :
 
 Si la marque a une politique de divulgation (définie pendant `/brand-discover`), la suivre. Par défaut pour un visuel IA public : mention discrète en légende ou alt-text.
 
+## Après livraison
+
+Indexer le visuel final dans `_templates/inventory.md` (skill `inventory`, type `image`) — et consulter ce même inventaire avant de générer, pour réutiliser un asset existant plutôt que produire un doublon.
+
 ## Personnalisation par marque
 
 {{IMAGE_GEN_SPECIFIC_RULES}}

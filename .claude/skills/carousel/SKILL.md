@@ -158,6 +158,15 @@ Les assets contextuels générés restent en staging dans `outputs/` ; ils ne mi
 
 {{CAROUSEL_SPECIFIC_RULES}}
 
+## Règles état de l'art (2026)
+
+Voir `docs/etat-de-lart/social-linkedin.md` pour le détail sourcé :
+
+1. Le carrousel/document est le **format n°1 sur LinkedIn en 2026** : 3,71 % d'engagement vs 1,80 % pour la vidéo (Metricool, 673 k posts) ; +278 % vs vidéo (Buffer, 2 M posts). L'assumer dans les recommandations de mix.
+2. **Slide 1 = hook autonome lisible dans le feed** — elle doit fonctionner seule, avant tout swipe et sans le texte du post.
+3. **Optimiser chaque slide pour le swipe** : tension, question ouverte ou série numérotée qui donne envie d'ouvrir la suivante — les swipes et saves comptent dans l'engagement « invisible » qui monte (+14 %).
+4. **Juger la performance sur impressions, swipes et saves**, pas sur les likes (en baisse structurelle de −13 %).
+
 ## Skills associées
 
 - `slides` — présentations projetées 1920×1080 (pas pour LinkedIn)

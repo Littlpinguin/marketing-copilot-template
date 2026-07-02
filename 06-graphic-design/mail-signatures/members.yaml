@@ -1,0 +1,14 @@
+# Données d'équipe pour la génération des signatures (voir README.md, workflow étape 2).
+# Une entrée par membre ; phone et linkedin sont optionnels (les lignes correspondantes
+# du template sont retirées si absents). Ne mettre ici que des données que l'équipe
+# accepte de voir figurer dans une signature publique.
+#
+# members:
+#   - slug: prenom-nom            # nom du fichier généré : generated/prenom-nom.html
+#     name: Prénom Nom
+#     role: Rôle / titre
+#     email: prenom.nom@example.com
+#     phone: "+33 6 00 00 00 00"  # optionnel
+#     linkedin: https://www.linkedin.com/in/prenom-nom/  # optionnel
+
+members: []

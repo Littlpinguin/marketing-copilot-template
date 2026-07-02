@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.0.0] — The complete AI marketing department (major rework)
+
+**Core.** Brand doctrine injected as step 0 in every production skill (anti-AI writing + anti-generic design doctrines), central editorial calendar with validation statuses, `00-intel/` live context (n8n-fed meeting transcripts, gitignored), strategy cascade (objectives → briefs → personas → journey), marketing-director routing at the root.
+
+**43 internal skills, 9 agents.** Vendored and adapted from the best MIT/Apache community sources (claude-seo, ui-ux-pro-max, taste-skill, frontend-design, claude-ads, claude-blog, and more — see `docs/vendored-*.md` for full attribution), plus battle-tested production skills (slides, carousel, image-generation) and 2026 state-of-the-art rules (sourced, in `docs/etat-de-lart/`).
+
+**7 optional modules** via `/modules`: video (Palmier Pro), n8n automations, client-site performance dashboard (FTP + access code), acquisition (Lemlist MCP + Google Ads read-only MCP), market watch, Postiz publishing, client space.
+
+**Demos (fictional brand “Meridian Conseil”).** 52-layout slide catalogue with fullscreen mode and brand-pattern hooks, 10 landing pages + 10 interactive lead magnets (tested), 4-month dashboard demo that works on double-click.
+
+**Removed.** Qdrant (file-based anti-repetition only), `/seed-corpus`, `/connect-qdrant`.
+
+**Wizard.** `/modules`, strategy interview in `/brand-discover`, data-privacy gate on sensitive connectors, extended `/health-check`, SessionStart hook.
+
 ## [0.3.1] — Wizard / slides plumbing fixes (post-0.3.0 audit)
 
 ### Fixed

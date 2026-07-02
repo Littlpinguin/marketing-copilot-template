@@ -102,6 +102,14 @@ C'est la voie pour reproduire les styles « mot à mot » type TikTok — à ré
 - [ ] Contrôle visuel sur au moins 3 frames (début, milieu, fin)
 - [ ] Pour YouTube : burn-in **et** `.srt` fournis
 
+## Règles état de l'art (2026)
+
+Voir `docs/etat-de-lart/video-courte.md` pour le détail sourcé :
+
+1. **Sous-titres incrustés sur 100 % des vidéos livrées** : ~85 % des vidéos social sont regardées sans le son (jusqu'à 92 % sur mobile), et les sous-titres augmentent jusqu'à +80 % la probabilité de finir la vidéo.
+2. **Test de validation avant livraison : la vidéo se comprend-elle entièrement en muet ?** Aucune information clé portée uniquement par la bande-son ; texte d'écran pour les infos essentielles.
+3. **Placement : gros, centrés, dans la zone sûre** (éviter le tiers bas recouvert par l'UI des plateformes), 1-2 lignes max, mots-clés mis en évidence.
+
 ## Ce que cette skill ne fait pas
 
 - ❌ Le montage (→ skill `video-editing`)

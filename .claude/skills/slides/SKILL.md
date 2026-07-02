@@ -239,6 +239,8 @@ Le deck est un fichier HTML unique, assets inlinés ou en chemins relatifs. Dép
 
 Un seul fichier : `06-graphic-design/presentations/decks/<sujet>-<date>-<version>.html`, plus les éventuels logos tiers référencés en relatif. Autonome (s'ouvre dans Chrome sans serveur), partageable via `./scripts/serve.sh`, exportable en PDF, hébergeable en statique.
 
+Après livraison : mettre à jour l'entrée du calendrier éditorial (`02-strategy/calendar/calendar.md` — statut + chemin du deck) et indexer le deck dans `_templates/inventory.md` (skill `inventory`, type `deck`).
+
 ## Personnalisation par marque
 
 {{SLIDES_SPECIFIC_RULES}}

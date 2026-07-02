@@ -18,6 +18,8 @@ Pourquoi ce choix plutôt qu'un outil SaaS de reporting :
 - **L'analyse humaine au centre** — les chiffres seuls ne disent rien ; chaque mois embarque une section « Analyse du mois » rédigée (via la skill `performance-report`) et des recommandations actionnables.
 - **Historique navigable** — navigation mois précédent / mois suivant, chaque mois est un snapshot JSON immuable.
 
+> **Voir avant de configurer** : une démo complète et navigable (marque fictive Meridian Conseil, 4 mois de données fictives, toutes sources y compris Google Ads) est prête dans `dashboard/demo/` — un double-clic sur `dashboard/demo/index.html` suffit (données embarquées, aucun serveur requis).
+
 ## Architecture du module
 
 ```
@@ -28,7 +30,8 @@ Pourquoi ce choix plutôt qu'un outil SaaS de reporting :
 ├── dashboard/
 │   ├── template.html    ← LE dashboard (HTML statique autonome, Chart.js via CDN)
 │   ├── data-schema.md   ← schéma du snapshot mensuel data JSON + arborescence
-│   └── data/            ← snapshots copiés ici AU DÉPLOIEMENT (source : 02-strategy/performance/)
+│   ├── data/            ← snapshots copiés ici AU DÉPLOIEMENT (source : 02-strategy/performance/)
+│   └── demo/            ← démo navigable : tokens Meridian Conseil + 4 mois fictifs (voir demo/README.md)
 ├── acces/
 │   ├── README.md        ← le système de code d'accès (protection légère, assumée comme telle)
 │   └── protect.php.example
@@ -69,7 +72,7 @@ python3 -m http.server 5180
 # → http://localhost:5180/template.html
 ```
 
-Déposez au moins un snapshot d'exemple dans `data/` et déclarez-le dans `data/index.json` (format dans `dashboard/data-schema.md`).
+Déposez au moins un snapshot d'exemple dans `data/` et déclarez-le dans `data/index.json` (format dans `dashboard/data-schema.md`). Pour un aperçu immédiat sans configuration, double-cliquez sur `dashboard/demo/index.html` (démo à données embarquées).
 
 ## Honnêteté sur la protection
 

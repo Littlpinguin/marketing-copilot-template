@@ -89,6 +89,12 @@ Par type :
 
 {{COPY_EDITING_SPECIFIC_RULES}}
 
+## Règles état de l'art (2026)
+
+Synthèse actionnable — voir `docs/etat-de-lart/email.md` pour le détail sourcé :
+
+1. **Structure descendante (à vérifier en passe 5)** : l'info clé arrive en premier. Tout préambule institutionnel en ouverture (email, page, article) se supprime ou se reformule en promesse concrète ; le contenu doit « entonner » vers le CTA. Un email qui commence par « Chez X, nous… » au lieu de l'info clé → correction immédiate, pas simple signalement.
+
 ## Rapport de relecture
 
 Après les 7 passes, produire :
@@ -110,6 +116,11 @@ Après les 7 passes, produire :
 [3-5 lignes de retour constructif sur le brouillon dans son ensemble]
 ```
 
+## Passe curative optionnelle — humanize-writing
+
+Si, après les 7 passes, le texte « sonne IA » malgré tout (tells structurels, hedging, transitions mécaniques), invoquer la skill `humanize-writing` en passe curative finale (réécriture anti-détection en 8 passes), puis re-vérifier la passe 2 (vocabulaire) sur le résultat.
+
 ## Skills associées
 
 - `brand-check` — validation finale (invoquée en passe 6)
+- `humanize-writing` — passe curative anti-style-IA (invoquée en dernier recours, voir ci-dessus)

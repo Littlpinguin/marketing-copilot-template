@@ -113,6 +113,22 @@ Un seul CTA principal
 
 Invoquer `brand-check` avant livraison et **avant** tout push vers {{EMAIL_MARKETING_TOOL}}.
 
+## Après livraison
+
+- Mettre à jour l'entrée du calendrier éditorial (`02-strategy/calendar/calendar.md`) dans le même tour : statut (`brouillon → à-valider → validé → publié`) + lien du livrable.
+- À la publication, archiver l'édition dans `04-email/newsletter/editions/` et indexer la ligne dans `_templates/inventory.md` (skill `inventory`, mode incrément).
+
+## Règles état de l'art (2026)
+
+Synthèse actionnable — voir `docs/etat-de-lart/email.md` pour le détail sourcé :
+
+1. **Checklist délivrabilité bloquante** avant toute campagne : SPF + DKIM + DMARC alignés confirmés par le client, désinscription one-click (RFC 8058) + lien visible en pied de page, taux de plainte < 0,1 %. Non confirmé = pas de validation d'envoi.
+2. **Objet 6-10 mots (36-50 caractères), message clé dans les 33 premiers caractères** (troncature mobile) ; preview text toujours rédigé explicitement (40-100 caractères), complémentaire de l'objet, jamais laissé par défaut.
+3. **Un seul CTA principal par email, en bouton** — éventuellement dupliqué haut/bas de l'email. Multiplier les CTA détruit le clic (passer à un seul : +371 % mesuré).
+4. **Séquences dimensionnées sur le cycle de vente** : 5-8 emails / 21-30 jours (cycle court) ou 8-12 / 45-60 jours (cycle long), cadence 3-7 jours, emails de nurturing de 50-125 mots, jamais plus de 12 emails (désabonnements ×2-3).
+5. **Les « mots spam » sont un mythe en 2026** : ne pas censurer le vocabulaire commercial ; alerter plutôt sur les vrais facteurs — authentification manquante, listes désengagées, envoi aux inactifs, pics de volume.
+6. **Piloter au taux de réponse et au clic, pas à l'ouverture** (open rate gonflé et peu fiable depuis Apple MPP). Pas de message clé porté uniquement par une image (ratio image/texte raisonnable).
+
 ## Skills associées
 
 - `copywriting` — sections longues (landing pages liées aux emails)

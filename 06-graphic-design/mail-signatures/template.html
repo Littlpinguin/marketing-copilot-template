@@ -1,0 +1,47 @@
+<!-- ============================================================
+     SIGNATURE EMAIL — {{COMPANY_NAME}}
+     Template à dupliquer par membre (voir README.md, workflow).
+     Contraintes clients mail : tables imbriquées, styles inline,
+     polices système en fallback, image hébergée en HTTPS
+     (remplacer src par l'URL publique du logo au moment de la
+     génération — jamais de data URI, Outlook ne les rend pas).
+     Slots par membre : {{NAME}}, {{ROLE}}, {{EMAIL}}, {{PHONE}},
+     {{LINKEDIN_URL}} (retirer les lignes PHONE / LINKEDIN si vides).
+     ============================================================ -->
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; max-width: 600px; font-family: {{BRAND_FONT_PRIMARY}}, Arial, Helvetica, sans-serif;">
+  <tr>
+    <!-- Filet de marque -->
+    <td style="width: 4px; background-color: {{BRAND_COLOR_PRIMARY}}; font-size: 0; line-height: 0;">&nbsp;</td>
+    <td style="width: 18px; font-size: 0; line-height: 0;">&nbsp;</td>
+    <!-- Bloc identité -->
+    <td style="padding: 4px 0; vertical-align: top;">
+      <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+        <tr>
+          <td style="font-size: 16px; font-weight: bold; color: {{BRAND_COLOR_PRIMARY}}; padding-bottom: 2px;">{{NAME}}</td>
+        </tr>
+        <tr>
+          <td style="font-size: 13px; color: {{BRAND_COLOR_DARK}}; padding-bottom: 8px;">{{ROLE}} · {{COMPANY_NAME}}</td>
+        </tr>
+        <tr>
+          <td style="font-size: 12px; color: {{BRAND_COLOR_DARK}}; line-height: 1.7;">
+            <a href="mailto:{{EMAIL}}" style="color: {{BRAND_COLOR_DARK}}; text-decoration: none;">{{EMAIL}}</a><br>
+            <!-- Ligne optionnelle : retirer si pas de téléphone -->
+            <a href="tel:{{PHONE}}" style="color: {{BRAND_COLOR_DARK}}; text-decoration: none;">{{PHONE}}</a><br>
+            <a href="{{COMPANY_WEBSITE}}" style="color: {{BRAND_COLOR_PRIMARY}}; text-decoration: none;">{{COMPANY_WEBSITE}}</a>
+            <!-- Ligne optionnelle : retirer si pas de LinkedIn -->
+            &nbsp;·&nbsp;<a href="{{LINKEDIN_URL}}" style="color: {{BRAND_COLOR_PRIMARY}}; text-decoration: none;">LinkedIn</a>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td style="width: 24px; font-size: 0; line-height: 0;">&nbsp;</td>
+    <!-- Logo : remplacer par l'URL HTTPS publique du logo
+         (source repo : ../../01-brand/assets/logo-email-signature.png,
+         taille selon 01-brand/style-guide.md) -->
+    <td style="vertical-align: middle;">
+      <a href="{{COMPANY_WEBSITE}}" style="text-decoration: none;">
+        <img src="https://REMPLACER-PAR-URL-PUBLIQUE/logo-email-signature.png" alt="{{COMPANY_NAME}}" width="96" style="display: block; width: 96px; height: auto; border: 0;">
+      </a>
+    </td>
+  </tr>
+</table>

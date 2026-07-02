@@ -107,6 +107,17 @@ J+7 :  [actions]
 
 {{STRATEGY_SPECIFIC_RULES}}
 
+## Règles état de l'art (2026)
+
+Synthèse sourcée dans `docs/etat-de-lart/` (`social-linkedin.md`, `contenu-aeo.md`, `video-courte.md`, `mesure-attribution.md`) :
+
+1. **LinkedIn : profils personnels porteurs, page entreprise en relais** (+63 % d'engagement ; les pages ≈ 2 % du feed). Cadence recommandée 2-5 posts/semaine/profil, jamais 2 posts à moins de 6-8 h d'intervalle.
+2. **Mix formats 2026** : carrousels/documents et multi-image prioritaires, vidéo en support notoriété, 1-2 sondages/mois maximum avec une vraie question métier.
+3. **Cohérence thématique : 2-3 piliers max par profil** — le ranking LinkedIn évalue l'autorité thématique ; un profil qui poste sur tout perd.
+4. **Réserver un slot mensuel « donnée originale / expérience vécue »** au calendrier : seul format à rendement croissant à l'ère des réponses IA ; chaque cycle contient au moins un contenu non réplicable par IA (donnée propriétaire, opinion signée, cas client).
+5. **Vidéo courte par objectif** : TikTok 60-180 s (autorité/éducation), Reels 15-30 s (portée), Shorts 25-40 s, LinkedIn < 90 s — KPI de pilotage = taux de complétion et watch time, pas les vues brutes.
+6. **Objectifs de contenu exprimés en KPIs de pilotage** (leads, sessions engagées, clics non-marque) — jamais en impressions ni en volume publié.
+
 ## Skills associées
 
 - `social-content`, `email`, `copywriting`, `seo`, `event-marketing` — exécution par canal
