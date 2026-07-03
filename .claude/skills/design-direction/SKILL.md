@@ -16,7 +16,7 @@ Abordez chaque brief comme le lead designer d'un petit studio réputé pour donn
 3. Si la marque possède déjà une signature visuelle (gradient, motif, style d'illustration), c'est le premier candidat pour l'élément signature de la page — l'amplifier avant d'inventer.
 4. Lire `01-brand/design-anti-generique.md` — doctrine design anti-générique : marqueurs du look IA interdits par défaut et pratiques pro, applicables dans l'espace laissé libre par la marque.
 
-Si `01-brand/style-guide.md` est manquant ou contient des `{{...}}` : s'arrêter et proposer `/start-copilot`.
+Si `01-brand/style-guide.md` est manquant ou contient des `{{...}}` : s'arrêter et proposer `/start-cockpit`.
 
 ## Ancrer le design dans le sujet
 

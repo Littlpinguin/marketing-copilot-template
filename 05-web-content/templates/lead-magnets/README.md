@@ -4,7 +4,7 @@
 
 Chaque fichier contient :
 
-- le bloc de tokens de marque de `../../sections-library.md` — avec les **valeurs de démo « Meridian Conseil »** (vert profond `#2f6f5e`, laiton `#c8a24b`, Fraunces + Inter en fallback système, aucune ressource externe chargée) et le mapping vers les tokens `{{BRAND_*}}` en commentaire : chaque outil ouvert tel quel dans un navigateur est une **démo finie**, et le wizard `/start-copilot` (ou la skill `lead-magnet`) remplace ces valeurs par celles de `01-brand/style-guide.md` ;
+- le bloc de tokens de marque de `../../sections-library.md` — avec les **valeurs de démo « Meridian Conseil »** (vert profond `#2f6f5e`, laiton `#c8a24b`, Fraunces + Inter en fallback système, aucune ressource externe chargée) et le mapping vers les tokens `{{BRAND_*}}` en commentaire : chaque outil ouvert tel quel dans un navigateur est une **démo finie**, et le wizard `/start-cockpit` (ou la skill `lead-magnet`) remplace ces valeurs par celles de `01-brand/style-guide.md` ;
 - une **direction artistique par outil** (colonne « Ambiance » ci-dessous) déclinée du langage Meridian : display serif, hairlines, grain discret, motif signature de méridiens en SVG inline, curseurs et cases customisés aux couleurs de marque ;
 - une **logique JS fonctionnelle** dont les données/formules sont des **placeholders commentés** (`── PLACEHOLDER ──`) à remplacer par vos vraies hypothèses ;
 - un **gate de capture** (`bindGate`) branché sur `{{FORM_ENDPOINT}}` : POST du formulaire (email + champs cachés de segmentation) vers n8n/outil emailing, événement `generate_lead`, déblocage du résultat complet. Endpoint non configuré → déblocage local en mode démo (console) ;

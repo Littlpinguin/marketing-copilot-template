@@ -1,6 +1,6 @@
 # Conventions n8n — référentiel de conception du module
 
-Portage fidèle d'un système de production réel : création de workflows n8n de haute qualité via Claude Code, assisté par le serveur MCP `n8n-mcp`, les skills n8n et une bibliothèque de **5 100+ templates** de référence (voir `bibliotheques.md`). Ces conventions s'appliquent à **tout** workflow créé ou modifié dans le cadre de ce copilot.
+Portage fidèle d'un système de production réel : création de workflows n8n de haute qualité via Claude Code, assisté par le serveur MCP `n8n-mcp`, les skills n8n et une bibliothèque de **5 100+ templates** de référence (voir `bibliotheques.md`). Ces conventions s'appliquent à **tout** workflow créé ou modifié dans le cadre de ce cockpit.
 
 ---
 

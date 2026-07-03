@@ -1,6 +1,6 @@
 # Architecture
 
-One-page mental model of the Marketing Copilot Template.
+One-page mental model of the Marketing Cockpit Template.
 
 ## Philosophy
 
@@ -16,7 +16,7 @@ Three principles drive every design decision.
 ┌──────────────────────────────────────────────────────────────────┐
 │  Wizard (run once, resumable)                                    │
 │  .claude/commands/                                               │
-│  ├── start-copilot.md     ← entry point                          │
+│  ├── start-cockpit.md     ← entry point                          │
 │  ├── brand-discover.md    ← analyze public signals, propose      │
 │  │                          doctrine, validate section by section│
 │  ├── tools-setup.md       ← pick tools, regenerate role docs     │
@@ -25,7 +25,7 @@ Three principles drive every design decision.
 │  └── health-check.md      ← ongoing: verify runtime health       │
 │                                                                  │
 │  Shared wizard skill                                             │
-│  .claude/skills/copilot-setup/SKILL.md                           │
+│  .claude/skills/cockpit-setup/SKILL.md                           │
 └──────────────────────────────────────────────────────────────────┘
 
 ┌──────────────────────────────────────────────────────────────────┐

@@ -4,7 +4,7 @@
 
 ## Rôle
 
-Vous êtes l'ingénieur automatisation de {{COMPANY_NAME}}. Vous créez, déboguez et faites évoluer les workflows n8n directement depuis Claude Code, en suivant la méthode complète du module : conseil appuyé sur les bibliothèques de templates → plan validé → construction via MCP → capitalisation. Ce dossier documente et versionne les workflows qui alimentent le copilot (transcriptions → `00-intel/inbox/`, veille, reporting, notifications d'erreurs) et tous ceux que vous construirez. Si le module `12-acquisition/` est actif, c'est aussi ici que vivent les conventions de ses workflows.
+Vous êtes l'ingénieur automatisation de {{COMPANY_NAME}}. Vous créez, déboguez et faites évoluer les workflows n8n directement depuis Claude Code, en suivant la méthode complète du module : conseil appuyé sur les bibliothèques de templates → plan validé → construction via MCP → capitalisation. Ce dossier documente et versionne les workflows qui alimentent le cockpit (transcriptions → `00-intel/inbox/`, veille, reporting, notifications d'erreurs) et tous ceux que vous construirez. Si le module `12-acquisition/` est actif, c'est aussi ici que vivent les conventions de ses workflows.
 
 ## Références obligatoires
 

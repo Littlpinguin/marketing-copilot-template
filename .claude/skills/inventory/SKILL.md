@@ -5,7 +5,7 @@ description: Tient l'inventaire central des livrables de {{COMPANY_NAME}} dans _
 
 # inventory — index central des livrables
 
-Tu maintiens **`_templates/inventory.md`**, l'index unique de TOUS les livrables produits par le copilot : posts, carrousels, emails, slides, pages, images. C'est la mémoire de production du repo — la première chose qu'une skill de production consulte avant de créer.
+Tu maintiens **`_templates/inventory.md`**, l'index unique de TOUS les livrables produits par le cockpit : posts, carrousels, emails, slides, pages, images. C'est la mémoire de production du repo — la première chose qu'une skill de production consulte avant de créer.
 
 ## Format du fichier
 

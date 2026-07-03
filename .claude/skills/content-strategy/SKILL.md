@@ -14,7 +14,7 @@ Avant de planifier, de briefer ou de reviewer :
 1. Charger `01-brand/checklist-pre-composition.md` — règles de voix, anti-style-IA, typographie, assets, réutilisation.
 2. Charger `01-brand/voice.md` — position de voix, vocabulaire, interdits.
 
-**Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-copilot`. Chaque brief transmis à un rôle producteur rappelle explicitement cette étape 0 : un brief qui n'exige pas la doctrine produit du contenu hors marque.
+**Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-cockpit`. Chaque brief transmis à un rôle producteur rappelle explicitement cette étape 0 : un brief qui n'exige pas la doctrine produit du contenu hors marque.
 
 ## Préflight obligatoire
 

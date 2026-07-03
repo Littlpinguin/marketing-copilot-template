@@ -1,9 +1,9 @@
 ---
-name: copilot-setup
-description: "Logique partagée des commandes du wizard (/start-copilot, /brand-discover, /tools-setup, /modules, /validate-setup, /health-check). Centralise les vérifications préalables, la mutation du registre d'outils, le lint des placeholders, les règles de sécurité, le gate de confidentialité et le schéma de .setup-completed."
+name: cockpit-setup
+description: "Logique partagée des commandes du wizard (/start-cockpit, /brand-discover, /tools-setup, /modules, /validate-setup, /health-check). Centralise les vérifications préalables, la mutation du registre d'outils, le lint des placeholders, les règles de sécurité, le gate de confidentialité et le schéma de .setup-completed."
 ---
 
-# copilot-setup — skill partagée du wizard
+# cockpit-setup — skill partagée du wizard
 
 Chaque commande du wizard charge cette skill en premier et applique ses règles avant toute logique spécifique. C'est ce qui garde le wizard cohérent entre commandes et évite la duplication.
 
@@ -14,7 +14,7 @@ Chaque commande du wizard charge cette skill en premier et applique ses règles 
 3. **Aucune écriture avant validation.** Tout artefact généré (doctrine de marque, CLAUDE.md de rôle, métadonnées de setup) : présenter le brouillon, obtenir l'accord explicite, puis écrire.
 4. **Aucun secret dans les messages ou les commits.** Les secrets vont SOIT dans `.env` (scripts et connecteurs Python, chargés via dotenv), SOIT dans le `.mcp.json` local non versionné (serveurs MCP) — les deux sont gitignorés, jamais dans un fichier tracké. Rappel technique : les `${VAR}` de `.mcp.json` ne sont **pas** développées depuis le `.env` du projet (voir `SECURITY.md`). Ne jamais renvoyer un secret à l'utilisateur — lui demander de vérifier `.env` / `.mcp.json` de son côté.
 5. **Toute opération destructive exige confirmation.** Suppression de fichiers, déplacements vers `.setup-archive/`, opérations git forcées, `launchctl` : « oui » explicite requis.
-6. **Langue du repo : français** (le `README.md` reste en anglais, vitrine publique). Le contenu produit ensuite par le copilot suit la langue de marque choisie au setup.
+6. **Langue du repo : français** (le `README.md` reste en anglais, vitrine publique). Le contenu produit ensuite par le cockpit suit la langue de marque choisie au setup.
 7. **Gate de confidentialité obligatoire** avant tout connecteur touchant des données clients (CRM, emailing, GA4/GSC, transcriptions `00-intel/`, scraping de personnes). Le texte canonique du gate vit dans `.claude/commands/tools-setup.md` — l'afficher, recueillir le plan Claude utilisé, et appliquer les règles associées. `/modules` le ré-applique pour `veille`, `acquisition` et `reporting`.
 
 ## Vérifications préalables (à chaque entrée dans le wizard)
@@ -60,7 +60,7 @@ Quand `/tools-setup` enregistre un choix d'outil :
 
 ## Anti-répétition — sans base vectorielle
 
-L'anti-répétition du copilot repose sur le **scan de fichiers + inventaires**, pas sur une base externe :
+L'anti-répétition du cockpit repose sur le **scan de fichiers + inventaires**, pas sur une base externe :
 - lecture du calendrier éditorial (`02-strategy/calendar/calendar.md`) pour les sujets déjà planifiés ou publiés ;
 - scan des archives par canal (`03-social-media/*/examples/`, `04-email/newsletter/editions/`, `09-seo/articles/`) ;
 - fichiers d'inventaire tenus par les skills de production (voir la skill `social-content`).
@@ -71,7 +71,7 @@ Les commandes du wizard ne configurent aucune mémoire sémantique externe.
 
 Au début de chaque commande du wizard, afficher une phrase sur les attentes de sécurité pertinentes et pointer `SECURITY.md`. Exemples :
 
-- `/start-copilot` : « Ce wizard vous demandera des URLs et des noms d'outils. Il ne vous demandera jamais de coller une clé API dans le chat — les clés vont dans `.env` uniquement. Règles complètes : `SECURITY.md`. »
+- `/start-cockpit` : « Ce wizard vous demandera des URLs et des noms d'outils. Il ne vous demandera jamais de coller une clé API dans le chat — les clés vont dans `.env` uniquement. Règles complètes : `SECURITY.md`. »
 - `/tools-setup` : « Pour chaque outil, je demande le nom des variables `.env` et confirmation qu'elles sont renseignées. Je ne lis pas les valeurs. »
 - `/modules` : « L'activation d'un module vérifie ses prérequis par des tests non destructifs. Aucun secret n'est lu ni affiché. »
 
@@ -111,7 +111,7 @@ Seul `/validate-setup` écrit ce fichier (exception : `/modules` peut mettre à 
     "image_generation": { "enabled": true, "model": "gemini-3-pro-image-preview" }
   },
   "wizard_log": [
-    { "command": "/start-copilot",  "at": "ISO 8601" },
+    { "command": "/start-cockpit",  "at": "ISO 8601" },
     { "command": "/brand-discover", "at": "ISO 8601" },
     { "command": "/tools-setup",    "at": "ISO 8601", "privacy_gate": { "acknowledged": true, "claude_plan": "team" } },
     { "command": "/modules",        "at": "ISO 8601" },

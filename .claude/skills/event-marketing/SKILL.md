@@ -14,7 +14,7 @@ Avant de rédiger un plan de com ou le moindre contenu événementiel :
 1. Charger `01-brand/checklist-pre-composition.md` — règles de voix, anti-style-IA, typographie, assets, réutilisation.
 2. Charger `01-brand/voice.md` — position de voix, vocabulaire, interdits.
 
-**Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-copilot`. Les contenus événementiels (teasers, last calls, comptes à rebours) sont propices au hype : le filtre anti-style-IA s'y applique intégralement.
+**Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-cockpit`. Les contenus événementiels (teasers, last calls, comptes à rebours) sont propices au hype : le filtre anti-style-IA s'y applique intégralement.
 
 ## Préflight obligatoire
 

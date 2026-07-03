@@ -14,7 +14,7 @@ Avant d'écrire le moindre post :
 1. Charger `01-brand/checklist-pre-composition.md` — règles de voix, anti-style-IA, typographie, assets, réutilisation.
 2. Charger `01-brand/voice.md` — position de voix, vocabulaire, interdits.
 
-**Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-copilot`. Les hooks LinkedIn sont la zone la plus exposée au style IA (parallélismes négatifs, appâts d'engagement) : filtre intégral.
+**Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-cockpit`. Les hooks LinkedIn sont la zone la plus exposée au style IA (parallélismes négatifs, appâts d'engagement) : filtre intégral.
 
 ## Préflight obligatoire (après l'étape 0)
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "placeholders.schema.json",
-  "title": "Marketing Copilot — placeholders registry",
+  "title": "Marketing Cockpit — placeholders registry",
   "description": "Schema for docs/placeholders.json: the canonical list of Mustache-style placeholders used in templates, grouped by domain. The wizard replaces wizard-owned placeholders; entries with \"marker\": true are per-deliverable runtime slots that survive the wizard.",
   "type": "object",
   "required": ["version", "groups"],

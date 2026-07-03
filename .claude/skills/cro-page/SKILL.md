@@ -16,7 +16,7 @@ Toute recommandation qui inclut du copy (headlines, CTA, alternatives) exige d'a
 3. `01-brand/messaging-framework.md` — les chiffres et affirmations utilisables comme preuve.
 4. `01-brand/personas.md` — le « langage client » de la dimension 1 vient de là.
 
-Si un fichier manque ou contient des `{{...}}` : arrêter et lancer `/start-copilot`. Un diagnostic pur (sans copy proposé) peut se faire sans, mais le signaler.
+Si un fichier manque ou contient des `{{...}}` : arrêter et lancer `/start-cockpit`. Un diagnostic pur (sans copy proposé) peut se faire sans, mais le signaler.
 
 ## Cadrage initial
 

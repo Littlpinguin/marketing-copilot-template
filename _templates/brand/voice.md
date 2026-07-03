@@ -6,7 +6,7 @@ Source of truth for tone, vocabulary, and style rules. Every producing role (03 
 
 {{BRAND_VOICE_POSITION}}
 
-(Two sentences describing where this brand sits on the axes formal/casual, technical/accessible, confident/humble, playful/serious. Avoid single-label summaries like "professional yet approachable" — they don't encode anything the copilot can use.)
+(Two sentences describing where this brand sits on the axes formal/casual, technical/accessible, confident/humble, playful/serious. Avoid single-label summaries like "professional yet approachable" — they don't encode anything the cockpit can use.)
 
 ## Preferred vocabulary
 

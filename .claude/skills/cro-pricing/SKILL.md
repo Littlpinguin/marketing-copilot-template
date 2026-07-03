@@ -15,7 +15,7 @@ Dès que la page tarifs, une FAQ prix ou un argumentaire est rédigé :
 2. `01-brand/messaging-framework.md` — les preuves de valeur qui justifient le prix (chiffres sourcés uniquement).
 3. `01-brand/personas.md` — chaque palier doit correspondre à un persona identifiable.
 
-Si un fichier manque ou contient des `{{...}}` : arrêter et lancer `/start-copilot`. Le conseil stratégique pur peut se faire sans, mais toute sortie rédigée passe par l'étape 0 puis `brand-check`.
+Si un fichier manque ou contient des `{{...}}` : arrêter et lancer `/start-cockpit`. Le conseil stratégique pur peut se faire sans, mais toute sortie rédigée passe par l'étape 0 puis `brand-check`.
 
 ## Cadrage initial
 

@@ -5,14 +5,14 @@ description: Final gate of the wizard. Runs the placeholder linter, generates a 
 
 # /validate-setup — lockdown the setup
 
-Load the `copilot-setup` skill first.
+Load the `cockpit-setup` skill first.
 
 ## Intent
 
-Before claiming setup is done, the wizard must prove the copilot produces output that actually matches the brand. This command runs three checks:
+Before claiming setup is done, the wizard must prove the cockpit produces output that actually matches the brand. This command runs three checks:
 
 1. **Static check**: are there any unresolved `{{PLACEHOLDER}}` left in operational files?
-2. **Dynamic check**: can the copilot generate 3 sample artifacts that pass brand-check on the first try?
+2. **Dynamic check**: can the cockpit generate 3 sample artifacts that pass brand-check on the first try?
 3. **User check**: does the user recognize their own voice in those samples?
 
 Only when all three pass does the wizard write `.setup-completed` and hand back.
@@ -100,7 +100,7 @@ Then ask:
 
 > Does this sound like you?
 >
-> 1. ✅ **Ship it** — I'll write `.setup-completed` and the copilot is live.
+> 1. ✅ **Ship it** — I'll write `.setup-completed` and the cockpit is live.
 > 2. 🔁 **Adjust voice** — one or more samples are off. I'll take your feedback and go back to `/brand-discover` to refine the voice doctrine.
 > 3. ❌ **Restart** — something fundamental is wrong. I'll back up the current state to `.setup-archive/` and restart.
 
@@ -119,7 +119,7 @@ Confirm destructive action:
 
 > This will move your current `01-brand/` and wizard log to `.setup-archive/v0.2-abandoned-<ISO8601>/`. No data is deleted. Proceed? (yes / no)
 
-On yes: `git mv` current state to archive, clear `.setup-completed` if written, return to `/start-copilot`.
+On yes: `git mv` current state to archive, clear `.setup-completed` if written, return to `/start-cockpit`.
 
 ### Step 4c — If ✅ Ship it
 
@@ -133,7 +133,7 @@ If `_bootstrap/inputs/` has any user-dropped files, move them to `.setup-archive
 
 #### 4c.3 — Update tool-status board in README
 
-Call the subroutine in `copilot-setup` skill to regenerate the tool-status table between `<!-- tool-status:start -->` and `<!-- tool-status:end -->` markers. If the markers do not exist yet in `README.md`, append a "## Tool status" section at the end of the README with both markers, then fill it.
+Call the subroutine in `cockpit-setup` skill to regenerate the tool-status table between `<!-- tool-status:start -->` and `<!-- tool-status:end -->` markers. If the markers do not exist yet in `README.md`, append a "## Tool status" section at the end of the README with both markers, then fill it.
 
 #### 4c.4 — Final recap
 
@@ -141,7 +141,7 @@ Output:
 
 > ✅ Setup complete.
 >
-> Your copilot is live. Try:
+> Your cockpit is live. Try:
 >
 > - "Write a LinkedIn post about [topic]" — `social-content` skill engages automatically
 > - "Draft the next monthly newsletter" — `email` skill

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://marketing-copilot-template/docs/setup-completed.schema.json",
+  "$id": "https://marketing-cockpit-template/docs/setup-completed.schema.json",
   "title": "Métadonnées de fin de setup",
   "description": "Forme de .setup-completed, écrit par /validate-setup à la fin du wizard (la clé 'modules' peut ensuite être mise à jour par /modules, la section 'veille' par /tools-setup). Consommé par les skills opérationnelles (brand-check, veille-strategy, performance-report...) et par /health-check.",
   "type": "object",
@@ -30,7 +30,7 @@
     },
     "bilingual": {
       "type": "boolean",
-      "description": "Vrai si le copilot produit du contenu bilingue par défaut."
+      "description": "Vrai si le cockpit produit du contenu bilingue par défaut."
     },
     "bilingual_rules": {
       "type": "string",

@@ -17,7 +17,7 @@ Vous produisez des lead magnets qui génèrent des leads qualifiés, pas des fic
 4. Charger `01-brand/design-anti-generique.md` — un outil interactif visuellement générique décrédibilise la capture ; mêmes exigences qu'une landing page.
 5. Lire `05-web-content/CLAUDE.md` — structure du dossier, conventions, règle de réutilisation.
 
-**Ne jamais produire sans.** Si un fichier manque ou contient des `{{...}}`, arrêter et lancer `/start-copilot`.
+**Ne jamais produire sans.** Si un fichier manque ou contient des `{{...}}`, arrêter et lancer `/start-cockpit`.
 
 ## Typologie et critères de choix
 

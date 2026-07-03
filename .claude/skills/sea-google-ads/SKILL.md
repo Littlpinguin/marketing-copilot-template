@@ -16,7 +16,7 @@ Avant de rédiger la moindre annonce, extension ou proposition :
 3. Charger `01-brand/personas.md` — un mot-clé qui ne correspond à aucun persona ne s'achète pas.
 4. Charger `01-brand/messaging-framework.md` — chaque promesse d'annonce s'ancre dans une preuve.
 
-**Ne jamais produire sans.** Si un fichier contient encore des `{{...}}`, arrêter et lancer `/start-copilot`.
+**Ne jamais produire sans.** Si un fichier contient encore des `{{...}}`, arrêter et lancer `/start-cockpit`.
 
 ## Division du travail
 
@@ -58,7 +58,7 @@ Livrable : `12-acquisition/google-ads/propositions/<slug>-campagne.md`. Séquenc
 4. **Landing page** — page cible existante validée, ou brief délégué à la skill `landing-page`.
 5. **Budget recommandé** — budget quotidien justifié (volume de recherche estimé × CPC attendu → conversions attendues au CPA cible), avec palier de test et critère de go/no-go à 30 jours.
 
-La campagne n'est **jamais créée par le copilot** : la proposition est remise à l'humain, qui la crée (ou demande une application MCP outil par outil, en la validant).
+La campagne n'est **jamais créée par le cockpit** : la proposition est remise à l'humain, qui la crée (ou demande une application MCP outil par outil, en la validant).
 
 ## Workflow 4 — Revue mensuelle → snapshot performance
 

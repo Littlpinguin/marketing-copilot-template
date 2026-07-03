@@ -1,6 +1,6 @@
 # Calendrier éditorial — {{COMPANY_NAME}}
 
-> Colonne vertébrale du copilot. Statuts : `idée` → `brouillon` → `à-valider` → `validé` → `publié`.
+> Colonne vertébrale du cockpit. Statuts : `idée` → `brouillon` → `à-valider` → `validé` → `publié`.
 > Une entrée = un livrable = un canal. Voir `CLAUDE.md` de ce dossier pour les règles.
 
 ## Backlog d'idées (non datées)

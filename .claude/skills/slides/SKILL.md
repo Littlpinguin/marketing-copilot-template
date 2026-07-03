@@ -16,7 +16,7 @@ Avant le moindre plan de slides :
 3. Consulter `01-brand/assets/index.md` avant d'envisager le moindre visuel : un asset existant se réutilise, il ne se régénère pas.
 4. Charger `01-brand/design-anti-generique.md` — doctrine design anti-générique : marqueurs du look IA interdits par défaut, contrastes typographiques, checklist de pré-livraison (la marque prime là où elle a un avis).
 
-**Ne jamais produire sans.** Si un de ces fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-copilot`.
+**Ne jamais produire sans.** Si un de ces fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-cockpit`.
 
 ## Où vit le travail
 

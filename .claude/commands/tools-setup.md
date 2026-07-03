@@ -5,7 +5,7 @@ description: Configure les outils réellement utilisés par l'entreprise (calend
 
 # /tools-setup — choisir et câbler les outils par catégorie
 
-Charger d'abord la skill `copilot-setup`.
+Charger d'abord la skill `cockpit-setup`.
 
 ## Intention
 
@@ -31,7 +31,7 @@ Avant de configurer un connecteur qui expose des **données clients ou personnel
 > - https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training
 > - https://trust.anthropic.com
 >
-> **Quel plan Claude utilisez-vous pour ce copilot ?** (team / enterprise / api / free / pro / max)
+> **Quel plan Claude utilisez-vous pour ce cockpit ?** (team / enterprise / api / free / pro / max)
 
 Règles du gate :
 1. **Ne pas continuer sans réponse.** La réponse est consignée dans le log wizard (`.setup-completed.wizard_log`).

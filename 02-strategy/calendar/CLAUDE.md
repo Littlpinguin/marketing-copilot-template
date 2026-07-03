@@ -2,7 +2,7 @@
 
 ## Rôle
 
-`calendar.md` est la **colonne vertébrale** du copilot : tout contenu planifié, en cours ou publié y a une entrée. C'est le fichier que consultent tous les rôles avant de produire, et que met à jour toute skill qui fait avancer un livrable.
+`calendar.md` est la **colonne vertébrale** du cockpit : tout contenu planifié, en cours ou publié y a une entrée. C'est le fichier que consultent tous les rôles avant de produire, et que met à jour toute skill qui fait avancer un livrable.
 
 ## Qui écrit quoi
 

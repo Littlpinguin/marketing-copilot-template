@@ -95,7 +95,7 @@ Points importants :
 
 Résultat : toute erreur d'exécution, sur n'importe quel workflow, déclenche un email détaillé (workflow, node en erreur, message, lien vers l'exécution).
 
-## 5. Clé API n8n + variables d'environnement du copilot
+## 5. Clé API n8n + variables d'environnement du cockpit
 
 1. Dans n8n : *Settings → n8n API → Create an API key*.
 2. Dans le `.env` à la racine de ce repo (jamais committé) — utilisé par les **scripts** (ex. `scripts/backup-workflows.sh`) :

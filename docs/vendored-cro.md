@@ -39,7 +39,7 @@ Ces skills étaient déjà attendues par la skill `landing-page` du template (ta
 ## Adaptations effectuées
 
 - **Traduction française** et condensation (~1 300 lignes source retenues → 4 skills opérationnelles).
-- **Étape 0 doctrine `01-brand/`** ajoutée à chaque skill produisant du copy : `checklist-pre-composition.md`, `voice.md`, `messaging-framework.md`, `personas.md` — arrêt et `/start-copilot` si placeholders résiduels. (La source utilisait un `product-marketing-context.md` générique ; remplacé par la doctrine du template.)
+- **Étape 0 doctrine `01-brand/`** ajoutée à chaque skill produisant du copy : `checklist-pre-composition.md`, `voice.md`, `messaging-framework.md`, `personas.md` — arrêt et `/start-cockpit` si placeholders résiduels. (La source utilisait un `product-marketing-context.md` générique ; remplacé par la doctrine du template.)
 - **Règle de preuve du template** : toute preuve sociale/chiffrée recommandée doit exister dans `01-brand/messaging-framework.md` ou être sourcée — jamais de preuve inventée.
 - **`brand-check` obligatoire** avant intégration de tout copy produit.
 - **Ancrage template** : sorties dans `05-web-content/` et `02-strategy/`, orchestration par `landing-page` et `lead-magnet`, placeholders `{{COMPANY_NAME}}`/`{{COMPANY_MAIN_CONTACT}}`, RGPD par défaut (marché francophone).

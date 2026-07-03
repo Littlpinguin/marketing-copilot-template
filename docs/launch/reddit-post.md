@@ -55,11 +55,11 @@ Happy to answer anything about the architecture, the hook setup, what broke in p
 **Title (pick one):**
 
 1. I ran an AI "marketing department" on real client accounts for 6 months. Here's what it genuinely automated, what it can't do, and the whole system (open-sourced, free).
-2. What actually survived 6 months of doing client marketing with an AI copilot — and what still needs a human. I open-sourced the full setup.
+2. What actually survived 6 months of running client marketing through an AI cockpit — and what still needs a human. I open-sourced the full setup.
 
 **Body:**
 
-I run a small externalized marketing practice. For the past 6 months, most of our production — social posts, newsletters, landing pages, sales decks, SEO articles, monthly client reporting — has gone through an AI copilot we built on Claude Code. We just open-sourced it (MIT, link in comments / below per sub rules), but this post is about what we learned, because most "AI marketing" advice skips the operational reality.
+I run a small externalized marketing practice. For the past 6 months, most of our production — social posts, newsletters, landing pages, sales decks, SEO articles, monthly client reporting — has gone through an AI marketing cockpit we built on Claude Code. We just open-sourced it (MIT, link in comments / below per sub rules), but this post is about what we learned, because most "AI marketing" advice skips the operational reality.
 
 **What it genuinely automated:**
 - First drafts in the brand's actual voice — because the system loads a written brand doctrine (voice rules, banned words, sourced proof points) before every single piece. Generic prompts produce generic sludge; a doctrine file doesn't.

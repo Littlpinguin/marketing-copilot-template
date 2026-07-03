@@ -8,7 +8,7 @@
 
 ## Note d'usage
 
-- **Rôle** : index unique de TOUS les livrables produits par le copilot (posts, carrousels, emails, slides, pages, images). C'est la mémoire de production du repo — **toute skill de production le consulte avant de créer** (anti-répétition), et la skill `inventory` y ajoute une ligne après chaque livrable validé.
+- **Rôle** : index unique de TOUS les livrables produits par le cockpit (posts, carrousels, emails, slides, pages, images). C'est la mémoire de production du repo — **toute skill de production le consulte avant de créer** (anti-répétition), et la skill `inventory` y ajoute une ligne après chaque livrable validé.
 - **Tri** : du plus récent au plus ancien (nouvelle ligne en tête de tableau).
 - **Date** : date de création du livrable (`YYYY-MM-DD`), pas la date d'indexation.
 - **Canal** : `linkedin`, `discord`, `whatsapp`, `newsletter`, `email-promo`, `web`, `blog`, `event`, `slides`, `visuel`.

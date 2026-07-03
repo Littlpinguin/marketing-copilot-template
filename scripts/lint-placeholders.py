@@ -127,7 +127,7 @@ def main(argv: list[str]) -> int:
                             "SUJET", "SLUG", "PILIER", "CAMPAGNE", "EXEMPLE_SUJET_BACKLOG",
                             "SIGNAL", "IMPACT",
                             # module import slots — filled at n8n import / module install, never by the wizard
-                            # (see docs/placeholders.json, group module_import_slots; scanned via copilot-setup's extended --paths)
+                            # (see docs/placeholders.json, group module_import_slots; scanned via cockpit-setup's extended --paths)
                             "ERROR_WORKFLOW_ID", "N8N_CREDENTIAL_ID_LLM", "N8N_CREDENTIAL_ID_METRIQUES",
                             "N8N_CREDENTIAL_ID_RECHERCHE", "N8N_CREDENTIAL_ID_SMTP",
                             "NOTIFICATION_EMAIL", "SENDER_EMAIL", "VOTRE_DOMAINE",

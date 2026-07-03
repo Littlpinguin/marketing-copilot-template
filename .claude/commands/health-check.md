@@ -5,7 +5,7 @@ description: Diagnostic continu. Vérifie .setup-completed, les placeholders, le
 
 # /health-check — vérifier la santé du système
 
-Charger d'abord la skill `copilot-setup`.
+Charger d'abord la skill `cockpit-setup`.
 
 ## Intention
 
@@ -18,7 +18,7 @@ Exécutable à tout moment. Aucune écriture, aucun appel API au-delà de tests 
 ### 1. `.setup-completed` existe et est valide
 
 - Lire `.setup-completed`, valider contre `docs/setup-completed.schema.json`.
-- Absent : setup incomplet → suggérer `/start-copilot`.
+- Absent : setup incomplet → suggérer `/start-cockpit`.
 - Malformé : afficher l'erreur de validation.
 
 ### 2. Linter de placeholders

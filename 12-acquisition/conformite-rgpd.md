@@ -21,7 +21,7 @@ La prospection vers des adresses **génériques** (contact@, info@) n'est pas so
 
 ## Rôle de la relecture humaine
 
-Le copilot prépare (ciblage, listes, séquences) ; **un humain valide et lance**. La relecture vérifie : pertinence cible/message, présence de la mention d'information et de l'opt-out, véracité des claims (règle « aucun claim sans source » de `01-brand/`), volumes raisonnables.
+Le cockpit prépare (ciblage, listes, séquences) ; **un humain valide et lance**. La relecture vérifie : pertinence cible/message, présence de la mention d'information et de l'opt-out, véracité des claims (règle « aucun claim sans source » de `01-brand/`), volumes raisonnables.
 
 ## En cas de demande d'un prospect
 

@@ -52,9 +52,9 @@ La méthode ci-dessus n'est pas qu'une documentation : elle est outillée.
 
 Règle commune : **aucun workflow n'est activé ni modifié en production sans validation humaine explicite.**
 
-## Ce que le module fait tourner pour le copilot
+## Ce que le module fait tourner pour le cockpit
 
-1. **Alimenter `00-intel/`** : chaque transcription de meeting est analysée, classée et déposée dans `00-intel/inbox/` — le flux qui rend le copilot « au courant ».
+1. **Alimenter `00-intel/`** : chaque transcription de meeting est analysée, classée et déposée dans `00-intel/inbox/` — le flux qui rend le cockpit « au courant ».
 2. **Automatiser les process marketing récurrents** : veille hebdomadaire, rapport quotidien, rappels du calendrier éditorial.
 3. **Servir de moteur au module `12-acquisition/`** (prospection B2B) si vous l'activez.
 4. **Et tout ce que vous voulez construire ensuite** — c'est le but de la méthode.

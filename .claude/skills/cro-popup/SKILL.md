@@ -15,7 +15,7 @@ Un popup est du copy à haute visibilité et à haut risque d'agacement :
 2. `01-brand/style-guide.md` — le popup est charté (couleurs, typo, radius) comme n'importe quel livrable.
 3. `01-brand/personas.md` — l'offre du popup doit parler au persona de la page.
 
-Si un fichier manque ou contient des `{{...}}` : arrêter et lancer `/start-copilot`.
+Si un fichier manque ou contient des `{{...}}` : arrêter et lancer `/start-cockpit`.
 
 ## Principes
 

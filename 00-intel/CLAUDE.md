@@ -2,7 +2,7 @@
 
 ## Rôle
 
-Ce dossier est la mémoire vive du copilot : transcriptions de meetings, notes internes, signaux clients et prospects. **Rien ici n'est versionné** (voir `.gitignore` racine) — ce sont des données confidentielles propres à {{COMPANY_NAME}}.
+Ce dossier est la mémoire vive du cockpit : transcriptions de meetings, notes internes, signaux clients et prospects. **Rien ici n'est versionné** (voir `.gitignore` racine) — ce sont des données confidentielles propres à {{COMPANY_NAME}}.
 
 ## Alimentation
 

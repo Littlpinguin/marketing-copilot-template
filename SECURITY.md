@@ -121,11 +121,11 @@ Lors de la publication :
 - Social : les brouillons vivent dans `03-social-media/<canal>/drafts/`, publication manuelle dans l'UI de la plateforme sauf si un scheduler est branché.
 - Événements : créer en **brouillon** sur la plateforme d'événements, relire, puis mettre en ligne.
 
-Le copilot rédige et prépare. L'humain publie.
+Le cockpit rédige et prépare. L'humain publie.
 
 ## Signaler un problème de sécurité
 
-Si vous découvrez un problème de sécurité dans le template lui-même (pas dans vos personnalisations), ouvrez une issue sur le repo upstream avec « SECURITY » dans le titre. N'incluez pas de détails de reproduction qui pourraient compromettre des copilots en production — utilisez une repro minimale.
+Si vous découvrez un problème de sécurité dans le template lui-même (pas dans vos personnalisations), ouvrez une issue sur le repo upstream avec « SECURITY » dans le titre. N'incluez pas de détails de reproduction qui pourraient compromettre des cockpits en production — utilisez une repro minimale.
 
 ## Check rapide avant commit
 

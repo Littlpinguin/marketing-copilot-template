@@ -1,6 +1,6 @@
 # Objectifs — {{COMPANY_NAME}}
 
-> **Note d'usage.** Ce fichier est rempli une première fois pendant le wizard (`/start-copilot` → `/brand-discover`), puis **révisé à chaque début de trimestre** (mettre à jour la date ci-dessous à chaque révision). C'est le sommet de la cascade : **toute production du copilot doit pouvoir se rattacher à un objectif de ce fichier** — un brief cite un `OBJ-x`, une entrée calendrier appartient à une campagne, une campagne sert un objectif. Si un contenu ne se rattache à rien, poser la question avant de produire.
+> **Note d'usage.** Ce fichier est rempli une première fois pendant le wizard (`/start-cockpit` → `/brand-discover`), puis **révisé à chaque début de trimestre** (mettre à jour la date ci-dessous à chaque révision). C'est le sommet de la cascade : **toute production du cockpit doit pouvoir se rattacher à un objectif de ce fichier** — un brief cite un `OBJ-x`, une entrée calendrier appartient à une campagne, une campagne sert un objectif. Si un contenu ne se rattache à rien, poser la question avant de produire.
 
 - **Trimestre en cours** : {{TRIMESTRE_EN_COURS}} (ex. T3 2026)
 - **Dernière révision** : {{DATE_DERNIERE_REVISION}}

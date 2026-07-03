@@ -5,17 +5,17 @@ description: Analyze a company's public signals (website, recent blog articles, 
 
 # /brand-discover — propose a draft brand doctrine
 
-Load the `copilot-setup` skill first. Follow its preflight and security rules.
+Load the `cockpit-setup` skill first. Follow its preflight and security rules.
 
 ## Intent
 
-Before the copilot can produce content that sounds like the company, the copilot has to understand the company. This command extracts as much as possible from public signals, presents a structured draft, and walks the user through it section by section. Writes happen only on explicit approval.
+Before the cockpit can produce content that sounds like the company, the cockpit has to understand the company. This command extracts as much as possible from public signals, presents a structured draft, and walks the user through it section by section. Writes happen only on explicit approval.
 
 The same session then captures **what marketing must achieve and for whom**: the strategy interview (Step 5) turns the validated doctrine into a populated strategy layer — objectives cascade, activated channels and cadence, real personas with their objections, customer journey — so `02-strategy/` starts operational instead of placeholder-ridden.
 
 ## Inputs expected
 
-The wizard caller (`/start-copilot`) typically provides:
+The wizard caller (`/start-cockpit`) typically provides:
 - Company website URL (required)
 - Up to 5 recent blog article URLs
 - Up to 10 recent social media post URLs (LinkedIn, X, Instagram)
@@ -309,11 +309,11 @@ Output:
 > - `06-graphic-design/presentations/tokens.css` (slide design system)
 > - (optional) `01-brand/_gaps.md`
 >
-> You can edit these any time with your text editor. The copilot reads them directly — no rebuild step required. Objectives are revised each quarter (`02-strategy/objectifs.md` header tells you when).
+> You can edit these any time with your text editor. The cockpit reads them directly — no rebuild step required. Objectives are revised each quarter (`02-strategy/objectifs.md` header tells you when).
 >
 > Next: `/tools-setup` to tell me which tools you use (email platform, CRM, editorial calendar, events). This wires your tools into the right role folders and removes any that don't apply.
 
-Return control. `/start-copilot` picks up from here.
+Return control. `/start-cockpit` picks up from here.
 
 ## Failure modes to avoid
 

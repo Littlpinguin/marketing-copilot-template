@@ -14,7 +14,7 @@ Avant d'écrire la moindre ligne de copy :
 1. Charger `01-brand/checklist-pre-composition.md` — règles de voix, anti-style-IA, typographie, assets, réutilisation.
 2. Charger `01-brand/voice.md` — position de voix, vocabulaire, interdits.
 
-**Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-copilot`. Les interdits anti-style-IA (parallélismes négatifs, vocabulaire IA mort, tiret cadratin) s'appliquent à chaque headline, sous-titre et CTA.
+**Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-cockpit`. Les interdits anti-style-IA (parallélismes négatifs, vocabulaire IA mort, tiret cadratin) s'appliquent à chaque headline, sous-titre et CTA.
 
 ## Préflight obligatoire
 

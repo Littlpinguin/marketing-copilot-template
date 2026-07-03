@@ -1,12 +1,12 @@
-# Marketing Copilot — root orchestrator
+# Marketing Cockpit — root orchestrator
 
-> **Model recommendation.** This copilot is designed for **Claude Sonnet 5** (`claude-sonnet-5`). The brand doctrine and per-role CLAUDE.md files carry enough context that Sonnet 5 handles strategic reasoning, brand-check, and copy-editing at quality — the injected doctrine does the heavy lifting. For the heaviest sessions (quarterly strategy, complex deck design), a higher tier (Opus 4.8+) can help but is not required. Haiku remains a reasonable fallback for short routine tasks.
+> **Model recommendation.** This cockpit is designed for **Claude Sonnet 5** (`claude-sonnet-5`). The brand doctrine and per-role CLAUDE.md files carry enough context that Sonnet 5 handles strategic reasoning, brand-check, and copy-editing at quality — the injected doctrine does the heavy lifting. For the heaviest sessions (quarterly strategy, complex deck design), a higher tier (Opus 4.8+) can help but is not required. Haiku remains a reasonable fallback for short routine tasks.
 
 ## Setup detection — read this first, every session
 
 If the file `.setup-completed` does **not** exist at the project root, this repo has not been customized for a specific company yet. Do **not** start producing content. Instead, greet the user and suggest:
 
-> This template has not been set up yet. Run `/start-copilot` to launch the wizard. It will fetch your website, analyze your recent posts and articles, propose a draft brand doctrine, let you choose your tools, and prepare the repo in 30-60 minutes.
+> This template has not been set up yet. Run `/start-cockpit` to launch the wizard. It will fetch your website, analyze your recent posts and articles, propose a draft brand doctrine, let you choose your tools, and prepare the repo in 30-60 minutes.
 
 If `.setup-completed` exists, skip the bootstrap path entirely and operate normally.
 
@@ -134,7 +134,7 @@ This repo is organized by **role**. Each numbered folder represents one marketin
 
 ## Integrations — runtime state
 
-Runtime configuration lives in `.setup-completed` (JSON). The wizard writes it at the end of `/start-copilot`. Example shape:
+Runtime configuration lives in `.setup-completed` (JSON). The wizard writes it at the end of `/start-cockpit`. Example shape:
 
 ```json
 {
@@ -175,7 +175,7 @@ See `docs/setup-completed.schema.json` for the full schema.
 
 | Skill | Role | Notes |
 |---|---|---|
-| `copilot-setup` | Shared wizard logic | Loaded by every `/start-copilot`, `/brand-discover`, `/tools-setup`, `/modules`, `/validate-setup`, `/health-check` |
+| `cockpit-setup` | Shared wizard logic | Loaded by every `/start-cockpit`, `/brand-discover`, `/tools-setup`, `/modules`, `/validate-setup`, `/health-check` |
 | `sync-template` / `backport-to-template` | Template ↔ fork Git flow | Update from upstream / contribute back sanitized |
 | `n8n-builder` | End-to-end n8n workflow creation | 5-phase method: libraries → plan → build (MCP) → QA → REX |
 | `n8n-audit` | Review an existing n8n workflow | Against module conventions (architecture, errors, naming, vault) |
@@ -280,7 +280,7 @@ Sub-agents dispatched (mostly) by skills — they run in parallel and return str
 
 | Command | Purpose |
 |---|---|
-| `/start-copilot` | Entry point of the wizard. Run once after cloning. Orchestrates the full setup. |
+| `/start-cockpit` | Entry point of the wizard. Run once after cloning. Orchestrates the full setup. |
 | `/brand-discover` | Analyze website + social + blog to propose a draft brand doctrine for human validation. |
 | `/tools-setup` | Pick and configure tools per category. Regenerates role `CLAUDE.md` files based on choices. |
 | `/modules` | Enable/disable optional modules (video, automatisations, reporting, acquisition, veille, publication-sociale, espace-client). |

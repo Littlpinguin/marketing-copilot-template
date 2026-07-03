@@ -65,7 +65,7 @@ Avant d'écrire le moindre bloc HTML :
 
 ## Skills orchestrées — ordre d'invocation
 
-Les deux skills maîtresses de ce dossier sont **`landing-page`** et **`lead-magnet`** (`.claude/skills/`). Elles orchestrent les skills internes du template — le copilot est autonome, aucune skill externe n'est requise. Si une skill interne listée manque (template partiellement synchronisé), la skill maîtresse applique le fallback inline documenté.
+Les deux skills maîtresses de ce dossier sont **`landing-page`** et **`lead-magnet`** (`.claude/skills/`). Elles orchestrent les skills internes du template — le cockpit est autonome, aucune skill externe n'est requise. Si une skill interne listée manque (template partiellement synchronisé), la skill maîtresse applique le fallback inline documenté.
 
 | Ordre | Étape | Skill (interne) | Fallback si manquante |
 |---|---|---|---|

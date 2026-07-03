@@ -14,7 +14,7 @@ Deux modes d'authentification :
 
 Vérifiez ensuite avec `/mcp` que les outils Lemlist apparaissent, puis lancez `/health-check`.
 
-## 3. Ce que le copilot peut faire une fois connecté
+## 3. Ce que le cockpit peut faire une fois connecté
 - Auditer les campagnes existantes (structure, stats par étape).
 - Créer une campagne, ses séquences multicanales et ses variables de personnalisation.
 - Pousser des leads (depuis une liste produite par la skill `scraping` ou un import).
@@ -22,6 +22,6 @@ Vérifiez ensuite avec `/mcp` que les outils Lemlist apparaissent, puis lancez `
 
 ## 4. Règles d'usage
 1. **Étape 0 doctrine** : toute séquence est rédigée après chargement de `01-brand/checklist-pre-composition.md` — pas de cold email au style IA générique.
-2. **Relecture humaine obligatoire** avant activation d'une campagne : le copilot prépare, l'humain lance.
+2. **Relecture humaine obligatoire** avant activation d'une campagne : le cockpit prépare, l'humain lance.
 3. **Jamais d'envoi de test vers de vrais prospects** ; utilisez votre propre adresse.
 4. Les listes respectent [conformite-rgpd.md](conformite-rgpd.md) : ciblage pertinent par rapport à la fonction, source des données traçable.

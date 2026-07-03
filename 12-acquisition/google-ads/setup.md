@@ -2,7 +2,7 @@
 
 Serveur retenu : [FGRibreau/mcp-google-ads](https://github.com/FGRibreau/mcp-google-ads) — serveur MCP en **Rust** (licence MIT, Google Ads API v23) qui expose ~47 outils : 17 en lecture (`list_accounts`, `get_campaign_performance`, `get_keyword_performance`, `get_search_terms`, `run_gaql`, `list_recommendations`, `get_conversion_actions`…) et 30 en écriture (création/modification de campagnes, mots-clés, annonces, extensions…). Il embarque des garde-fous natifs : mode lecture seule, dry-run par défaut, confirmation en deux étapes, plafond budgétaire, journal d'audit des mutations.
 
-> **Mode conseil du copilot** : on le configure en **lecture seule**. Les 30 outils d'écriture ne servent qu'après validation humaine explicite, mutation par mutation (voir `README.md`).
+> **Mode conseil du cockpit** : on le configure en **lecture seule**. Les 30 outils d'écriture ne servent qu'après validation humaine explicite, mutation par mutation (voir `README.md`).
 
 ## 1. Prérequis
 
@@ -58,7 +58,7 @@ Garde-fous supplémentaires du serveur, si vous ouvrez un jour l'écriture : `GO
 
 1. `/mcp` : le serveur `google-ads` apparaît avec ses outils.
 2. Demander un `health_check` puis un `list_accounts` : les comptes attendus remontent.
-3. Lancer `/health-check` pour intégrer la vérification au contrôle mensuel du copilot.
+3. Lancer `/health-check` pour intégrer la vérification au contrôle mensuel du cockpit.
 
 ## 6. Règles d'usage
 

@@ -9,7 +9,7 @@
       "typeVersion": 1,
       "position": [-120, -240],
       "parameters": {
-        "content": "## Meeting transcript -> 00-intel/inbox\n\nLE workflow qui alimente la memoire d'intelligence du copilot.\n\nFlux : webhook (outil de transcription) -> validation -> analyse LLM -> classification (interne / client / prospect / veille) -> note markdown deposee dans le dossier d'echange -> notification.\n\nAvant activation :\n1. Changer le chemin du webhook (non devinable) et configurer l'outil de transcription pour POSTer dessus\n2. Selectionner vos credentials (LLM + SMTP) dans le vault n8n\n3. Verifier le chemin d'ecriture (/data/intel-drop par defaut, monte dans docker-compose) et le mecanisme de synchronisation vers 00-intel/inbox/ du repo (voir workflows/README.md)\n4. Assigner l'error workflow global",
+        "content": "## Meeting transcript -> 00-intel/inbox\n\nLE workflow qui alimente la memoire d'intelligence du cockpit.\n\nFlux : webhook (outil de transcription) -> validation -> analyse LLM -> classification (interne / client / prospect / veille) -> note markdown deposee dans le dossier d'echange -> notification.\n\nAvant activation :\n1. Changer le chemin du webhook (non devinable) et configurer l'outil de transcription pour POSTer dessus\n2. Selectionner vos credentials (LLM + SMTP) dans le vault n8n\n3. Verifier le chemin d'ecriture (/data/intel-drop par defaut, monte dans docker-compose) et le mecanisme de synchronisation vers 00-intel/inbox/ du repo (voir workflows/README.md)\n4. Assigner l'error workflow global",
         "height": 340,
         "width": 460,
         "color": 3
@@ -179,7 +179,7 @@
         "toEmail": "{{NOTIFICATION_EMAIL}}",
         "subject": "=[Intel] Nouvelle note meeting : {{ $('Formater note intel').item.json.titre }}",
         "emailFormat": "html",
-        "html": "=<p>Une nouvelle note d'intelligence a été déposée dans <code>00-intel/inbox/</code>.</p><ul><li><b>Fichier</b> : {{ $('Formater note intel').item.json.nomFichier }}</li><li><b>Classification</b> : {{ $('Formater note intel').item.json.classification }}</li><li><b>Entité</b> : {{ $('Formater note intel').item.json.entite }}</li></ul><p>Pensez à la trier lors de votre prochaine session copilot (statut <code>a-trier</code>).</p>",
+        "html": "=<p>Une nouvelle note d'intelligence a été déposée dans <code>00-intel/inbox/</code>.</p><ul><li><b>Fichier</b> : {{ $('Formater note intel').item.json.nomFichier }}</li><li><b>Classification</b> : {{ $('Formater note intel').item.json.classification }}</li><li><b>Entité</b> : {{ $('Formater note intel').item.json.entite }}</li></ul><p>Pensez à la trier lors de votre prochaine session dans le cockpit (statut <code>a-trier</code>).</p>",
         "options": {}
       },
       "credentials": {

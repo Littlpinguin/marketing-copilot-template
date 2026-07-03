@@ -139,8 +139,8 @@
       { "name": "LINKEDIN_URL", "used_in": "06-graphic-design/mail-signatures/template.html", "required": false }
     ],
     "project_meta": [
-      { "name": "PROJECT_SLUG", "required": true, "example": "acme-marketing-copilot" },
-      { "name": "PROJECT_ROOT", "required": true, "example": "/Users/alice/code/acme-copilot" },
+      { "name": "PROJECT_SLUG", "required": true, "example": "acme-marketing-cockpit" },
+      { "name": "PROJECT_ROOT", "required": true, "example": "/Users/alice/code/acme-cockpit" },
       { "name": "SETUP_DATE",   "required": true, "example": "2026-04-15" },
       { "name": "TODO",         "marker": true,   "description": "Temporary marker for gaps to fill later" },
       { "name": "MONTH_YEAR",   "used_in": "04-email/newsletter/drafts/", "example": "MARCH_2026" },

@@ -28,8 +28,8 @@ Retiré : `carrousel-ai-act.pdf` (3,8 Mo — copie identique conservée dans
 
 ### 1. `wizard-terminal.png` — à capturer À LA MAIN
 
-- Clone frais dans un dossier jetable, `claude`, puis taper `/start-copilot`.
-- Capturer le message de bienvenue/préflight (le moment où le copilot explique le flux 30–60 min).
+- Clone frais dans un dossier jetable, `claude`, puis taper `/start-cockpit`.
+- Capturer le message de bienvenue/préflight (le moment où le wizard explique le flux 30–60 min).
 - Recadrer sur la fenêtre du terminal ; vérifier qu'aucun chemin personnel, email ou chaîne façon clé API n'est visible.
 
 ### 2. Validation humaine des contenus clients (voir ⚠️ ci-dessus)

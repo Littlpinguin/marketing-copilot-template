@@ -1,4 +1,4 @@
-# Marketing Copilot Template
+# Marketing Cockpit Template
 
 **Your marketing department, running inside Claude Code — and it knows your brand by heart.**
 
@@ -9,7 +9,7 @@
 [![Skills](https://img.shields.io/badge/skills-49-blue.svg)](#whats-inside)
 [![Agents](https://img.shields.io/badge/agents-10-blue.svg)](#whats-inside)
 
-Clone it once per company, run the wizard, and get a role-based copilot that behaves like a marketing director: strategy, social, email, landing pages, design, presentations, SEO — plus optional modules for video, n8n automation, client-facing reporting and outbound acquisition. Every deliverable is a file in your repo. Every word passes a brand gate before it ships.
+Clone it once per company, run the wizard, and get a role-based cockpit that operates like a marketing director: strategy, social, email, landing pages, design, presentations, SEO — plus optional modules for video, n8n automation, client-facing reporting and outbound acquisition. Every deliverable is a file in your repo. Every word passes a brand gate before it ships.
 
 ---
 
@@ -33,7 +33,7 @@ Everything below ships in the template and opens in a browser with zero build st
 ![Client reporting dashboard](docs/launch/screenshots/dashboard.png)
 *The reporting module: a static, brand-styled dashboard deployed on the client's own site (plain FTP, access code, monthly JSON snapshots, written analysis). No SaaS subscription.*
 
-*`/start-copilot`: fetches your website, analyzes your content, drafts your brand doctrine for validation, wires your tools. 30–60 minutes.*
+*`/start-cockpit`: fetches your website, analyzes your content, drafts your brand doctrine for validation, wires your tools. 30–60 minutes.*
 
 ---
 
@@ -41,7 +41,7 @@ Everything below ships in the template and opens in a browser with zero build st
 
 Everything above uses the fictional demo brand. Everything below is real: this template is not a demo — it is the daily production tool of a working marketing practice, running several live brands. Click any link and check for yourself.
 
-### Three live sites run with this copilot
+### Three live sites run with this cockpit
 
 | [n2.help](https://n2.help) | [qiplim.com](https://qiplim.com) |
 |---|---|
@@ -51,7 +51,7 @@ Everything above uses the fictional demo brand. Everything below is real: this t
 | [jessem.fr](https://jessem.fr) | [n2.help/resources](https://n2.help/resources) |
 |---|---|
 | ![jessem.fr homepage](docs/launch/screenshots/site-jessem.png) | ![N2 resources hub](docs/launch/screenshots/site-n2-resources.png) |
-| *jessem.fr — the marketing practice this template comes from; the site is written, launched and run with it.* | *N2's resources hub — reports, case studies and articles fed by this copilot.* |
+| *jessem.fr — the marketing practice this template comes from; the site is written, launched and run with it.* | *N2's resources hub — reports, case studies and articles fed by this cockpit.* |
 
 ### Live lead magnets built with this system
 
@@ -113,7 +113,7 @@ Three mechanics do the heavy lifting:
 
 1. **A marketing director, not a channel executor.** The root `CLAUDE.md` makes Claude start from the business objective (awareness, leads, conversion, retention), route the request through a routing table to the right skill/agent, and propose an argued channel mix when the ask is vague — instead of replying "which channel do you want?".
 2. **Brand doctrine injection.** Each numbered folder is a marketing role with its own `CLAUDE.md` (scope, inputs, workflow, validation gates). Every production skill loads `01-brand/` (voice, messaging framework with sourced numbers, style guide, personas) before producing anything. Claims without a source in the messaging framework don't ship.
-3. **The calendar loop.** Work starts by reading `02-strategy/calendar/calendar.md` and recent intel, and ends by updating entry statuses and anti-repetition inventories. The copilot knows what was published, what's in review, and what's planned — across sessions.
+3. **The calendar loop.** Work starts by reading `02-strategy/calendar/calendar.md` and recent intel, and ends by updating entry statuses and anti-repetition inventories. The cockpit knows what was published, what's in review, and what's planned — across sessions.
 
 ## Quickstart
 
@@ -124,8 +124,8 @@ Prerequisites: [Node.js 18+](https://nodejs.org) and a Claude account (Pro/Max, 
 npm install -g @anthropic-ai/claude-code
 
 # 2. Clone under a name that makes sense for you (or "Use this template" on GitHub)
-git clone https://github.com/Littlpinguin/marketing-cockpit-template.git my-company-copilot
-cd my-company-copilot
+git clone https://github.com/Littlpinguin/marketing-cockpit-template.git my-company-cockpit
+cd my-company-cockpit
 
 # 3. Create your local env file (filled in later by the wizard)
 cp .env.example .env
@@ -142,10 +142,10 @@ claude
 Then run the wizard (paste on its own line):
 
 ```
-/start-copilot
+/start-cockpit
 ```
 
-It fetches your website, analyzes your recent content, drafts your brand doctrine for your validation, runs a strategy interview (objectives, channels, personas, customer journey), wires your tools, and hands you a ready copilot in 30–60 minutes. Enable optional modules any time with `/modules`.
+It fetches your website, analyzes your recent content, drafts your brand doctrine for your validation, runs a strategy interview (objectives, channels, personas, customer journey), wires your tools, and hands you a ready cockpit in 30–60 minutes. Enable optional modules any time with `/modules`.
 
 ## What's inside
 
@@ -158,7 +158,7 @@ It fetches your website, analyzes your recent content, drafts your brand doctrin
 | Web & CRO | `landing-page`, `lead-magnet` (with full capture circuit), `cro-page`, `cro-form`, `cro-popup`, `cro-pricing`, `accessibility-web` (WCAG 2.2 AA) | 7 |
 | SEO & content engine | `seo`, `seo-audit`, `seo-schema`, `seo-geo` (AI-search/AEO), `seo-cluster`, `blog-engine` (fact-checked articles, ≥90/100 quality gate) | 6 |
 | Strategy & intelligence | `content-strategy`, `veille-strategy` (market watch), `scraping`, `performance-report` | 4 |
-| Governance & plumbing | `copilot-setup` (wizard), `brand-check` (the quality gate), `inventory`, `sync-template`, `backport-to-template` | 5 |
+| Governance & plumbing | `cockpit-setup` (wizard), `brand-check` (the quality gate), `inventory`, `sync-template`, `backport-to-template` | 5 |
 | Paid acquisition | `sea-google-ads`, `ads-audit` (Google/Meta/LinkedIn audit grids, ~157 checks) | 2 |
 | Video | `video-editing`, `captions` | 2 |
 | Web animation | `animation-gsap` (GSAP + ScrollTrigger), `animation-animejs`, `animation-lottie`, `animation-scroll-reveal` (AOS & co) | 4 |
@@ -171,7 +171,7 @@ It fetches your website, analyzes your recent content, drafts your brand doctrin
 - **10 landing page templates** (`05-web-content/templates/landing-pages/`) — one per conversion goal (B2B demo, SaaS trial, lead magnet, webinar, pricing, competitor comparison, long-form sales, local one-pager, waitlist, service). Single-file, responsive, GA4/UTM conventions wired.
 - **10 interactive lead magnets** (`05-web-content/templates/lead-magnets/`) — ROI calculator, diagnostic score, grader, quiz, budget estimator… all with an email capture gate and nurturing segmentation baked in.
 - **A client reporting dashboard** (`11-reporting/`) — static HTML + monthly JSON snapshots + written analysis, deployed on the client's own site by FTP behind an access code. A demo with 4 months of fictional data (all sources, embedded — opens on double-click) lives in `11-reporting/dashboard/demo/index.html`.
-- **A fictional starter corpus** (`_examples/acme-saas/`) to calibrate tone on day one, and **6 slash commands** (`/start-copilot`, `/brand-discover`, `/tools-setup`, `/modules`, `/validate-setup`, `/health-check`).
+- **A fictional starter corpus** (`_examples/acme-saas/`) to calibrate tone on day one, and **6 slash commands** (`/start-cockpit`, `/brand-discover`, `/tools-setup`, `/modules`, `/validate-setup`, `/health-check`).
 
 ## Modules
 
@@ -181,7 +181,7 @@ It fetches your website, analyzes your recent content, drafts your brand doctrin
 | `video` | AI-assisted video editing & captions | macOS + [Palmier Pro](https://github.com/palmier-io/palmier-pro) |
 | `automatisations` | Build, debug and evolve n8n workflows from Claude (5-phase method, 5,100+ template libraries, `n8n-builder`/`n8n-audit`/`n8n-debugger`); feeds `00-intel/`, watch, reports | Self-hosted n8n (VPS guide included) |
 | `reporting` | Brand-styled performance dashboard hosted on the client's site (FTP + access code), monthly snapshots, month-to-month navigation, written analysis | ≥ 1 data source (GA4/GSC, Postiz, email tool) |
-| `acquisition` | Outbound campaigns: copilot does ICP + brand-voice sequences + lists, [Lemlist MCP](https://developer.lemlist.com/mcp/setup) does sending & deliverability; plus Google Ads operations and multi-platform ads audits | Lemlist account |
+| `acquisition` | Outbound campaigns: the cockpit does ICP + brand-voice sequences + lists, [Lemlist MCP](https://developer.lemlist.com/mcp/setup) does sending & deliverability; plus Google Ads operations and multi-platform ads audits | Lemlist account |
 | `publication-sociale` | Direct scheduling via [Postiz](https://postiz.com) (open source, self-hostable) | Postiz instance |
 | `espace-client` | One password-protected space on your site: dashboard + shared presentations | FTP access |
 
@@ -195,7 +195,7 @@ Honest answers, because you'll figure them out anyway:
 
 **What it is *not*:** not an autopilot (human validation is a designed-in step, sending/scheduling stays manual or goes through dry-run gates), not a social scheduler (that's Postiz, optional), and not magic on an empty brand — see ["What good requires"](#what-good-requires).
 
-**One more honest note:** this was built in a French studio. Some internal skill files are written in French (Claude reads them natively — it makes no difference at runtime), and your copilot's *output* language is whatever you configure at setup (monolingual or bilingual). Full English-first internals are on the roadmap.
+**One more honest note:** this was built in a French studio. Some internal skill files are written in French (Claude reads them natively — it makes no difference at runtime), and your cockpit's *output* language is whatever you configure at setup (monolingual or bilingual). Full English-first internals are on the roadmap.
 
 ## Data privacy — read this before wiring your CRM
 

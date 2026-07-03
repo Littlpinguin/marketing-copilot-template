@@ -184,7 +184,7 @@ def main() -> int:
         sections.append("## Prochaines échéances du calendrier\n" + "\n".join(f"- {l}" for l in calendar))
 
     if sections:
-        print("# Contexte de session — marketing copilot\n")
+        print("# Contexte de session — marketing cockpit\n")
         print("\n\n".join(sections))
     return 0
 

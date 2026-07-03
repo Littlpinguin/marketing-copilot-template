@@ -15,7 +15,7 @@ Tu produis les visuels (heros, bannières, illustrations, icônes, portraits, ba
 4. **Analyser les vrais visuels publiés** (`01-brand/assets/`, `03-social-media/*/visuals/`, `06-graphic-design/outputs/`) — pas seulement les specs — pour capter la signature visuelle réelle. Sinon le rendu est « générique » et ne ressemble pas à la marque.
 5. Charger `01-brand/design-anti-generique.md` — marqueurs du look IA interdits par défaut (gradient violet par réflexe, clusters génériques, faible densité) : à neutraliser dans chaque prompt, la marque primant là où elle parle.
 
-**Ne jamais générer sans.** Si le style-guide contient encore des `{{...}}`, arrêter et lancer `/start-copilot`.
+**Ne jamais générer sans.** Si le style-guide contient encore des `{{...}}`, arrêter et lancer `/start-cockpit`.
 
 ## Règle d'or : GÉNÉRER POUR COMPOSER
 

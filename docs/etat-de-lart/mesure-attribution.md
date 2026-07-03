@@ -120,7 +120,7 @@ Règle transversale : **5 à 7 métriques liées aux objectifs du client par rap
 - Documenter dans le rapport le modèle d'attribution utilisé (R1) — une note de bas de page fixe « attribution : last non-direct click GA4, complétée par l'auto-déclaré ».
 - Ajouter R16 : quand un KPI est en baisse, l'analyse doit contenir cause + plan, jamais le chiffre seul.
 
-### skill `copilot-setup` (wizard) — via les conventions du template
+### skill `cockpit-setup` (wizard) — via les conventions du template
 - Le setup doit générer un **registre UTM** (R5-R8) dans `02-strategy/` avec taxonomie fermée pré-remplie par canal, et vérifier la liaison GA4↔GSC et la définition des key events (R9-R10) avant d'activer le reporting.
 - Ajouter à la checklist d'onboarding : champ « Comment nous avez-vous connus ? » sur les formulaires du client (R2) — prérequis déclaré de l'attribution.
 

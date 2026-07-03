@@ -17,7 +17,7 @@ Vous produisez des systèmes de design complets : tokens sémantiques, style UI,
    - **Verrouillée par la marque** — le style-guide fournit une valeur (ex. couleur primaire, police). On l'utilise telle quelle. Interdiction de la remplacer par une valeur des références de cette skill.
    - **Libre** — le style-guide est muet (ex. couleur `muted`, échelle d'espacement, style des états d'interaction). C'est le seul espace où les références de cette skill s'appliquent.
 
-Si `01-brand/style-guide.md` est manquant ou contient des `{{...}}` : s'arrêter et proposer `/start-copilot`. Ne jamais générer un système 100 % générique pour un projet configuré.
+Si `01-brand/style-guide.md` est manquant ou contient des `{{...}}` : s'arrêter et proposer `/start-cockpit`. Ne jamais générer un système 100 % générique pour un projet configuré.
 
 ## Étape 1 — Qualifier le besoin
 

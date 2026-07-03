@@ -1,6 +1,6 @@
 # _sources — raw material
 
-Raw data that feeds every AI role of the copilot. Skills read these files directly from disk when they need raw material (numbers, decisions, market intelligence).
+Raw data that feeds every AI role of the cockpit. Skills read these files directly from disk when they need raw material (numbers, decisions, market intelligence).
 
 ## Structure
 
@@ -32,7 +32,7 @@ _sources/
 
 ### `research/` — market intelligence
 
-Landing pad for all external market intelligence: competitor observations, industry trends, regulation updates, AI progress, news. Keeps the copilot current without relying on stale training data.
+Landing pad for all external market intelligence: competitor observations, industry trends, regulation updates, AI progress, news. Keeps the cockpit current without relying on stale training data.
 
 **Automation candidates** (not shipped):
 - RSS feeds (industry blogs, analyst firms, competitor newsrooms)

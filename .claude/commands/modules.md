@@ -1,15 +1,15 @@
 ---
 name: modules
-description: Active ou désactive les modules optionnels du copilot (video, automatisations, reporting, acquisition, veille, publication-sociale, espace-client). Vérifie les prérequis de chaque module, enregistre l'état dans .setup-completed et pilote le chargement conditionnel.
+description: Active ou désactive les modules optionnels du cockpit (video, automatisations, reporting, acquisition, veille, publication-sociale, espace-client). Vérifie les prérequis de chaque module, enregistre l'état dans .setup-completed et pilote le chargement conditionnel.
 ---
 
 # /modules — activer / désactiver les modules optionnels
 
-Charger d'abord la skill `copilot-setup`.
+Charger d'abord la skill `cockpit-setup`.
 
 ## Intention
 
-Le copilot v2 est composé d'un **cœur** (01-brand → 07-events, 09-seo, 02-strategy/calendar, 00-intel en lecture) toujours actif, et de **modules optionnels** qu'on active seulement si l'entreprise en a l'usage et les prérequis. Cette commande est le seul endroit où l'on change l'état d'un module.
+Le cockpit v2 est composé d'un **cœur** (01-brand → 07-events, 09-seo, 02-strategy/calendar, 00-intel en lecture) toujours actif, et de **modules optionnels** qu'on active seulement si l'entreprise en a l'usage et les prérequis. Cette commande est le seul endroit où l'on change l'état d'un module.
 
 Commande réentrante : relancée, elle affiche l'état courant et demande quoi changer.
 
@@ -29,12 +29,12 @@ Commande réentrante : relancée, elle affiche l'état courant et demande quoi c
 
 ### Étape 1 — État courant
 
-1. Lire `.setup-completed`. S'il n'existe pas : avertir que le setup n'est pas terminé (`/start-copilot`) et proposer de continuer quand même (l'état sera repris par `/validate-setup`).
+1. Lire `.setup-completed`. S'il n'existe pas : avertir que le setup n'est pas terminé (`/start-cockpit`) et proposer de continuer quand même (l'état sera repris par `/validate-setup`).
 2. Afficher un tableau : module, état (actif / inactif / jamais configuré), prérequis OK / manquants.
 
 ### Étape 2 — Choix de l'utilisateur
 
-Demander quel(s) module(s) activer ou désactiver. Une décision à la fois (invariant `copilot-setup` : une étape par message).
+Demander quel(s) module(s) activer ou désactiver. Une décision à la fois (invariant `cockpit-setup` : une étape par message).
 
 ### Étape 3 — Vérification des prérequis (à l'activation)
 

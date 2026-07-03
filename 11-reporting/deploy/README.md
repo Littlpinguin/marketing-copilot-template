@@ -68,7 +68,7 @@ Notes :
 
 - `set ftp:ssl-force true` impose FTPS ; si l'hébergeur propose SFTP, remplacez l'URL par `sftp://$CLIENT_FTP_HOST`.
 - **Pas de `--delete`** sur `data/` : les snapshots des mois précédents doivent rester en ligne.
-- Le `template.html` déployé doit avoir ses placeholders `{{…}}` déjà remplis (fait une fois par `/start-copilot` ; sinon remplissez-les à la main avant le premier déploiement).
+- Le `template.html` déployé doit avoir ses placeholders `{{…}}` déjà remplis (fait une fois par `/start-cockpit` ; sinon remplissez-les à la main avant le premier déploiement).
 - Même commande pour les présentations : `mirror -R --only-newer 06-graphic-design/presentations/decks $CLIENT_FTP_BASE/presentations`.
 
 ## Alternative — curl (un fichier à la fois, disponible partout)

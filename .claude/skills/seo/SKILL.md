@@ -14,7 +14,7 @@ Avant de rédiger un brief ou un article :
 1. Charger `01-brand/checklist-pre-composition.md` — règles de voix, anti-style-IA, typographie, assets, réutilisation.
 2. Charger `01-brand/voice.md` — position de voix, vocabulaire, interdits.
 
-**Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-copilot`. Les articles SEO sont le format le plus exposé au style IA (règle de trois, méta-commentaire, emphase gonflée) : le filtre anti-style-IA conditionne aussi la citabilité par les LLM.
+**Ne jamais produire sans.** Si l'un des deux fichiers manque ou contient encore des `{{...}}`, arrêter et lancer `/start-cockpit`. Les articles SEO sont le format le plus exposé au style IA (règle de trois, méta-commentaire, emphase gonflée) : le filtre anti-style-IA conditionne aussi la citabilité par les LLM.
 
 ## Division du travail — analyse vs production
 

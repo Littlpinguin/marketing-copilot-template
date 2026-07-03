@@ -1,15 +1,15 @@
-# 12-acquisition — prospection B2B multicanale pilotée par le copilot
+# 12-acquisition — prospection B2B multicanale pilotée depuis le cockpit
 
-> **Module optionnel.** L'acquisition sortante (outbound) via une **plateforme d'outreach externe**, pilotée depuis Claude Code. Le copilot apporte l'intelligence (ciblage, voix de marque, listes, analyse) ; la plateforme apporte l'exécution (séquences, multicanal, délivrabilité, opt-out). Avant toute campagne : lire `conformite-rgpd.md`.
+> **Module optionnel.** L'acquisition sortante (outbound) via une **plateforme d'outreach externe**, pilotée depuis Claude Code. Le cockpit apporte l'intelligence (ciblage, voix de marque, listes, analyse) ; la plateforme apporte l'exécution (séquences, multicanal, délivrabilité, opt-out). Avant toute campagne : lire `conformite-rgpd.md`.
 
 ## Le principe : chacun son métier
 
 | | Qui s'en charge |
 |---|---|
-| ICP et personas de campagne, nourris par la doctrine et le terrain | **Le copilot** (`01-brand/` + `00-intel/`) |
-| Rédaction des séquences dans la voix de la marque | **Le copilot** (checklist doctrine + brand-check obligatoires) |
-| Constitution et qualification des listes | **Le copilot** (skill scraping/Apify ou export de votre outil de sourcing) |
-| Analyse des résultats de campagne | **Le copilot** (via MCP, versé dans `11-reporting/`) |
+| ICP et personas de campagne, nourris par la doctrine et le terrain | **Le cockpit** (`01-brand/` + `00-intel/`) |
+| Rédaction des séquences dans la voix de la marque | **Le cockpit** (checklist doctrine + brand-check obligatoires) |
+| Constitution et qualification des listes | **Le cockpit** (skill scraping/Apify ou export de votre outil de sourcing) |
+| Analyse des résultats de campagne | **Le cockpit** (via MCP, versé dans `11-reporting/`) |
 | Séquences et relances, multicanal email + LinkedIn | **La plateforme** |
 | Délivrabilité, warm-up, plages et volumes d'envoi | **La plateforme** |
 | Opt-out / désinscription technique | **La plateforme** |
@@ -28,13 +28,13 @@ Créer un compte Lemlist : {{LEMLIST_SIGNUP_URL}}
 
 ## Alternative documentée : Salesforge
 
-Pas de serveur MCP officiel à ce jour, mais une API REST + webhooks qui se pilotent depuis des scripts ou depuis n8n si le module `10-automatisations/` est actif. Le workflow copilot (brief → ICP → liste → séquence → suivi) reste identique ; seule l'exécution change d'outil. Voir la section dédiée dans `setup-lemlist.md`. La même logique s'applique à toute plateforme d'outreach sérieuse disposant d'une API.
+Pas de serveur MCP officiel à ce jour, mais une API REST + webhooks qui se pilotent depuis des scripts ou depuis n8n si le module `10-automatisations/` est actif. Le workflow du cockpit (brief → ICP → liste → séquence → suivi) reste identique ; seule l'exécution change d'outil. Voir la section dédiée dans `setup-lemlist.md`. La même logique s'applique à toute plateforme d'outreach sérieuse disposant d'une API.
 
-## Ce que le copilot fait concrètement
+## Ce que le cockpit fait concrètement
 
 1. **ICP / personas de campagne** — dérivés de `01-brand/personas.md` (qui achète, pourquoi, avec quelles objections) et affûtés par `00-intel/` : besoins réellement exprimés en rendez-vous, secteurs qui répondent, objections récurrentes. Pas de persona de brainstorming hors-sol.
 2. **Séquences dans la voix de la marque** — un cold email est un contenu de marque comme un autre : il respecte `01-brand/voice.md` (ton, vocabulaire banni), les règles anti-style-IA de la doctrine, et passe le **brand-check** avant push. Une preuve concrète par message, jamais de claim sans source.
-3. **Listes qualifiées** — via la skill de scraping/Apify du copilot sur des sources publiques ciblées, ou l'export de votre outil de sourcing ; puis double relecture de pertinence (copilot + humain par échantillon) avant import. Une liste courte et juste bat une liste large.
+3. **Listes qualifiées** — via la skill de scraping/Apify du cockpit sur des sources publiques ciblées, ou l'export de votre outil de sourcing ; puis double relecture de pertinence (cockpit + humain par échantillon) avant import. Une liste courte et juste bat une liste large.
 4. **Lecture des résultats** — points de campagne réguliers via le MCP (envois, ouvertures, réponses, intérêt), agrégés dans `11-reporting/` ; les réponses qualitatives (objections, questions) sont recopiées dans `00-intel/inbox/` pour nourrir les prochains ciblages et les contenus des autres modules.
 
 ## Contenu du module
@@ -47,7 +47,7 @@ Pas de serveur MCP officiel à ce jour, mais une API REST + webhooks qui se pilo
 
 ## Règles du module
 
-- **Relecture humaine avant chaque campagne** : ciblage, séquence, mention d'information. Le copilot ne lance jamais un envoi seul.
-- **Brand-check obligatoire** sur chaque séquence, comme pour tout contenu du copilot.
+- **Relecture humaine avant chaque campagne** : ciblage, séquence, mention d'information. Le cockpit ne lance jamais un envoi seul.
+- **Brand-check obligatoire** sur chaque séquence, comme pour tout contenu du cockpit.
 - **RGPD** : pertinence du ciblage et mention d'information sont votre responsabilité même si la plateforme gère l'opt-out — voir `conformite-rgpd.md`.
 - **Aucun secret dans ce dossier** : OAuth quand le serveur MCP le propose (Lemlist), sinon clé API dans le `.mcp.json` local non versionné ; les clés des scripts (Apify…) dans `.env`. Jamais de secret dans un fichier committé (voir `SECURITY.md`).

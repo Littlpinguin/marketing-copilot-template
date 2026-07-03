@@ -1,7 +1,7 @@
 {
   "$schema": "./tools.schema.json",
   "version": "0.2.0",
-  "description": "Canonical registry of tools supported by the Marketing Copilot Template. Connector status is the contract the user sees during /tools-setup.",
+  "description": "Canonical registry of tools supported by the Marketing Cockpit Template. Connector status is the contract the user sees during /tools-setup.",
   "categories": {
     "editorial_calendar": {
       "label": "Editorial calendar",

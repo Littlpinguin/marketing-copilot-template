@@ -1,6 +1,6 @@
 ---
 name: backport-to-template
-description: Remonte une amélioration de mécanique développée dans un repo client vers le template public marketing-copilot-template. Dé-brandification systématique (valeurs de marque → placeholders) puis checklist de sanitisation BLOQUANTE (noms clients, chiffres réels, URLs privées, emails, IDs, tokens) avant préparation de la branche et de la PR. À utiliser quand une skill, un script ou un workflow mis au point chez un client mérite d'entrer dans le template.
+description: Remonte une amélioration de mécanique développée dans un repo client vers le template public marketing-cockpit-template. Dé-brandification systématique (valeurs de marque → placeholders) puis checklist de sanitisation BLOQUANTE (noms clients, chiffres réels, URLs privées, emails, IDs, tokens) avant préparation de la branche et de la PR. À utiliser quand une skill, un script ou un workflow mis au point chez un client mérite d'entrer dans le template.
 ---
 
 # backport-to-template — remonter une amélioration client vers le template public

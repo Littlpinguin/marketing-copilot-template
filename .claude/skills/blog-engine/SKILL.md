@@ -27,7 +27,7 @@ Avant toute rédaction :
 1. Charger `01-brand/checklist-pre-composition.md` — voix, anti-style-IA, typographie, réutilisation.
 2. Charger `01-brand/voice.md` — position de voix, vocabulaire, interdits.
 
-**Ne jamais produire sans.** Si un fichier manque ou contient des `{{...}}`, arrêter et lancer `/start-copilot`. La doctrine 01-brand remplace les fichiers BRAND.md/VOICE.md du moteur d'origine : c'est elle qui fait autorité sur le ton, les interdits et le positionnement.
+**Ne jamais produire sans.** Si un fichier manque ou contient des `{{...}}`, arrêter et lancer `/start-cockpit`. La doctrine 01-brand remplace les fichiers BRAND.md/VOICE.md du moteur d'origine : c'est elle qui fait autorité sur le ton, les interdits et le positionnement.
 
 ## Workflow bout-en-bout
 

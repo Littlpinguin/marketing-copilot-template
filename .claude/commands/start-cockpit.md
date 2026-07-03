@@ -1,15 +1,15 @@
 ---
-name: start-copilot
-description: Entry point of the Marketing Copilot wizard. Run once after cloning the template. Walks the user from a fresh repo to a fully configured, company-specific copilot in 30-60 minutes.
+name: start-cockpit
+description: Entry point of the Marketing Cockpit wizard. Run once after cloning the template. Walks the user from a fresh repo to a fully configured, company-specific cockpit in 30-60 minutes.
 ---
 
-# /start-copilot — wizard entry point
+# /start-cockpit — wizard entry point
 
-Load the `copilot-setup` skill first. Do not skip it.
+Load the `cockpit-setup` skill first. Do not skip it.
 
 ## Intent
 
-Transform this empty template into a production-ready marketing copilot for one specific company, with:
+Transform this empty template into a production-ready marketing cockpit for one specific company, with:
 - A validated brand doctrine (voice, design system, personas)
 - A populated strategy layer: business & marketing objectives, activated channels & cadence, real personas with objections, customer journey (`02-strategy/`)
 - Connectors wired for the tools the company actually uses
@@ -31,17 +31,17 @@ The wizard orchestrates the sub-commands below. You may run them one by one if y
 
 Output (adapted to the user's apparent expertise):
 
-> Welcome. I'll help you turn this template into a copilot tailored to your company. This takes 30-60 minutes depending on how much material you already have. I won't produce any content until you've validated every section of the draft brand doctrine.
+> Welcome. I'll help you turn this template into a cockpit tailored to your company. This takes 30-60 minutes depending on how much material you already have. I won't produce any content until you've validated every section of the draft brand doctrine.
 >
 > Before we start, three things you should know:
 >
 > 1. I will never ask you to paste API keys in chat. Keys go into the `.env` file, which stays local and is gitignored.
 > 2. Every draft I produce is for your review. Nothing gets written to operational folders until you explicitly approve.
-> 3. You can interrupt at any time and resume later by running `/start-copilot` again, or by running individual sub-commands.
+> 3. You can interrupt at any time and resume later by running `/start-cockpit` again, or by running individual sub-commands.
 >
 > Full security rules: `SECURITY.md`.
 
-Then run preflight checks (from `copilot-setup` skill):
+Then run preflight checks (from `cockpit-setup` skill):
 - Model is Sonnet 4.6 or better
 - Git working tree is clean (or user confirms dirty state)
 - Python dependencies are installed
@@ -118,7 +118,7 @@ If at any point the user wants to wipe and restart:
 ```bash
 rm -rf 01-brand/*.md  # keep CLAUDE.md
 rm .setup-completed
-# Re-run /start-copilot
+# Re-run /start-cockpit
 ```
 
 **Do not delete the `02-strategy/` files.** `objectifs.md`, `parcours-client.md`, `kpi-framework.md`, `channel-strategy.md` and `content-pillars.md` are filled **in place** by `/brand-discover` (their v2 structure is the reference — there is no scaffold copy in `_templates/`). To reset them, restore the pristine tokenized versions from Git:

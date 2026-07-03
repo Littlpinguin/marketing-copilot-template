@@ -27,7 +27,7 @@ Ordre type : `design-direction` → `design-system` → production (landing-page
 2. Lire `01-brand/checklist-pre-composition.md` : règles anti-style-IA et typographiques de la marque — en cas de conflit avec les bans de cette skill, **la checklist de marque fait foi** (ex. : la checklist autorise le demi-cadratin `–` ; le ban absolu de cette skill ne porte alors que sur le cadratin `—`).
    Lire aussi `01-brand/design-anti-generique.md` : la doctrine design anti-générique du template — même logique de préséance (marque > doctrine > bans de cette skill).
 3. Classer : dimension **verrouillée par la marque** (couleur primaire, police, radius fournis par le style-guide → interdiction d'y déroger, même si un ban ci-dessous suggère autre chose) vs **libre** (le style-guide est muet → cette skill s'applique pleinement).
-4. Si `01-brand/style-guide.md` manque ou contient des `{{...}}` : s'arrêter et proposer `/start-copilot`.
+4. Si `01-brand/style-guide.md` manque ou contient des `{{...}}` : s'arrêter et proposer `/start-cockpit`.
 
 Exemple de préséance : la règle « LILA » ci-dessous décourage le violet par défaut — mais si la marque est violette, elle reste violette (c'est l'override prévu).
 

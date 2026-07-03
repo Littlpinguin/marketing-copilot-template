@@ -14,7 +14,7 @@ Labels, microcopy, messages d'erreur et copy de bouton sont du contenu de marque
 1. `01-brand/checklist-pre-composition.md` et `01-brand/voice.md` — ton, vocabulaire, interdits (un message d'erreur aussi a une voix).
 2. `01-brand/personas.md` — le niveau de formalité et le vocabulaire des labels.
 
-Si un fichier manque ou contient des `{{...}}` : arrêter et lancer `/start-copilot`.
+Si un fichier manque ou contient des `{{...}}` : arrêter et lancer `/start-cockpit`.
 
 ## Cadrage initial
 

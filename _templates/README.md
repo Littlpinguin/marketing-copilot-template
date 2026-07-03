@@ -38,5 +38,5 @@ You can edit these before running the wizard — your changes will be the starti
 ## Conventions
 
 - Placeholders use `{{UPPERCASE_UNDERSCORE}}` (Mustache-style). Canonical list in `docs/placeholders.json`.
-- English only, per the template's operational language rule (content produced by the copilot still follows the brand language you pick at setup).
+- English only, per the template's operational language rule (content produced by the cockpit still follows the brand language you pick at setup).
 - No secrets. If a template references a secret, it references the **env variable name**, never the value.
