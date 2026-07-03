@@ -2,11 +2,11 @@
 
 **Your marketing department, running inside Claude Code — and it knows your brand by heart.**
 
-45 production skills · 10 specialist agents · 52 slide layouts · 20 ready-to-open page templates · 7 optional modules. Built and battle-tested by [Jessy Martin](https://jessem.fr) on real client accounts, then open-sourced.
+49 production skills · 10 specialist agents · 52 slide layouts · 20 ready-to-open page templates · 7 optional modules. Built and battle-tested by [Jessy Martin](https://jessem.fr) on real client accounts, then open-sourced.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Built for Claude Code](https://img.shields.io/badge/Built%20for-Claude%20Code-d97757.svg)](https://docs.anthropic.com/en/docs/claude-code/overview)
-[![Skills](https://img.shields.io/badge/skills-45-blue.svg)](#whats-inside)
+[![Skills](https://img.shields.io/badge/skills-49-blue.svg)](#whats-inside)
 [![Agents](https://img.shields.io/badge/agents-10-blue.svg)](#whats-inside)
 
 Clone it once per company, run the wizard, and get a role-based copilot that behaves like a marketing director: strategy, social, email, landing pages, design, presentations, SEO — plus optional modules for video, n8n automation, client-facing reporting and outbound acquisition. Every deliverable is a file in your repo. Every word passes a brand gate before it ships.
@@ -149,7 +149,7 @@ It fetches your website, analyzes your recent content, drafts your brand doctrin
 
 ## What's inside
 
-**45 skills**, organized by function (all in `.claude/skills/`):
+**49 skills**, organized by function (all in `.claude/skills/`):
 
 | Category | Skills | Count |
 |---|---|---|
@@ -161,8 +161,9 @@ It fetches your website, analyzes your recent content, drafts your brand doctrin
 | Governance & plumbing | `copilot-setup` (wizard), `brand-check` (the quality gate), `inventory`, `sync-template`, `backport-to-template` | 5 |
 | Paid acquisition | `sea-google-ads`, `ads-audit` (Google/Meta/LinkedIn audit grids, ~157 checks) | 2 |
 | Video | `video-editing`, `captions` | 2 |
+| Web animation | `animation-gsap` (GSAP + ScrollTrigger), `animation-animejs`, `animation-lottie`, `animation-scroll-reveal` (AOS & co) | 4 |
 
-**9 agents** (`.claude/agents/`): `brand-guardian`, `qa-visuel`, `a11y-auditor`, `seo-technical`, `seo-content`, `seo-google`, `sea-analyst`, `veille-analyst`, `performance-analyst` — dispatched in parallel for audits and multi-channel campaigns.
+**10 agents** (`.claude/agents/`): `brand-guardian`, `qa-visuel`, `a11y-auditor`, `seo-technical`, `seo-content`, `seo-google`, `sea-analyst`, `veille-analyst`, `performance-analyst`, `n8n-debugger` — dispatched in parallel for audits and multi-channel campaigns.
 
 **Working assets, not lorem ipsum:**
 
@@ -227,6 +228,7 @@ The best community skills are **vendored** (copied, adapted, attributed) rather 
 | [marketingskills](https://github.com/coreyhaines31/marketingskills) | Corey Haines | CRO for pages, forms, popups, pricing | MIT |
 | [humanize-writing](https://github.com/jpeggdev/humanize-writing) | jpeggdev | 8-pass de-AI-ification + AI-tells reference | MIT |
 | [claude-translation-skill](https://github.com/senshinji/claude-translation-skill) | senshinji | Multi-agent translation pipeline with brand glossary | MIT |
+| [claudedesignskills](https://github.com/freshtechbro/claudedesignskills) | freshtechbro | Web animation skills (GSAP/ScrollTrigger, Anime.js, Lottie, AOS) | MIT |
 | [email-marketing-bible](https://github.com/CosmoBlk/email-marketing-bible) | CosmoBlk | Deliverability triage, compliance table, dark-mode-safe design | MIT |
 | [accessibility-agents](https://github.com/Community-Access/accessibility-agents) | Taylor Arndt | WCAG 2.2 AA web referential + a11y audit agent | MIT |
 

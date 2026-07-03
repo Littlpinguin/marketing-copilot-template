@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+**Added.** 4 web-animation skills vendored from [claudedesignskills](https://github.com/freshtechbro/claudedesignskills) (MIT): `animation-gsap` (GSAP + ScrollTrigger), `animation-animejs`, `animation-lottie`, `animation-scroll-reveal` (AOS & co) — SKILL.md + references only, no scripts (see `docs/vendored-animation.md` for scope, field-tested guardrails and re-sync procedure). Skill count: 45 → 49.
+
 ## [2.0.0] — The complete AI marketing department (major rework)
 
 **Core.** Brand doctrine injected as step 0 in every production skill (anti-AI writing + anti-generic design doctrines), central editorial calendar with validation statuses, `00-intel/` live context (n8n-fed meeting transcripts, gitignored), strategy cascade (objectives → briefs → personas → journey), marketing-director routing at the root.
